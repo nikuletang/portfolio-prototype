@@ -1,0 +1,1103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DC Water: UX Case Study · Niku Letang</title>
+  <meta name="description" content="Designing a mobile-responsive way for District of Columbia residents and visitors to report water-related problems, receive updates, and track their reports.">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ============================================================
+       Compact section navigation
+       ============================================================ -->
+  <nav class="secnav" aria-label="Case study sections">
+    <div class="wrap secnav__bar">
+      <a class="secnav__home" href="#top">Niku Letang <span>· DC Water</span></a>
+      <button class="secnav__toggle" type="button" aria-expanded="false" aria-controls="secnav-list">
+        Sections <span class="secnav__current" aria-hidden="true">Overview</span>
+        <svg class="secnav__chev" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+      </button>
+      <ul class="secnav__list" id="secnav-list">
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#solution">Solution</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#reporting">Reporting form</a></li>
+        <li><a href="#photo-reporting">Photo reporting</a></li>
+        <li><a href="#prototypes">Prototypes</a></li>
+        <li><a href="#outcomes">Outcomes</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main id="main">
+
+    <!-- ============================================================
+         1. HERO
+         ============================================================ -->
+    <header class="hero" id="top">
+      <div class="wrap hero__grid">
+        <div>
+          <p class="eyebrow">UX case study · HCIM capstone · 2022</p>
+          <h1 class="hero__title">DC Water</h1>
+          <p class="hero__tagline">Helping District of Columbia residents and visitors report water-related problems.</p>
+          <p class="hero__desc">A redesigned, mobile-responsive Report a Problem form, a new Customer Service form, and an image recognition concept, designed with DC Water over Sprints 3–5 of a five-sprint capstone project.</p>
+
+          <dl class="facts">
+            <div><dt>My role</dt><dd>UX designer · Sprint 4 facilitator</dd></div>
+            <div><dt>Client</dt><dd>DC Water</dd></div>
+            <div><dt>Timeline</dt><dd>January – May 2022</dd></div>
+            <div><dt>Status</dt><dd>Development in progress</dd></div>
+          </dl>
+        </div>
+        <div class="hero__visual">
+          <div class="device"><div class="ph" data-asset="hero-mockup"></div></div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ============================================================
+         2. PROJECT OVERVIEW
+         ============================================================ -->
+    <section class="section" id="overview" aria-labelledby="overview-title">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow"><span class="eyebrow__num">01</span> Project overview</p>
+          <h2 id="overview-title">Most reports arrived by phone, not through the web form</h2>
+        </div>
+
+        <div class="split">
+          <div>
+            <h3 class="kicker">The problem</h3>
+            <p class="problem-statement">DC Water has a web form for reporting problems, but most reports come in through the emergency hotline. That leads to a high volume of calls and slower response times.</p>
+            <p>DC Water distributes drinking water and collects and treats wastewater for residents and visitors of the District of Columbia. Its web form lets people report issues such as leaks and broken fire hydrants, so customers and DC Water can resolve problems in homes and neighborhoods together.</p>
+            <h3 class="kicker" style="margin-top:2rem">Design challenge</h3>
+            <p>DC Water wants to drive users to its mobile-responsive web form and make reporting problems more efficient.</p>
+          </div>
+
+          <dl class="meta-list">
+            <div><dt>Client</dt><dd>DC Water</dd></div>
+            <div><dt>Context</dt><dd>HCIM Capstone Project</dd></div>
+            <div><dt>Team</dt><dd>Niku Letang, Camila Velloso, Ruiqi Li, Saskia Beitzell, Carolyn Shipe, Aubrey Parrish</dd></div>
+            <div><dt>Timeline</dt><dd>January – May 2022 · five 4-week sprints</dd></div>
+            <div><dt>Project status</dt><dd>Development in progress</dd></div>
+            <div><dt>Methods &amp; tools</dt>
+              <dd>
+                <ul class="pill-list" aria-label="Methods and tools">
+                  <li>User research</li><li>Card sorting</li><li>User scenarios</li><li>User flows</li>
+                  <li>Wireframes</li><li>Visual design</li><li>Interaction design</li>
+                  <li>Prototyping</li><li>User testing</li><li>Figma</li>
+                </ul>
+              </dd>
+            </div>
+          </dl>
+        </div>
+
+        <!-- Role -->
+        <div class="block">
+          <h3>My role and the team's work</h3>
+          <p class="prose">At the end of Sprint 2 the team changed, and I was one of the members who joined the project midway through the semester. <strong>Because I joined at the beginning of Sprint 3, this case study focuses on Sprints 3–5 only.</strong></p>
+
+          <div class="role-cols" style="margin-top:1.5rem">
+            <div class="role-card role-card--mine">
+              <h3>My contributions</h3>
+              <ul>
+                <li>Conducted card sorting activities, user interviews, user testing, and prototyping.</li>
+                <li>Worked on the visual and interactive designs.</li>
+                <li>As facilitator of Sprint 4, directed the course of the project, oversaw the schedule, and led client presentations.</li>
+                <li>In Sprint 5, the team divided the work and I worked only on the image recognition concept.</li>
+              </ul>
+            </div>
+            <div class="role-card">
+              <h3>Team process</h3>
+              <ul>
+                <li>The team of six worked in five 4-week sprints based on the Google Ventures Design Sprint process.</li>
+                <li>Each sprint covered research and analysis, ideation, design, evaluation, and refinement.</li>
+                <li>Research, design iterations, and testing described below were carried out as a team ("we") unless noted as mine.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sprint timeline -->
+        <div class="block">
+          <h3 class="kicker">Where this case study sits</h3>
+          <ol class="timeline">
+            <li><strong>Sprint 1</strong>Before I joined · user testing</li>
+            <li><strong>Sprint 2</strong>Before I joined · user testing</li>
+            <li class="is-mine"><span class="timeline__join">I joined</span><strong>Sprint 3</strong>Research, IA, and first reporting-form iteration</li>
+            <li class="is-mine"><strong>Sprint 4</strong>Second iteration and Customer Service form (I facilitated)</li>
+            <li class="is-mine"><strong>Sprint 5</strong>Alternative reporting methods: image recognition concept</li>
+          </ol>
+          <p class="timeline-caption">Sprint numbers appear throughout as supporting context. The page is organized around the problem and the design decisions.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         3. SOLUTION PREVIEW
+         ============================================================ -->
+    <section class="section section--quiet" id="solution" aria-labelledby="solution-title">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow"><span class="eyebrow__num">02</span> Solution preview</p>
+          <h2 id="solution-title">Report a problem, receive updates, and track it to resolution</h2>
+          <p class="lede">The redesigned Report a Problem form separates water problems from general inquiries, lets people choose how they hear back, and gives every report a trackable ticket.</p>
+        </div>
+
+        <div class="preview">
+          <figure>
+            <div class="device"><div class="ph" data-asset="rap-04" data-compact></div></div>
+            <figcaption>
+              <span class="preview__step">01 · Report</span>
+              <strong>Plain-language choices</strong>
+              People locate the problem, then pick from everyday categories such as Flooding / Leaking or Damage, with an Other / Not Sure option.
+            </figcaption>
+          </figure>
+          <figure>
+            <div class="device"><div class="ph" data-asset="rap-06" data-compact></div></div>
+            <figcaption>
+              <span class="preview__step">02 · Receive updates</span>
+              <strong>Notifications on their terms</strong>
+              Separate choices for receiving updates about the ticket and for letting DC Water get in touch with questions, by phone call or email.
+            </figcaption>
+          </figure>
+          <figure>
+            <div class="device"><div class="ph" data-asset="rap-11" data-compact></div></div>
+            <figcaption>
+              <span class="preview__step">03 · Track</span>
+              <strong>Ticket status and details</strong>
+              A status bar, case history, and the details of what was submitted, plus a way to rate the experience once the case is resolved.
+            </figcaption>
+          </figure>
+        </div>
+        <p class="note-inline">Screens are from the team's Figma prototypes. Prototype testing results are reported below. They are not production metrics.</p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         4. UNDERSTANDING THE PROBLEM
+         ============================================================ -->
+    <section class="section" id="research" aria-labelledby="research-title">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow"><span class="eyebrow__num">03</span> Understanding the problem</p>
+          <h2 id="research-title">Learning how people describe water problems</h2>
+          <p class="lede">The form used DC Water's terminology. To fix that, we first needed to understand how people themselves group and name the problems they see.</p>
+        </div>
+
+        <!-- Starting point -->
+        <div class="split">
+          <div>
+            <span class="sprint-tag">Starting point · Findings from Sprints 1–2</span>
+            <h3>What earlier testing revealed</h3>
+            <p>User testing in Sprints 1 and 2, before I joined, surfaced three problems with the existing design:</p>
+          </div>
+          <ol class="numbered">
+            <li><h4>Terminology was too technical</h4><p>Users were unsure how to define the issue they wanted to report.</p></li>
+            <li><h4>"Emergency" made people hesitate</h4><p>Users hesitated to use the Emergency form because they were not confident their issue was a "true emergency."</p></li>
+            <li><h4>Some issues were missing</h4><p>Other possible issues were not represented in the design, and users had no way to select them.</p></li>
+          </ol>
+        </div>
+
+        <div class="block">
+          <div class="split split--even">
+            <div>
+              <span class="sprint-tag">Sprint 3 goals</span>
+              <h3>Improve the current design to…</h3>
+            </div>
+            <ul class="findings" style="margin:0">
+              <li style="grid-template-columns:1fr"><span class="findings__what" style="font-weight:500">Help users build confidence in making selections in the form</span></li>
+              <li style="grid-template-columns:1fr"><span class="findings__what" style="font-weight:500">Clearly communicate the criteria for real emergencies</span></li>
+              <li style="grid-template-columns:1fr"><span class="findings__what" style="font-weight:500">Provide more possible combinations of issue types and affected equipment</span></li>
+              <li style="grid-template-columns:1fr"><span class="findings__what" style="font-weight:500">Revise terminology to match users' mental model</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Image card sorting -->
+        <div class="block">
+          <div class="split split--reverse split--center">
+            <div>
+              <span class="sprint-tag">Research · Sprint 3</span>
+              <h3>Image card sorting</h3>
+              <p><strong>Question:</strong> Because users had difficulty matching the issues on the form with the issue they wanted to report, we ran an unmoderated card sort to learn how they define and categorize issues.</p>
+              <ul>
+                <li>We pulled images from past submissions reported through the "Report a Problem" form and Twitter.</li>
+                <li>Participants grouped similar images together and gave each group a name.</li>
+              </ul>
+              <dl class="stats" aria-label="Image card sorting">
+                <div><dt>Participants</dt><dd>10</dd></div>
+                <div><dt>Images</dt><dd>15</dd></div>
+                <div><dt>Categories created</dt><dd>40</dd></div>
+              </dl>
+            </div>
+            <figure class="artifact">
+              <div class="ph" data-asset="research-card-sort"></div>
+              <figcaption>The 15 images came from past submissions to the Report a Problem form and Twitter.</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <!-- Word bank -->
+        <div class="block">
+          <div class="split">
+            <div>
+              <span class="sprint-tag">Research · Sprint 3</span>
+              <h3>Word bank and image association</h3>
+              <p><strong>Question:</strong> Which words do people connect with each kind of problem?</p>
+              <p>Once we knew how users categorized issues, we turned their category names into a word bank. We then asked participants to think aloud about what they saw in each image and match as many words as they liked to it.</p>
+              <dl class="stats" aria-label="Word bank and image association participants">
+                <div><dt>Participants</dt><dd>13</dd></div>
+                <div><dt>Age range</dt><dd>18–55</dd></div>
+                <div><dt>Renters</dt><dd>8</dd></div>
+                <div><dt>Homeowners</dt><dd>5</dd></div>
+              </dl>
+            </div>
+            <figure>
+              <div class="artifact"><div class="ph" data-asset="research-word-bank"></div></div>
+              <figcaption><strong>The board</strong>Twelve photos, each tagged with word stickies. Prompts: "1) Think out loud. What are you seeing in this image? 2) Drag n drop word sticky notes to the images you associate them with."</figcaption>
+              <details class="more">
+                <summary>Word bank used in the activity <span class="more__sub">Transcribed from the board</span></summary>
+                <div class="more__body">
+                  <ul class="wordbank" aria-label="Word bank">
+                    <li>water</li><li>colorful water</li><li>kitchen</li><li>bathroom flooded</li><li>cloudy water</li><li>water bill</li><li>water usage</li>
+                    <li>poor water quality</li><li>water quality</li><li>water meter</li><li>polluted water</li><li>water pressure</li><li>plumbing</li><li>bathroom</li>
+                    <li>no water</li><li>basement flooded</li><li>water outage</li><li>frozen pipes</li><li>pipe noise</li><li>blocked drain</li><li>basement</li>
+                    <li>rain water</li><li>manhole cover</li><li>standing water</li><li>storm drain</li><li>icy roads</li><li>hazard</li><li>pipe</li>
+                    <li>exposed pipe</li><li>burst main break</li><li>main break</li><li>weather</li><li>leaking</li><li>flooding</li><li>sidewalk</li>
+                    <li>sewage</li><li>access cover</li><li class="is-illegible">[illegible note]</li><li>fire hydrant</li><li>damage</li><li>street</li>
+                    <li>infrastructure damage</li><li>ice</li>
+                  </ul>
+                </div>
+              </details>
+            </figure>
+          </div>
+        </div>
+
+        <!-- Key findings -->
+        <div class="block">
+          <h3>Key findings from card sorting and image association</h3>
+          <ul class="findings">
+            <li>
+              <span class="findings__what">Categorization varied widely. "Flooding" and "fire hydrant" were the only categories users had in common.</span>
+              <span class="findings__so">Flooding / Leaking appears as a problem type in the information architecture and in every later iteration.</span>
+            </li>
+            <li>
+              <span class="findings__what">Participants associated issues with their setting: indoors or outdoors.</span>
+              <span class="findings__so">The top level of the information architecture is Indoor, Outdoor, and Not Sure / Other.</span>
+            </li>
+            <li>
+              <span class="findings__what">Users misidentified more technical objects, such as a manhole and a water meter.</span>
+              <span class="findings__so">Echoed in Sprint 5: participants valued object descriptions that taught them the terminology while reporting.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- IA -->
+        <div class="block">
+          <div class="split">
+            <div>
+              <span class="sprint-tag">Synthesis · Sprint 3</span>
+              <h3>The resulting information architecture</h3>
+              <p>We used the card sorting results as the basis for the information architecture. Problems are first grouped by where they happen, then by a small set of plain-language problem types, with an escape hatch for people who aren't sure.</p>
+            </div>
+            <figure class="artifact">
+              <div class="ia" role="group" aria-label="Information architecture">
+                <div class="ia__col">
+                  <div class="ia__root">Indoor</div>
+                  <ul><li>Flooding &amp; Leaking</li><li>Water Pressure</li><li>No Water</li><li>Water Quality</li><li>Other / Unsure</li></ul>
+                </div>
+                <div class="ia__col">
+                  <div class="ia__root">Outdoor</div>
+                  <ul><li>Flooding or Leaking</li><li>Damage</li><li>Other / Unsure</li></ul>
+                </div>
+                <div class="ia__col">
+                  <div class="ia__root">Not Sure / Other</div>
+                  <p class="ia__empty">No sub-categories</p>
+                </div>
+              </div>
+              <figcaption>Rebuilt from the team's IA board.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         5. DESIGNING AND REFINING THE REPORTING EXPERIENCE
+         ============================================================ -->
+    <section class="section" id="reporting" aria-labelledby="reporting-title">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow"><span class="eyebrow__num">04</span> Designing and refining the reporting experience</p>
+          <h2 id="reporting-title">From an emergency form to a problem report people trust</h2>
+          <p class="lede">The first iteration put the new IA into a step-by-step form. Testing showed where language, privacy, and tracking still got in the way.</p>
+        </div>
+
+        <!-- Iteration 1 -->
+        <div>
+          <span class="sprint-tag">Iteration 1 · Sprint 3</span>
+          <h3>The first redesigned form</h3>
+          <p class="prose">A short, guided flow: say where the problem is, choose what it is, optionally add details and contact information, review, and get a ticket to track.</p>
+          <div class="screens screens--5" style="margin-top:1.75rem">
+            <figure>
+              <div class="screen"><div class="ph" data-asset="rap-v1-landing" data-compact></div></div>
+              <figcaption><span class="screen-num">01</span><strong>Landing page</strong>Detailed instructions for how to get started.</figcaption>
+            </figure>
+            <figure>
+              <div class="screen"><div class="ph" data-asset="rap-v1-category" data-compact></div></div>
+              <figcaption><span class="screen-num">02</span><strong>Problem category</strong>An easy point of entry based on where the problem occurred, with the option to select "Other."</figcaption>
+            </figure>
+            <figure>
+              <div class="screen"><div class="ph" data-asset="rap-v1-subcategory" data-compact></div></div>
+              <figcaption><span class="screen-num">03</span><strong>Sub-category: Outdoors</strong>Common problem types based on the location of the issue.</figcaption>
+            </figure>
+            <figure>
+              <div class="screen"><div class="ph" data-asset="rap-v1-details" data-compact></div></div>
+              <figcaption><span class="screen-num">04</span><strong>Problem details</strong>An optional opportunity to add a photo, suggested tags, and a description.</figcaption>
+            </figure>
+            <figure>
+              <div class="screen"><div class="ph" data-asset="rap-v1-review" data-compact></div></div>
+              <figcaption><span class="screen-num">05</span><strong>Review</strong>The ability to correct information before submitting.</figcaption>
+            </figure>
+          </div>
+          <p class="caption">The contact information and tracking screens from this iteration are shown in the comparisons below.</p>
+        </div>
+
+        <!-- Usability testing -->
+        <div class="block">
+          <span class="sprint-tag">Usability testing · Sprint 3</span>
+          <h3>What testing the first iteration showed</h3>
+          <div class="results" style="margin-top:1.25rem">
+            <div class="results__col">
+              <h3>Wins</h3>
+              <ul>
+                <li>The form met user expectations and was understandable and easy to use.</li>
+                <li>Most participants added their contact information and agreed to receive alerts.</li>
+                <li>Users appreciated being able to add tags to give their issue more context.</li>
+                <li>Participants found the ticket tracking process helpful.</li>
+                <li>Users appreciated being able to review and edit their information before submitting.</li>
+              </ul>
+              <p class="callout-num"><b>4.6 / 5</b> average confidence score</p>
+            </div>
+            <div class="results__col results__col--opps">
+              <h3>Opportunities</h3>
+              <ul>
+                <li>"Emergency" language may cause hesitancy to fill out the form.</li>
+                <li>Ticket status: users wanted to be reminded of what they submitted.</li>
+                <li>Data privacy: some worried their contact information or data could be used to send unrelated alerts later.</li>
+                <li>Users were initially unsure how to categorize a problem that could fit several categories.</li>
+                <li>There was no option to choose a notification preference.</li>
+                <li>Users wanted to add a comment after submitting the form.</li>
+                <li>Most users couldn't think of a scenario where they'd use "Other" for a problem that is neither indoors nor outdoors.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Decisions -->
+        <div class="block">
+          <span class="sprint-tag">Iteration 2 · Sprint 4</span>
+          <h3>Design decisions in the second iteration</h3>
+          <p class="prose">In Sprint 4 we updated the web form based on the testing results. Each change below traces from a finding to the redesign.</p>
+
+          <div style="margin-top:2.5rem">
+            <!-- Decision 1 -->
+            <article class="decision" aria-labelledby="d1">
+              <h4 class="decision__title" id="d1">Terminology: from "Report an Emergency" to "Report a Problem"</h4>
+              <ol class="chain">
+                <li><span class="chain__k">What we learned</span>"Emergency" language may make people hesitate, and earlier testing showed users weren't sure their issue was a true emergency.</li>
+                <li><span class="chain__k">What changed</span>The form title changed from "Report an Emergency" to "Report a Problem," to make users less likely to abandon the form when they aren't sure their issue is a true emergency.</li>
+                <li class="is-unknown"><span class="chain__k">What testing showed</span>No follow-up test of this change is documented.</li>
+              </ol>
+              <div class="compare">
+                <figure>
+                  <span class="compare__label">Before · Iteration 1</span>
+                  <div class="screen"><div class="ph" data-asset="rap-v1-category" data-compact></div></div>
+                </figure>
+                <figure>
+                  <span class="compare__label compare__label--after">After · Iteration 2</span>
+                  <div class="screen"><div class="ph" data-asset="rap-v2-title" data-compact></div></div>
+                </figure>
+              </div>
+            </article>
+
+            <!-- Decision 2 -->
+            <article class="decision" aria-labelledby="d2">
+              <h4 class="decision__title" id="d2">Notifications: preferences and clearer consent</h4>
+              <ol class="chain">
+                <li><span class="chain__k">What we learned</span>There was no way to choose a notification preference, and some participants worried their data could be used for unrelated alerts.</li>
+                <li><span class="chain__k">What changed</span>A simpler, more concise contact form with notification preferences. Receiving updates was separated from allowing DC Water to make contact, and the screen states that DC Water will only contact the user about this ticket.</li>
+                <li class="is-unknown"><span class="chain__k">What testing showed</span>No follow-up test of this change is documented.</li>
+              </ol>
+              <div class="compare">
+                <figure>
+                  <span class="compare__label">Before · Iteration 1</span>
+                  <div class="screen"><div class="ph" data-asset="rap-v1-contact" data-compact></div></div>
+                  <figcaption>One yes/no question about status alerts.</figcaption>
+                </figure>
+                <figure>
+                  <span class="compare__label compare__label--after">After · Iteration 2</span>
+                  <div class="screen"><div class="ph" data-asset="rap-v2-notifications" data-compact></div></div>
+                  <figcaption>Updates and contact permissions chosen separately, by phone call or email.</figcaption>
+                </figure>
+              </div>
+            </article>
+
+            <!-- Decision 3 -->
+            <article class="decision" aria-labelledby="d3">
+              <h4 class="decision__title" id="d3">Ticket tracking: show what was submitted</h4>
+              <ol class="chain">
+                <li><span class="chain__k">What we learned</span>Participants found ticket tracking helpful but wanted to be reminded of what they had submitted.</li>
+                <li><span class="chain__k">What changed</span>The ticket status page was redesigned to show the ticket's status and a new "Ticket Details" tab with the submitted information. An option to rate the experience and leave feedback was also added.</li>
+                <li class="is-unknown"><span class="chain__k">What testing showed</span>No follow-up test of this change is documented.</li>
+              </ol>
+              <div class="compare">
+                <figure>
+                  <span class="compare__label">Before · Iteration 1</span>
+                  <div class="screen"><div class="ph" data-asset="rap-v1-tracking" data-compact></div></div>
+                  <figcaption>Current status and generalized next steps.</figcaption>
+                </figure>
+                <figure>
+                  <span class="compare__label compare__label--after">After · Iteration 2</span>
+                  <div class="screen"><div class="ph" data-asset="rap-v2-ticket" data-compact></div></div>
+                  <figcaption>Case History and Ticket Details tabs, plus rating and feedback.</figcaption>
+                </figure>
+              </div>
+            </article>
+
+            <!-- Decision 4: visible in final screens -->
+            <article class="decision" aria-labelledby="d4">
+              <h4 class="decision__title" id="d4">Categories: fewer choices up front, a clear route when unsure</h4>
+              <ol class="chain">
+                <li><span class="chain__k">What we learned</span>Users were unsure how to categorize problems that fit several categories, and most couldn't imagine using "Other" for a problem that was neither indoors nor outdoors.</li>
+                <li><span class="chain__k">What the final screens show</span>"Where is the problem?" offers only Outdoors and Indoors, with a link to describe the issue if unsure. "Other / Not Sure" moves to the problem-type step. The final flow also starts with a location step.</li>
+                <li class="is-unknown"><span class="chain__k">What testing showed</span>No follow-up test of this change is documented.</li>
+              </ol>
+              <div class="compare">
+                <figure>
+                  <span class="compare__label">Before · Iteration 1</span>
+                  <div class="screen"><div class="ph" data-asset="rap-v1-category" data-compact></div></div>
+                  <figcaption>Outdoors, Indoors, Other.</figcaption>
+                </figure>
+                <figure>
+                  <span class="compare__label compare__label--after">Final</span>
+                  <div class="screen"><div class="ph" data-asset="rap-03" data-compact></div></div>
+                  <figcaption>Outdoors and Indoors, with a link for anyone who's unsure.</figcaption>
+                </figure>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- Customer service form -->
+        <div class="block">
+          <div class="split">
+            <div>
+              <span class="sprint-tag">Customer Service form · Sprint 4</span>
+              <h3>Separating problems from inquiries</h3>
+              <p>DC Water's previous form combined emergency issues and miscellaneous inquiries in one form, which confused users. We decided to direct people to two different forms based on their issue or inquiry, and designed a new Customer Service form for miscellaneous issues such as billing inquiries.</p>
+              <p>First, we worked with DC Water to decide which options could be left out of the new form because they were covered elsewhere on its website.</p>
+            </div>
+            <figure class="artifact">
+              <div class="sortboard" role="group" aria-label="Customer service options sort">
+                <div class="sortboard__col">
+                  <h4>Remove</h4>
+                  <ul><li>Installment Plan</li><li>CSO Tunnel</li><li>Service Restoration</li></ul>
+                </div>
+                <div class="sortboard__col">
+                  <h4>Other page</h4>
+                  <ul><li>Employment opportunity</li><li>School Project</li><li>For Kids</li><li>Backwater valve request</li><li>Business opportunity</li></ul>
+                </div>
+                <div class="sortboard__col sortboard__col--keep">
+                  <h4>Keep</h4>
+                  <ul><li>Billing Inquiry</li><li>Request for Repair</li><li>GIS Map Issue</li><li>Pavement / Sidewalk / Tree box</li><li>Construction / Restoration</li></ul>
+                </div>
+              </div>
+              <figcaption>Rebuilt from the sorting activity with DC Water.</figcaption>
+            </figure>
+          </div>
+
+          <div class="screens" style="margin-top:2.5rem">
+            <figure>
+              <div class="screen"><div class="ph" data-asset="cs-01" data-compact></div></div>
+              <figcaption><span class="screen-num">01</span><strong>Select a topic</strong>Billing Inquiry, Damage, or Other.</figcaption>
+            </figure>
+            <figure>
+              <div class="screen"><div class="ph" data-asset="cs-03" data-compact></div></div>
+              <figcaption><span class="screen-num">02</span><strong>Additional details</strong>"How can we help you?", location, suggested tags, and a file.</figcaption>
+            </figure>
+            <figure>
+              <div class="screen"><div class="ph" data-asset="cs-05" data-compact></div></div>
+              <figcaption><span class="screen-num">03</span><strong>Contact information</strong>Optional, for a reply, with an account number if applicable.</figcaption>
+            </figure>
+            <figure>
+              <div class="screen"><div class="ph" data-asset="cs-06" data-compact></div></div>
+              <figcaption><span class="screen-num">04</span><strong>Review</strong>Every answer can be edited before submitting.</figcaption>
+            </figure>
+          </div>
+          <p class="caption">The complete Customer Service flow is in <a href="#flow-cs">Final experience and prototypes</a>.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         6. EXPLORING PHOTO-BASED REPORTING
+         ============================================================ -->
+    <section class="section section--quiet" id="photo-reporting" aria-labelledby="photo-title">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow"><span class="eyebrow__num">05</span> Exploring photo-based reporting</p>
+          <h2 id="photo-title">Could a photo do the describing for you?</h2>
+          <p class="lede">We finished the Report a Problem and Customer Service forms earlier than expected, so in Sprint 5 we designed alternative ways to report a problem.</p>
+          <p class="notice"><span class="badge">Concept</span><span>Image recognition is a <strong>concept</strong>, designed and tested as a Figma prototype. The recognition shown is simulated, not working functionality.</span></p>
+        </div>
+
+        <!-- Brief -->
+        <div class="split">
+          <div>
+            <span class="sprint-tag">Exploration brief · Sprint 5</span>
+            <h3>The brief</h3>
+            <p>Sprint 4's plan included designing an artificial intelligence application to give users an alternative, more efficient way to report a problem. Sprint 5 set out to:</p>
+          </div>
+          <ol class="numbered">
+            <li><p>Research existing products that use machine learning and artificial intelligence to see whether there's an opportunity for a new Report a Problem solution.</p></li>
+            <li><p>Run lightning demos on alternative products.</p></li>
+            <li><p>Sketch new ideas.</p></li>
+            <li><p>Design new products.</p></li>
+          </ol>
+        </div>
+
+        <!-- Lightning demos + sketching -->
+        <div class="block">
+          <div class="grid-2">
+            <div>
+              <h3>Lightning demos</h3>
+              <p><strong>Purpose:</strong> find inspiring products, services, or experiences that could be adapted to DC Water's need for reporting water-related issues.</p>
+              <p>Standout examples included, but weren't limited to:</p>
+              <ul class="idea-list" aria-label="Lightning demo examples">
+                <li>Waze<span>Real-time traffic reporting</span></li>
+                <li>Chipotle<span>Chatbot</span></li>
+                <li>Google Lens<span>&nbsp;</span></li>
+                <li>Apple<span>Text support</span></li>
+              </ul>
+            </div>
+            <div>
+              <h3>Sketching and alternatives considered</h3>
+              <p>The lightning demos triggered a wide range of ideas. The team brought them to DC Water, who voted for the ones they believed would meet users' needs while being logistically and financially feasible.</p>
+              <ul class="idea-list" aria-label="Ideas considered">
+                <li>Public kiosk<span>Not pursued</span></li>
+                <li class="is-picked">Image recognition<span>Selected by DC Water · my focus</span></li>
+                <li class="is-picked">Chatbot<span>Selected by DC Water</span></li>
+                <li>SMS solution<span>Not pursued</span></li>
+                <li>Video conferencing<span>Not pursued</span></li>
+              </ul>
+              <p style="margin-top:1rem">The team divided the work. I worked only on image recognition, so it's the only concept in this case study.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="split split--center">
+            <div>
+              <h3>From sketch to wireframes</h3>
+              <p><strong>Sketch:</strong> the core idea in a single screen. Point the camera at the problem, let the product name the object ("Object Detected: Fire Hydrant") with a short definition, then confirm or try again.</p>
+              <p><strong>Wireframes:</strong> the team then wireframed the main screens of the image recognition design. They included a choice between form and camera, a camera view, problem details as a drawer or a full page, submission confirmation, and a ticket number.</p>
+            </div>
+            <figure>
+              <div style="max-width:380px"><div class="screen screen--flat"><div class="ph" data-asset="ir-sketch"></div></div></div>
+              <figcaption>Sketch for reporting a problem using image recognition.</figcaption>
+            </figure>
+          </div>
+
+          <div class="screens screens--7" style="margin-top:2.5rem" aria-label="Image recognition wireframes">
+            <figure><div class="screen screen--flat"><div class="ph" data-asset="ir-wf-1" data-compact></div></div></figure>
+            <figure><div class="screen screen--flat"><div class="ph" data-asset="ir-wf-2" data-compact></div></div></figure>
+            <figure><div class="screen screen--flat"><div class="ph" data-asset="ir-wf-3" data-compact></div></div></figure>
+            <figure><div class="screen screen--flat"><div class="ph" data-asset="ir-wf-4" data-compact></div></div></figure>
+            <figure><div class="screen screen--flat"><div class="ph" data-asset="ir-wf-5" data-compact></div></div></figure>
+            <figure><div class="screen screen--flat"><div class="ph" data-asset="ir-wf-6" data-compact></div></div></figure>
+            <figure><div class="screen screen--flat"><div class="ph" data-asset="ir-wf-7" data-compact></div></div></figure>
+          </div>
+          <p class="caption">Wireframes of the main image recognition screens.</p>
+
+          <details class="more">
+            <summary>Additional sketches <span class="more__sub">Optional slot</span></summary>
+            <div class="more__body" style="max-width:720px"><div class="artifact"><div class="ph" data-asset="ir-sketch-more"></div></div></div>
+          </details>
+        </div>
+
+        <!-- IR iteration 1 -->
+        <div class="block">
+          <span class="sprint-tag">Iteration 1 · Sprint 5</span>
+          <h3>Initial polished designs</h3>
+          <p class="prose">Photograph or upload the problem, see what the product recognized, and submit pre-filled details.</p>
+          <div class="screens" style="margin-top:1.75rem">
+            <figure>
+              <div class="screen"><div class="ph" data-asset="ir-v1-landing" data-compact></div></div>
+              <figcaption><span class="screen-num">01</span><strong>Landing page</strong>Similar to the Report a Problem form, with split buttons for choosing how to report.</figcaption>
+            </figure>
+            <figure>
+              <div class="screen"><div class="ph" data-asset="ir-v1-camera" data-compact></div></div>
+              <figcaption><span class="screen-num">02</span><strong>Camera view</strong>The user opens the camera and aims it at the object.</figcaption>
+            </figure>
+            <figure>
+              <div class="screen"><div class="ph" data-asset="ir-v1-description" data-compact></div></div>
+              <figcaption><span class="screen-num">03</span><strong>Object description</strong>The product identifies the object and describes it.</figcaption>
+            </figure>
+            <figure>
+              <div class="screen"><div class="ph" data-asset="ir-v1-drawer" data-compact></div></div>
+              <figcaption><span class="screen-num">04</span><strong>Problem details</strong>Details about the issue are filled in automatically in a drawer.</figcaption>
+            </figure>
+          </div>
+          <details class="more">
+            <summary>5 more screens from iteration 1 <span class="more__sub">Upload, drawer, library, confirmation, ticket</span></summary>
+            <div class="more__body">
+              <div class="gallery">
+                <figure><div class="screen"><div class="ph" data-asset="ir-v1-upload" data-compact></div></div><figcaption><strong>Upload</strong>Take a photo or choose an existing one.</figcaption></figure>
+                <figure><div class="screen"><div class="ph" data-asset="ir-v1-collapsed" data-compact></div></div><figcaption><strong>Collapsible drawer</strong>The view when the user hides the drawer.</figcaption></figure>
+                <figure><div class="screen"><div class="ph" data-asset="ir-v1-library" data-compact></div></div><figcaption><strong>Photo library</strong>Select a photo from the native library.</figcaption></figure>
+                <figure><div class="screen"><div class="ph" data-asset="ir-v1-confirm" data-compact></div></div><figcaption><strong>Confirmation</strong>Shown after the user selects "Submit" on the reviewed details.</figcaption></figure>
+                <figure><div class="screen"><div class="ph" data-asset="ir-v1-ticket" data-compact></div></div><figcaption><strong>Ticket number</strong>Generated automatically on submission for easy tracking.</figcaption></figure>
+              </div>
+            </div>
+          </details>
+        </div>
+
+        <!-- A/B testing -->
+        <div class="block">
+          <span class="sprint-tag">Comparative testing · Sprint 5</span>
+          <h3>Testing two directions for the landing and details screens</h3>
+          <p class="prose">After the first iteration, we had different ideas for the interface and interactions, especially for the landing page and the problem details page. The team couldn't agree on the best options, so we tested both versions of each pair of screens with users.</p>
+          <ul class="test-meta">
+            <li><strong>6 participants</strong>, all of whom had tested the Report a Problem form</li>
+            <li>Goals: overall impressions of image recognition, and how it compares with the Report a Problem form for ease of use and effectiveness</li>
+          </ul>
+
+          <div class="ab" style="margin-top:2rem">
+            <div class="ab__pair">
+              <h3>Landing page</h3>
+              <div class="ab__options">
+                <figure>
+                  <div class="screen"><div class="ph" data-asset="ab-landing-a" data-compact></div></div>
+                  <figcaption><span class="ab__opt-label">Option A</span><strong>Split button</strong>Like the Report a Problem landing page, but "Report a Problem" splits into two buttons: fill out the traditional form or use image recognition.</figcaption>
+                </figure>
+                <figure>
+                  <div class="screen"><div class="ph" data-asset="ab-landing-b" data-compact></div></div>
+                  <figcaption><span class="ab__opt-label">Option B</span><strong>Photo layout</strong>Image recognition is the default. "Show us the issue" then offers image recognition or the traditional form. This assumed image recognition would be the easiest, most efficient option and that users would want to start with the fastest one.</figcaption>
+                </figure>
+              </div>
+            </div>
+            <div class="ab__pair">
+              <h3>Problem details</h3>
+              <div class="ab__options">
+                <figure>
+                  <div class="screen"><div class="ph" data-asset="ab-details-a" data-compact></div></div>
+                  <figcaption><span class="ab__opt-label">Option A</span><strong>Interaction drawer</strong>A drawer pattern we found in existing image recognition products. We liked its modern look but worried drawers are native to apps and might not translate well to responsive web pages.</figcaption>
+                </figure>
+                <figure>
+                  <div class="screen"><div class="ph" data-asset="ab-details-b" data-compact></div></div>
+                  <figcaption><span class="ab__opt-label">Option B</span><strong>Full page</strong>A more classic layout, which we liked because the "Add Photo" button is very visible.</figcaption>
+                </figure>
+              </div>
+            </div>
+          </div>
+
+          <div class="results" style="margin-top:3rem">
+            <div class="results__col">
+              <h3>Wins</h3>
+              <ul>
+                <li>The photo layout landing page was simple and easy to use.</li>
+                <li>Users noticed and used the additional photo button on the full-page problem details layout.</li>
+                <li>The design met users' expectations about what would happen after uploading a photo.</li>
+                <li>Users appreciated the object descriptions after uploading a photo because they could learn the terminology while reporting.</li>
+                <li>Users liked that tags were selected automatically after uploading a photo, and appreciated being able to select more.</li>
+              </ul>
+              <p class="callout-num"><b>6 of 6</b> participants said they'd prefer image recognition over the Report a Problem form (prototype preference)</p>
+            </div>
+            <div class="results__col results__col--opps">
+              <h3>Opportunities</h3>
+              <ul>
+                <li>The "Image Identifier" label on the split-button landing page confused some users, who didn't know what to expect.</li>
+                <li>Users were unlikely to close the drawer on the problem details page unless they wanted a full view of their image.</li>
+                <li>Users didn't notice the additional photo button in the drawer layout.</li>
+                <li>Users found the confirmation message after selecting "Submit" unnecessary.</li>
+                <li>Users didn't know how to save the ticket number after submitting.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- IR iteration 2 -->
+        <div class="block">
+          <span class="sprint-tag">Iteration 2 · Sprint 5</span>
+          <h3>Revisions after testing</h3>
+
+          <article class="decision" aria-labelledby="ir-d1">
+            <h4 class="decision__title" id="ir-d1">Submitting and tracking without a ticket number</h4>
+            <ol class="chain">
+              <li><span class="chain__k">What we learned</span>The confirmation message after "Submit" felt unnecessary, and users didn't know how to save the ticket number.</li>
+              <li><span class="chain__k">What changed</span>The extra submit step was removed: users get a thank-you message and can exit right away. The copy-ticket-number option was removed, and users track their report by uploading the original photo.</li>
+              <li class="is-unknown"><span class="chain__k">What testing showed</span>No test of the second iteration is documented. Tracking by photo introduced a new limitation (see Outcomes).</li>
+            </ol>
+            <div class="compare compare--wide">
+              <figure>
+                <span class="compare__label">Before · Iteration 1</span>
+                <div class="compare compare--quad">
+                  <div class="screen"><div class="ph" data-asset="ir-v1-confirm" data-compact></div></div>
+                  <div class="screen"><div class="ph" data-asset="ir-v1-ticket" data-compact></div></div>
+                </div>
+              </figure>
+              <figure>
+                <span class="compare__label compare__label--after">After · Iteration 2</span>
+                <div class="compare compare--quad">
+                  <div class="screen"><div class="ph" data-asset="ir-v2-thanks" data-compact></div></div>
+                  <div class="screen"><div class="ph" data-asset="ir-v2-tracking" data-compact></div></div>
+                </div>
+              </figure>
+            </div>
+          </article>
+
+          <article class="decision" aria-labelledby="ir-d2">
+            <h4 class="decision__title" id="ir-d2">Landing page and problem details layouts</h4>
+            <ol class="chain">
+              <li><span class="chain__k">What we learned</span>The photo layout landing page was simple and easy to use, while "Image Identifier" confused some users. Users noticed the additional photo button on the full-page layout but not in the drawer.</li>
+              <li><span class="chain__k">What the final screens show</span>The final prototype uses the photo layout landing page ("Show Us The Issue") and the full-page problem details, where users can add another photo.</li>
+              <li class="is-unknown"><span class="chain__k">What testing showed</span>No test of the second iteration is documented.</li>
+            </ol>
+            <div class="compare">
+              <figure>
+                <span class="compare__label compare__label--after">Final landing</span>
+                <div class="screen"><div class="ph" data-asset="ir-01" data-compact></div></div>
+              </figure>
+              <figure>
+                <span class="compare__label compare__label--after">Additional photo uploaded</span>
+                <div class="screen"><div class="ph" data-asset="ir-v2-photo" data-compact></div></div>
+                <figcaption>The view after the user selects "Add Photo."</figcaption>
+              </figure>
+            </div>
+          </article>
+
+          <article class="decision decision--plain" aria-labelledby="ir-d3">
+            <h4 class="decision__title" id="ir-d3">Other additions in the second iteration</h4>
+            <div class="screens" style="margin-top:1rem">
+              <figure>
+                <div class="screen"><div class="ph" data-asset="ir-v2-error" data-compact></div></div>
+                <figcaption><strong>Error</strong>A message when an uploaded photo isn't recognized as an eligible DC Water object.</figcaption>
+              </figure>
+              <figure>
+                <div class="screen"><div class="ph" data-asset="ir-v2-form-option" data-compact></div></div>
+                <figcaption><strong>Form option</strong>"No photo? Fill out a form." sends users to the Report a Problem form when image recognition isn't suitable.</figcaption>
+              </figure>
+              <figure>
+                <div class="screen"><div class="ph" data-asset="ir-v2-outline" data-compact></div></div>
+                <figcaption><strong>Object outline</strong>A label and an outline around the object make it easy to identify.</figcaption>
+              </figure>
+              <figure>
+                <div class="screen"><div class="ph" data-asset="ir-v2-location" data-compact></div></div>
+                <figcaption><strong>Location</strong>Users can edit their location if the detected location is inaccurate.</figcaption>
+              </figure>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         7. FINAL EXPERIENCE AND PROTOTYPES
+         ============================================================ -->
+    <section class="section" id="prototypes" aria-labelledby="prototypes-title">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow"><span class="eyebrow__num">06</span> Final experience and prototypes</p>
+          <h2 id="prototypes-title">Three flows, prototyped in Figma</h2>
+          <p class="lede">Explore each prototype or browse the complete set of screens.</p>
+        </div>
+
+        <!-- Flow: Report a Problem -->
+        <article class="flow" id="flow-rap" aria-labelledby="flow-rap-title">
+          <div class="flow__head">
+            <h3 id="flow-rap-title">Report a Problem</h3>
+            <span class="badge badge--neutral">Designed · tested in Sprint 3 · refined in Sprint 4</span>
+          </div>
+          <div class="flow__grid">
+            <div class="proto" data-figma="reportProblem">
+              <div class="proto__stage">
+                <div class="device"><div class="ph" data-asset="rap-01" data-compact></div></div>
+              </div>
+              <div class="proto__actions">
+                <button class="btn" type="button" data-figma-load hidden>Load interactive prototype</button>
+                <a class="btn btn--ghost" data-figma-link target="_blank" rel="noopener">
+                  Open prototype in Figma
+                  <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3h7v7M13 3L4 12" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+                  <span class="visually-hidden">(opens in a new tab)</span>
+                </a>
+              </div>
+              <p class="proto__status" data-figma-status hidden>Prototype URL not configured. Add it to <code>js/config.js</code> → <code>figma.reportProblem.url</code>.</p>
+            </div>
+            <div>
+              <ol class="flow__steps">
+                <li>Choose Report a Problem, Track Your Report, or Customer Service.</li>
+                <li>Set the location by address, current location, or a dropped pin.</li>
+                <li>Say whether the problem is outdoors or indoors, then choose the problem type.</li>
+                <li>Optionally add a photo, tags, and a description.</li>
+                <li>Choose how to receive updates and whether DC Water may make contact.</li>
+                <li>Review, submit, and receive a ticket number.</li>
+                <li>Track the ticket, rate the experience, and leave feedback.</li>
+              </ol>
+              <div class="screens screens--3">
+                <figure><div class="screen"><div class="ph" data-asset="rap-02" data-compact></div></div><figcaption><strong>Location</strong></figcaption></figure>
+                <figure><div class="screen"><div class="ph" data-asset="rap-07" data-compact></div></div><figcaption><strong>Review</strong></figcaption></figure>
+                <figure><div class="screen"><div class="ph" data-asset="rap-08" data-compact></div></div><figcaption><strong>Submitted</strong></figcaption></figure>
+              </div>
+            </div>
+          </div>
+          <details class="more">
+            <summary>All 14 Report a Problem screens <span class="more__sub">Report, track, and give feedback</span></summary>
+            <div class="more__body">
+              <div class="gallery">
+                <figure><div class="screen"><div class="ph" data-asset="rap-01" data-compact></div></div><figcaption><span class="screen-num">01</span>Landing</figcaption></figure>
+                <figure><div class="screen"><div class="ph" data-asset="rap-02" data-compact></div></div><figcaption><span class="screen-num">02</span>Location</figcaption></figure>
+                <figure><div class="screen"><div class="ph" data-asset="rap-03" data-compact></div></div><figcaption><span class="screen-num">03</span>Where is the problem?</figcaption></figure>
+                <figure><div class="screen"><div class="ph" data-asset="rap-04" data-compact></div></div><figcaption><span class="screen-num">04</span>What is the problem?</figcaption></figure>
+                <figure><div class="screen"><div class="ph" data-asset="rap-05" data-compact></div></div><figcaption><span class="screen-num">05</span>Additional details</figcaption></figure>
+                <figure><div class="screen"><div class="ph" data-asset="rap-06" data-compact></div></div><figcaption><span class="screen-num">06</span>Notifications</figcaption></figure>
+                <figure><div class="screen"><div class="ph" data-asset="rap-07" data-compact></div></div><figcaption><span class="screen-num">07</span>Review</figcaption></figure>
+                <figure><div class="screen"><div class="ph" data-asset="rap-08" data-compact></div></div><figcaption><span class="screen-num">08</span>Submitted</figcaption></figure>
+                <figure><div class="screen"><div class="ph" data-asset="rap-09" data-compact></div></div><figcaption><span class="screen-num">09</span>Track your report</figcaption></figure>
+                <figure><div class="screen"><div class="ph" data-asset="rap-10" data-compact></div></div><figcaption><span class="screen-num">10</span>Ticket opened</figcaption></figure>
+                <figure><div class="screen"><div class="ph" data-asset="rap-11" data-compact></div></div><figcaption><span class="screen-num">11</span>Ticket closed</figcaption></figure>
+                <figure><div class="screen"><div class="ph" data-asset="rap-12" data-compact></div></div><figcaption><span class="screen-num">12</span>Experience rated</figcaption></figure>
+                <figure><div class="screen"><div class="ph" data-asset="rap-13" data-compact></div></div><figcaption><span class="screen-num">13</span>Feedback</figcaption></figure>
+                <figure><div class="screen"><div class="ph" data-asset="rap-14" data-compact></div></div><figcaption><span class="screen-num">14</span>Feedback sent</figcaption></figure>
+              </div>
+            </div>
+          </details>
+        </article>
+
+        <!-- Flow: Customer Service -->
+        <article class="flow" id="flow-cs" aria-labelledby="flow-cs-title">
+          <div class="flow__head">
+            <h3 id="flow-cs-title">Customer Service Form</h3>
+            <span class="badge badge--neutral">Designed in Sprint 4</span>
+          </div>
+          <div class="flow__grid">
+            <div class="proto" data-figma="customerService">
+              <div class="proto__stage">
+                <div class="device"><div class="ph" data-asset="cs-01" data-compact></div></div>
+              </div>
+              <div class="proto__actions">
+                <button class="btn" type="button" data-figma-load hidden>Load interactive prototype</button>
+                <a class="btn btn--ghost" data-figma-link target="_blank" rel="noopener">
+                  Open prototype in Figma
+                  <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3h7v7M13 3L4 12" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+                  <span class="visually-hidden">(opens in a new tab)</span>
+                </a>
+              </div>
+              <p class="proto__status" data-figma-status hidden>Prototype URL not configured. Add it to <code>js/config.js</code> → <code>figma.customerService.url</code>.</p>
+            </div>
+            <div>
+              <ol class="flow__steps">
+                <li>Select a topic: Billing Inquiry, Damage, or Other.</li>
+                <li>Describe the request, add a location, tags, and an optional file.</li>
+                <li>Optionally provide contact information for a reply.</li>
+                <li>Review and submit.</li>
+              </ol>
+              <div class="screens screens--3">
+                <figure><div class="screen"><div class="ph" data-asset="cs-04" data-compact></div></div><figcaption><strong>Details</strong></figcaption></figure>
+                <figure><div class="screen"><div class="ph" data-asset="cs-06" data-compact></div></div><figcaption><strong>Review</strong></figcaption></figure>
+                <figure><div class="screen"><div class="ph" data-asset="cs-07" data-compact></div></div><figcaption><strong>Submitted</strong></figcaption></figure>
+              </div>
+            </div>
+          </div>
+          <details class="more">
+            <summary>All 7 Customer Service screens</summary>
+            <div class="more__body">
+              <div class="gallery">
+                <figure><div class="screen"><div class="ph" data-asset="cs-01" data-compact></div></div><figcaption><span class="screen-num">01</span>Select a topic</figcaption></figure>
+                <figure><div class="screen"><div class="ph" data-asset="cs-02" data-compact></div></div><figcaption><span class="screen-num">02</span>Topic selected</figcaption></figure>
+                <figure><div class="screen"><div class="ph" data-asset="cs-03" data-compact></div></div><figcaption><span class="screen-num">03</span>Additional details</figcaption></figure>
+                <figure><div class="screen"><div class="ph" data-asset="cs-04" data-compact></div></div><figcaption><span class="screen-num">04</span>Details filled in</figcaption></figure>
+                <figure><div class="screen"><div class="ph" data-asset="cs-05" data-compact></div></div><figcaption><span class="screen-num">05</span>Contact information</figcaption></figure>
+                <figure><div class="screen"><div class="ph" data-asset="cs-06" data-compact></div></div><figcaption><span class="screen-num">06</span>Review</figcaption></figure>
+                <figure><div class="screen"><div class="ph" data-asset="cs-07" data-compact></div></div><figcaption><span class="screen-num">07</span>Submitted</figcaption></figure>
+              </div>
+            </div>
+          </details>
+        </article>
+
+        <!-- Flow: Image Recognition -->
+        <article class="flow" id="flow-ir" aria-labelledby="flow-ir-title">
+          <div class="flow__head">
+            <h3 id="flow-ir-title">Image Recognition</h3>
+            <span class="badge">Concept · prototype only</span>
+          </div>
+          <div class="flow__grid">
+            <div class="proto" data-figma="imageRecognition">
+              <div class="proto__stage">
+                <div class="device"><div class="ph" data-asset="ir-01" data-compact></div></div>
+              </div>
+              <div class="proto__actions">
+                <button class="btn" type="button" data-figma-load hidden>Load interactive prototype</button>
+                <a class="btn btn--ghost" data-figma-link target="_blank" rel="noopener">
+                  Open prototype in Figma
+                  <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3h7v7M13 3L4 12" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+                  <span class="visually-hidden">(opens in a new tab)</span>
+                </a>
+              </div>
+              <p class="proto__status" data-figma-status hidden>Prototype URL not configured. Add it to <code>js/config.js</code> → <code>figma.imageRecognition.url</code>.</p>
+            </div>
+            <div>
+              <ol class="flow__steps">
+                <li>Choose "Show Us The Issue."</li>
+                <li>Take a photo, choose one from the library, or switch to the form.</li>
+                <li>The object is outlined, labelled, and described. Unrecognized images prompt a retake.</li>
+                <li>Review pre-filled details, edit the location, add photos or tags, and submit.</li>
+                <li>Track the report later by uploading the original photo.</li>
+              </ol>
+              <div class="screens screens--3">
+                <figure><div class="screen"><div class="ph" data-asset="ir-06" data-compact></div></div><figcaption><strong>Recognized</strong></figcaption></figure>
+                <figure><div class="screen"><div class="ph" data-asset="ir-07" data-compact></div></div><figcaption><strong>Details</strong></figcaption></figure>
+                <figure><div class="screen"><div class="ph" data-asset="ir-15" data-compact></div></div><figcaption><strong>Track</strong></figcaption></figure>
+              </div>
+            </div>
+          </div>
+          <details class="more">
+            <summary>All 15 Image Recognition screens</summary>
+            <div class="more__body">
+              <div class="gallery">
+                <figure><div class="screen"><div class="ph" data-asset="ir-01" data-compact></div></div><figcaption><span class="screen-num">01</span>Landing</figcaption></figure>
+                <figure><div class="screen"><div class="ph" data-asset="ir-02" data-compact></div></div><figcaption><span class="screen-num">02</span>Photo options</figcaption></figure>
+                <figure><div class="screen"><div class="ph" data-asset="ir-03" data-compact></div></div><figcaption><span class="screen-num">03</span>Camera</figcaption></figure>
+                <figure><div class="screen"><div class="ph" data-asset="ir-04" data-compact></div></div><figcaption><span class="screen-num">04</span>Not recognized</figcaption></figure>
+                <figure><div class="screen"><div class="ph" data-asset="ir-05" data-compact></div></div><figcaption><span class="screen-num">05</span>Aiming at a hydrant</figcaption></figure>
+                <figure><div class="screen"><div class="ph" data-asset="ir-06" data-compact></div></div><figcaption><span class="screen-num">06</span>Outlined and described</figcaption></figure>
+                <figure><div class="screen"><div class="ph" data-asset="ir-07" data-compact></div></div><figcaption><span class="screen-num">07</span>Problem details</figcaption></figure>
+                <figure><div class="screen"><div class="ph" data-asset="ir-08" data-compact></div></div><figcaption><span class="screen-num">08</span>Edit location</figcaption></figure>
+                <figure><div class="screen"><div class="ph" data-asset="ir-09" data-compact></div></div><figcaption><span class="screen-num">09</span>Photo library</figcaption></figure>
+                <figure><div class="screen"><div class="ph" data-asset="ir-10" data-compact></div></div><figcaption><span class="screen-num">10</span>Second photo</figcaption></figure>
+                <figure><div class="screen"><div class="ph" data-asset="ir-11" data-compact></div></div><figcaption><span class="screen-num">11</span>Second photo recognized</figcaption></figure>
+                <figure><div class="screen"><div class="ph" data-asset="ir-12" data-compact></div></div><figcaption><span class="screen-num">12</span>Details, two photos</figcaption></figure>
+                <figure><div class="screen"><div class="ph" data-asset="ir-13" data-compact></div></div><figcaption><span class="screen-num">13</span>Thank you</figcaption></figure>
+                <figure><div class="screen"><div class="ph" data-asset="ir-14" data-compact></div></div><figcaption><span class="screen-num">14</span>Track by photo</figcaption></figure>
+                <figure><div class="screen"><div class="ph" data-asset="ir-15" data-compact></div></div><figcaption><span class="screen-num">15</span>Ticket status</figcaption></figure>
+              </div>
+            </div>
+          </details>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         8. OUTCOMES, LIMITATIONS, AND REFLECTION
+         ============================================================ -->
+    <section class="section section--quiet" id="outcomes" aria-labelledby="outcomes-title">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow"><span class="eyebrow__num">07</span> Outcomes, limitations, and reflection</p>
+          <h2 id="outcomes-title">What was designed, tested, delivered, and left as a recommendation</h2>
+        </div>
+
+        <div class="status-grid">
+          <div class="status-card status-card--designed">
+            <h3><span class="status-key" aria-hidden="true"></span>Designed</h3>
+            <ul>
+              <li>Report a Problem form: research-based IA and two iterations</li>
+              <li>New Customer Service form</li>
+              <li>Image recognition concept: two iterations</li>
+            </ul>
+          </div>
+          <div class="status-card status-card--tested">
+            <h3><span class="status-key" aria-hidden="true"></span>Tested (prototypes)</h3>
+            <ul>
+              <li>Report a Problem iteration 1: usability testing, average confidence 4.6 / 5</li>
+              <li>Image recognition iteration 1: A/B testing with 6 participants; 6 of 6 preferred it over the form</li>
+              <li>Participants came from the team's personal network</li>
+            </ul>
+          </div>
+          <div class="status-card status-card--delivered">
+            <h3><span class="status-key" aria-hidden="true"></span>Delivered</h3>
+            <ul>
+              <li>Sprint 4 goals included handing deliverables off to developers and collaborating with them regularly</li>
+              <li>Project status: development in progress</li>
+            </ul>
+          </div>
+          <div class="status-card status-card--concept">
+            <h3><span class="status-key" aria-hidden="true"></span>Concept / recommendation</h3>
+            <ul>
+              <li>Image recognition (not implemented)</li>
+              <li>Explore a public kiosk</li>
+              <li>Consider an app for customers with online accounts</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="split">
+            <div>
+              <h3>Limitations and future recommendations</h3>
+              <p>Constraints that shaped the research and design, and where I'd take the work next.</p>
+            </div>
+            <ol class="numbered">
+              <li>
+                <h4>Research participants weren't DC Water's target users</h4>
+                <p>Anyone can use the Report a Problem form, but we didn't have access to target users who live in DC and, ideally, have reported a problem to DC Water before, and the client couldn't provide them. The participants in user testing and research came from the team's personal network. We did, however, have access to previously submitted reports, which we used to create user scenarios and the content for the card sorting activity.</p>
+              </li>
+              <li>
+                <h4>A responsive web form instead of an app</h4>
+                <p>After consulting with the client, the team designed a responsive web form instead of a mobile app, assuming that most people who come across an outdoor issue once won't be invested enough to download an app just to report it. However, this design doesn't address DC Water customers with online accounts, who might be more invested and more willing to use an app for easy access.</p>
+              </li>
+              <li>
+                <h4>Tracking depends on the original photo</h4>
+                <p>The image recognition design needs the original photo to track a report. If the user loses the photo, they have no way to track their report.</p>
+              </li>
+              <li>
+                <h4>People without mobile devices</h4>
+                <p>Accessibility and inclusion are very important to me, and I try to build them into my work. When considering who the product might exclude, I thought about people experiencing homelessness. They may encounter outdoor issues that affect them but likely don't have mobile devices to report a problem. I think a public kiosk should be explored as an alternative because it isn't individually owned.</p>
+              </li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="block">
+          <h3 style="margin-bottom:1.5rem">Reflection</h3>
+          <div class="reflection">
+            <div>
+              <h3>Seeing the design become a usable product is rewarding</h3>
+              <p>This project challenged me intellectually and creatively and pushed me to use my analytical skills in every sprint. Before it, I had very little experience working with an external client and translating their business needs into a usable product that also met users' expectations.</p>
+              <p>The most rewarding part is that, with the help of developers, our designs will become a live product on DC Water's website for anyone who lives in or visits the District of Columbia. I enjoyed learning strategies for a successful hand-off to developers, but I wish we'd explored this area more. I would have liked more engagement with the client team across iterations, and in particular, it would have helped to know the financial possibilities and constraints while designing.</p>
+            </div>
+            <div>
+              <h3>Being adaptable and flexible is a must</h3>
+              <p>Because I joined after Sprint 2 ended, I wasn't part of the client kick-off meeting or the expert interviews. Information from those meetings would have given me a deeper understanding of the business need and problem area.</p>
+              <p>But this is how work happens outside the classroom: UX teams must be adaptable and flexible as client and user needs change and new trends emerge. I'm grateful to the team members from earlier sprints for providing context and bringing me up to speed.</p>
+            </div>
+            <div>
+              <h3>Teamwork wins</h3>
+              <p>I learned to collaborate more effectively with a team. In my professional career I've mostly been responsible for coming up with creative, technology-based solutions. Working with this team challenged me to be open-minded and sometimes consider the big picture instead of every detail.</p>
+              <p>The team's size was challenging at times: there were many different opinions, sometimes conflicting, which left us short on time. I'm very appreciative of everyone's diverse experiences, skills, and strengths, and proud of the work we all contributed to deliver a great product to our client.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         9. CLOSING NAVIGATION
+         ============================================================ -->
+    <nav class="closing" aria-label="Case study end">
+      <div class="wrap closing__inner">
+        <a class="back-link" data-back-link href="#"><span aria-hidden="true">←</span> Back to projects</a>
+        <p class="footer-note">DC Water · HCIM Capstone Project · 2022</p>
+      </div>
+    </nav>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/assets.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
