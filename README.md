@@ -42,10 +42,11 @@ scripts/list-assets.js  Regenerates docs/ASSETS.md
 | Alt text | `alt` for that slot in `js/assets.js`. |
 | Figma prototype links | `js/config.js` → `figma.<flow>.url`. Once set, "Open prototype in Figma" becomes a live link and a "Load interactive prototype" button appears. Set `embed: false` to keep only the link. |
 | Back to projects | `js/config.js` → `backToProjectsUrl` |
+| Mockup style | `js/config.js` → `mockupFrame` (`"detailed"` phone or `"simple"` frame). Reviewers can also switch with the **Mockups: Phone / Simple** toggle in the top bar. |
 | Fonts | `--font-sans` / `--font-display` at the top of `css/styles.css` |
 | Colors | The tokens at the top of `css/styles.css`. Teal `#0f6e68` is 6.1:1 on white. |
 
-Export interface screens **without device frames**. The page applies one consistent, restrained frame (hero, solution preview and prototype posters) and uses frameless screens for comparisons and galleries, so the original interface colors stay intact.
+Export interface screens **without device frames**. The page draws every phone itself, as either a detailed phone or a simple frame, so the original interface colors stay intact. Sketches and wireframes stay unframed.
 
 After adding images, run `node scripts/list-assets.js` to refresh the status column in `docs/ASSETS.md`.
 

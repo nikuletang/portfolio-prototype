@@ -126,6 +126,32 @@
   });
 
   /* ------------------------------------------------------------
+   * Mockup frame style: detailed phone or simple frame
+   * ---------------------------------------------------------- */
+  var FRAME_KEY = "dcwater-mockup-frame";
+  var frameButtons = document.querySelectorAll("[data-frame-option]");
+
+  function applyFrame(style) {
+    if (style !== "simple") style = "detailed";
+    document.documentElement.setAttribute("data-frame", style);
+    frameButtons.forEach(function (btn) {
+      btn.setAttribute("aria-pressed", String(btn.getAttribute("data-frame-option") === style));
+    });
+  }
+
+  var savedFrame = null;
+  try { savedFrame = localStorage.getItem(FRAME_KEY); } catch (e) { /* storage unavailable */ }
+  applyFrame(savedFrame || CONFIG.mockupFrame);
+
+  frameButtons.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var style = btn.getAttribute("data-frame-option");
+      applyFrame(style);
+      try { localStorage.setItem(FRAME_KEY, style); } catch (e) { /* storage unavailable */ }
+    });
+  });
+
+  /* ------------------------------------------------------------
    * Back to projects links
    * ---------------------------------------------------------- */
   document.querySelectorAll("[data-back-link]").forEach(function (a) {

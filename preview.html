@@ -9,7 +9,8 @@
   <style>
 /* ==========================================================================
    DC Water case study: design-review prototype
-   Neutral black / white / gray palette with one accessible teal accent.
+   Black / white / gray with a family of teals: deep teal for hero and
+   showcase bands, accessible teal for accents, mint tints for highlights.
    Fonts are placeholders; swap --font-sans / --font-display for the
    Webflow site fonts.
    ========================================================================== */
@@ -33,7 +34,14 @@
   --surface-3: #ececea;
   --teal: #0f6e68;           /* accent: links, highlights (6.1:1 on white) */
   --teal-strong: #0a524e;    /* hover */
-  --teal-tint: #e7f2f1;      /* selected / highlighted backgrounds */
+  --teal-tint: #e3f2ef;      /* selected / highlighted backgrounds */
+  --teal-bright: #2fb3a3;    /* decorative accents only (not text) */
+  --mint: #eef7f5;           /* tinted section background */
+  --deep: #062b2a;           /* hero / showcase bands */
+  --deep-2: #0b4643;
+  --card: #ffffff;           /* card surface */
+  --on-teal: #ffffff;        /* text on teal buttons */
+  --ph-border: #b4b9b8;
   --focus: #0f6e68;
 
   /* Rhythm */
@@ -170,8 +178,19 @@ a:hover { color: var(--teal-strong); text-decoration-thickness: 2px; }
 .secnav__home span { color: var(--ink-3); font-weight: 400; }
 .secnav__toggle { display: none; }
 .secnav__list {
-  display: flex; gap: 4px; list-style: none; margin: 0; padding: 0;
+  display: flex; gap: 2px; list-style: none; margin: 0 0 0 auto; padding: 0; order: 2;
 }
+.frame-toggle {
+  order: 3; display: inline-flex; align-items: center; gap: 2px; flex: none;
+  padding: 3px; border-radius: 999px; background: var(--surface-2); border: 1px solid var(--line);
+}
+.frame-toggle__label { font-size: .6875rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); padding: 0 6px 0 8px; }
+.frame-toggle button {
+  font: inherit; font-size: .8125rem; font-weight: 600; cursor: pointer;
+  padding: 5px 11px; border-radius: 999px; border: 0; background: transparent; color: var(--ink-3);
+}
+.frame-toggle button:hover { color: var(--ink); }
+.frame-toggle button[aria-pressed="true"] { background: var(--deep); color: #fff; }
 .secnav__list li + li { margin-top: 0; }
 .secnav__list a {
   display: block; padding: 8px 10px; border-radius: 6px;
@@ -190,7 +209,7 @@ a:hover { color: var(--teal-strong); text-decoration-thickness: 2px; }
 .hero__tagline { font-size: clamp(1.25rem, 2.2vw, 1.75rem); line-height: 1.35; color: var(--ink); margin-bottom: 1rem; max-width: 30ch; }
 .hero__desc { max-width: 54ch; color: var(--ink-2); }
 .hero__visual { display: flex; justify-content: center; }
-.hero__visual .device { width: min(100%, 320px); }
+.hero__visual .mock { width: min(100%, 300px); }
 
 .facts {
   display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px 24px;
@@ -216,7 +235,7 @@ a:hover { color: var(--teal-strong); text-decoration-thickness: 2px; }
 .role-card ul { margin-bottom: 0; }
 
 .pill-list { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; margin: 0; }
-.pill-list li { margin: 0; font-size: .875rem; padding: .3em .8em; border: 1px solid var(--line-strong); border-radius: 999px; color: var(--ink-2); background: #fff; }
+.pill-list li { margin: 0; font-size: .875rem; padding: .3em .8em; border: 1px solid var(--line-strong); border-radius: 999px; color: var(--ink-2); background: var(--card); }
 
 /* Sprint timeline */
 .timeline { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; counter-reset: sprint; }
@@ -227,16 +246,59 @@ a:hover { color: var(--teal-strong); text-decoration-thickness: 2px; }
 .timeline__join { position: absolute; top: -10px; left: 12px; background: var(--teal); color: #fff; font-size: .6875rem; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; padding: 2px 8px; border-radius: 999px; }
 .timeline-caption { font-size: .875rem; color: var(--ink-3); margin-top: .9rem; }
 
-/* ---------- Media: screens, devices, placeholders ---------- */
-.device {
-  position: relative; padding: 9px; border-radius: 38px;
-  background: #1b1b1b;
-  box-shadow: 0 0 0 1px #2c2c2c inset, 0 2px 4px rgba(0,0,0,.08), 0 24px 48px -12px rgba(0,0,0,.22);
+/* ---------- Media: phone mockups, flat artifacts, placeholders ----------
+   Markup: <div class="mock"><div class="mock__body"><div class="ph"></div></div></div>
+   .mock is a size container, so the frame scales with any column width.
+   html[data-frame="detailed"] → realistic phone; "simple" → slim bezel.  */
+.mock { container-type: inline-size; position: relative; }
+.mock__body { position: relative; }
+.mock__body > .ph,
+.mock__body > .ph--loaded { overflow: hidden; }
+.mock .ph {
+  background: repeating-linear-gradient(135deg, transparent 0 11px, rgba(6,43,42,.035) 11px 12px), #eef2f1;
+  border: 0; color: #4f5a59;
 }
-.device > .ph, .device > .ph--loaded { border-radius: 30px; overflow: hidden; }
+.mock .ph__label { color: #142625; }
+.mock .ph__tag { color: #0a524e; background: #d4ece7; }
+.mock .ph__file, .mock .ph__note, .mock .ph__hint { color: #4f5a59; }
 
-.screen { border-radius: var(--radius-screen); overflow: hidden; box-shadow: var(--shadow-screen); background: #fff; }
-.screen--flat { box-shadow: none; outline: 1px solid var(--line); }
+/* Simple frame */
+.mock__body {
+  padding: 2.2cqw; border-radius: 10cqw; background: #151a1a;
+  box-shadow: 0 1px 2px rgba(0,0,0,.12), 0 18px 36px -14px rgba(6,43,42,.35);
+}
+.mock__body > .ph, .mock__body > .ph--loaded { border-radius: 8.2cqw; }
+
+/* Detailed phone */
+[data-frame="detailed"] .mock__body {
+  padding: 3.4cqw; border-radius: 15cqw;
+  background: linear-gradient(145deg, #4a4f53 0%, #1b1d1f 14%, #0a0b0c 50%, #1b1d1f 86%, #4a4f53 100%);
+  box-shadow:
+    inset 0 0 0 .5cqw #6d7377,
+    inset 0 0 0 1.1cqw #0b0c0d,
+    0 2px 4px rgba(0,0,0,.14),
+    0 30px 60px -22px rgba(6,43,42,.55);
+}
+[data-frame="detailed"] .mock__body > .ph,
+[data-frame="detailed"] .mock__body > .ph--loaded { border-radius: 11.8cqw; }
+[data-frame="detailed"] .mock__body::before {           /* Dynamic Island */
+  content: ""; position: absolute; z-index: 3; left: 50%; top: 6cqw;
+  width: 28cqw; height: 8cqw; transform: translateX(-50%);
+  border-radius: 999px; background: #000;
+  box-shadow: inset -3.5cqw 0 0 -2.2cqw #1c2633;
+}
+[data-frame="detailed"] .mock__body::after {            /* side buttons */
+  content: ""; position: absolute; z-index: -1; right: -.9cqw; top: 25%;
+  width: 1.4cqw; height: 15%; border-radius: 0 1cqw 1cqw 0;
+  background: linear-gradient(90deg, #2b2e31, #5a6064);
+  box-shadow:
+    calc(-100cqw - .4cqw) -12cqw 0 0 #3b3f43,
+    calc(-100cqw - .4cqw) 6cqw 0 0 #3b3f43;
+}
+[data-frame="detailed"] .mock .ph[data-compact] .ph__inner { padding-top: 14cqw; }
+
+/* Flat artifacts: sketches, wireframes */
+.screen--flat { border-radius: var(--radius-screen); overflow: hidden; outline: 1px solid var(--line); background: var(--card); }
 
 .ph {
   position: relative; width: 100%;
@@ -245,7 +307,7 @@ a:hover { color: var(--teal-strong); text-decoration-thickness: 2px; }
     repeating-linear-gradient(135deg, transparent 0 11px, rgba(0,0,0,.025) 11px 12px),
     var(--surface-3);
   color: var(--ink-3);
-  border: 1px dashed #b4b4b1;
+  border: 1px dashed var(--ph-border);
   border-radius: inherit;
   text-align: center;
 }
@@ -279,7 +341,7 @@ figcaption strong, .caption strong { display: block; color: var(--ink); font-siz
 /* ---------- Solution preview ---------- */
 .preview { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(24px, 4vw, 56px); counter-reset: preview; }
 .preview figure { display: flex; flex-direction: column; align-items: center; text-align: left; }
-.preview .device { width: min(100%, 260px); }
+.preview .mock { width: min(100%, 250px); }
 .preview figcaption { width: min(100%, 300px); }
 .preview__step { font-family: var(--font-mono); font-size: .8125rem; color: var(--teal); display: block; margin-bottom: .25rem; }
 .note-inline { font-size: .875rem; color: var(--ink-3); margin-top: 2rem; }
@@ -302,12 +364,12 @@ figcaption strong, .caption strong { display: block; color: var(--ink); font-siz
 
 /* Word bank rebuilt as text */
 .wordbank { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; padding: 0; margin: 0; }
-.wordbank li { margin: 0; font-size: .8125rem; padding: .25em .65em; border-radius: 4px; background: #fff; border: 1px solid var(--line-strong); color: var(--ink-2); }
+.wordbank li { margin: 0; font-size: .8125rem; padding: .25em .65em; border-radius: 4px; background: var(--card); border: 1px solid var(--line-strong); color: var(--ink-2); }
 .wordbank li.is-illegible { color: var(--ink-3); font-style: italic; border-style: dashed; }
 
 /* IA tree rebuilt as text */
 .ia { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
-.ia__col { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; }
+.ia__col { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; }
 .ia__root { font-weight: 700; color: var(--ink); padding-bottom: 10px; margin-bottom: 10px; border-bottom: 2px solid var(--teal); }
 .ia__col ul { list-style: none; padding: 0; margin: 0; }
 .ia__col li { font-size: .9375rem; padding: 6px 0 6px 14px; border-left: 1px solid var(--line-strong); margin: 0; position: relative; }
@@ -351,7 +413,7 @@ figcaption strong, .caption strong { display: block; color: var(--ink); font-siz
 .decision > .compare { grid-area: media; }
 .chain { grid-area: chain; list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 22px; align-content: start; }
 .chain li { margin: 0; position: relative; padding: 16px 18px; background: var(--surface-2); border-radius: 8px; font-size: .9375rem; line-height: 1.5; }
-.section--quiet .chain li { background: #fff; }
+.section--quiet .chain li { background: var(--card); }
 .chain li + li::before { content: "↓"; position: absolute; left: 18px; top: -21px; line-height: 20px; color: var(--teal); font-weight: 700; }
 .chain__k { display: block; font-size: .6875rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--teal-strong); margin-bottom: .35rem; }
 .chain li.is-unknown { background: transparent; border: 1px dashed var(--line-strong); color: var(--ink-3); }
@@ -374,7 +436,7 @@ figcaption strong, .caption strong { display: block; color: var(--ink); font-siz
 .notice {
   display: flex; gap: 14px; align-items: flex-start;
   padding: 16px 18px; border: 1px solid var(--line-strong); border-left: 3px solid var(--teal);
-  border-radius: 6px; background: #fff; font-size: .9375rem; color: var(--ink-2); max-width: 760px;
+  border-radius: 6px; background: var(--card); font-size: .9375rem; color: var(--ink-2); max-width: 760px;
 }
 .notice strong { white-space: nowrap; }
 .badge {
@@ -385,14 +447,14 @@ figcaption strong, .caption strong { display: block; color: var(--ink); font-siz
 
 /* Lightning demos / ideas */
 .idea-list { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
-.idea-list li { margin: 0; padding: 12px 14px; background: #fff; border: 1px solid var(--line); border-radius: 8px; font-size: .9375rem; }
+.idea-list li { margin: 0; padding: 12px 14px; background: var(--card); border: 1px solid var(--line); border-radius: 8px; font-size: .9375rem; }
 .idea-list li span { display: block; font-size: .8125rem; color: var(--ink-3); }
 .idea-list li.is-picked { border-color: var(--teal); background: var(--teal-tint); }
 .idea-list li.is-picked span { color: var(--teal-strong); }
 
 /* Customer service options board rebuilt as text */
 .sortboard { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
-.sortboard__col { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 14px; }
+.sortboard__col { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 14px; }
 .sortboard__col h4 { font-size: .8125rem; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3); margin-bottom: .6rem; }
 .sortboard__col--keep { border-color: var(--teal); }
 .sortboard__col--keep h4 { color: var(--teal-strong); }
@@ -410,10 +472,10 @@ figcaption strong, .caption strong { display: block; color: var(--ink); font-siz
 .proto { display: flex; flex-direction: column; gap: 14px; }
 .proto__stage {
   position: relative; display: flex; align-items: center; justify-content: center;
-  padding: clamp(20px, 3vw, 32px); border-radius: 12px; background: #fff; border: 1px solid var(--line);
+  padding: clamp(20px, 3vw, 32px); border-radius: 12px; background: var(--card); border: 1px solid var(--line);
   min-height: 320px;
 }
-.proto__stage .device { width: min(100%, 250px); }
+.proto__stage .mock { width: min(100%, 250px); }
 .proto__stage.is-embedded { padding: 0; aspect-ratio: 4 / 5; min-height: 0; }
 .proto__iframe { width: 100%; height: 100%; border: 0; border-radius: 12px; }
 .proto__actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
@@ -424,17 +486,17 @@ figcaption strong, .caption strong { display: block; color: var(--ink); font-siz
   display: inline-flex; align-items: center; gap: .5em;
   font: inherit; font-size: .9375rem; font-weight: 600; line-height: 1;
   padding: 12px 16px; border-radius: 8px; cursor: pointer; text-decoration: none;
-  border: 1px solid var(--ink); background: var(--ink); color: #fff;
+  border: 1px solid var(--teal); background: var(--teal); color: var(--on-teal);
 }
-.btn:hover { background: #000; color: #fff; text-decoration: none; }
+.btn:hover { background: var(--teal-strong); border-color: var(--teal-strong); color: var(--on-teal); text-decoration: none; }
 .btn--ghost { background: transparent; color: var(--ink); border-color: var(--line-strong); }
-.btn--ghost:hover { background: #fff; color: var(--ink); border-color: var(--ink); }
+.btn--ghost:hover { background: var(--surface-2); color: var(--ink); border-color: var(--ink); }
 .btn.is-disabled { background: transparent; color: var(--ink-3); border: 1px dashed var(--line-strong); cursor: not-allowed; }
 .btn svg { width: 16px; height: 16px; flex: none; }
 
 .flow__steps { list-style: none; padding: 0; margin: 0 0 1.25rem; counter-reset: step; }
 .flow__steps li { counter-increment: step; position: relative; padding: 0 0 .75rem 2.25rem; margin: 0; font-size: .9375rem; }
-.flow__steps li::before { content: counter(step); position: absolute; left: 0; top: 0; width: 1.5rem; height: 1.5rem; border-radius: 50%; background: #fff; border: 1px solid var(--line-strong); font-size: .75rem; font-weight: 600; display: grid; place-items: center; color: var(--ink); }
+.flow__steps li::before { content: counter(step); position: absolute; left: 0; top: 0; width: 1.5rem; height: 1.5rem; border-radius: 50%; background: var(--card); border: 1px solid var(--line-strong); font-size: .75rem; font-weight: 600; display: grid; place-items: center; color: var(--ink); }
 
 /* ---------- Expandable galleries ---------- */
 .more { margin-top: clamp(20px, 3vw, 32px); border-top: 1px solid var(--line); }
@@ -458,7 +520,7 @@ figcaption strong, .caption strong { display: block; color: var(--ink); font-siz
 
 /* ---------- Outcomes ---------- */
 .status-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
-.status-card { padding: 20px; border-radius: var(--radius); background: #fff; border: 1px solid var(--line); }
+.status-card { padding: 20px; border-radius: var(--radius); background: var(--card); border: 1px solid var(--line); }
 .status-card h3 { font-size: 1rem; display: flex; align-items: center; gap: .5em; margin-bottom: .75rem; }
 .status-card ul { padding-left: 1.1em; margin: 0; }
 .status-card li { font-size: .9063rem; line-height: 1.5; }
@@ -510,7 +572,7 @@ figcaption strong, .caption strong { display: block; color: var(--ink); font-siz
   .secnav__list {
     display: none; position: absolute; left: 0; right: 0; top: 100%;
     flex-direction: column; gap: 0; padding: 8px var(--gutter) 16px;
-    background: #fff; border-bottom: 1px solid var(--line); box-shadow: 0 12px 24px rgba(0,0,0,.08);
+    background: var(--card); border-bottom: 1px solid var(--line); box-shadow: 0 12px 24px rgba(0,0,0,.08);
   }
   .secnav.is-open .secnav__list { display: flex; }
   .secnav__list a { padding: 12px 4px; font-size: 1rem; border-bottom: 1px solid var(--line); border-radius: 0; }
@@ -547,16 +609,186 @@ figcaption strong, .caption strong { display: block; color: var(--ink); font-siz
   .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .ph__note, .ph__hint { display: none; }
   .timeline { grid-template-columns: repeat(5, minmax(132px, 1fr)); }
-  .hero__visual .device { width: min(100%, 240px); }
-  .preview .device { width: min(100%, 230px); }
+  .hero__visual .mock { width: min(100%, 240px); }
+  .preview .mock { width: min(100%, 230px); }
   .proto__stage { min-height: 0; }
-  .proto__stage .device { width: min(100%, 210px); }
+  .proto__stage .mock { width: min(100%, 210px); }
   .flow__head .badge { border-radius: 6px; }
 }
 
 @media (max-width: 400px) {
-  .facts { grid-template-columns: minmax(0, 1fr); }
+  .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .compare, .compare--wide { gap: 10px; }
+}
+
+
+/* ==========================================================================
+   Style layer: color bands, accents and richer components
+   ========================================================================== */
+
+/* ---------- Section themes ---------- */
+.section--tint { background: var(--mint); border-top: 0; }
+.section--tint + .section { border-top: 0; }
+
+.theme-deep,
+.theme-dark {
+  --ink: #ffffff;
+  --ink-2: rgba(255,255,255,.86);
+  --ink-3: rgba(255,255,255,.72);
+  --line: rgba(255,255,255,.14);
+  --line-strong: rgba(255,255,255,.3);
+  --surface-2: rgba(255,255,255,.06);
+  --surface-3: rgba(255,255,255,.08);
+  --card: rgba(255,255,255,.05);
+  --teal: #6fd9cb;
+  --teal-strong: #9be7dc;
+  --teal-tint: rgba(111,217,203,.14);
+  --on-teal: #062b2a;
+  --ph-border: rgba(255,255,255,.28);
+  --focus: #9be7dc;
+  color: var(--ink-2);
+  border-top: 0;
+}
+.theme-dark { background: #0a1c1c; }
+.theme-deep {
+  background:
+    radial-gradient(1200px 600px at 85% 20%, rgba(47,179,163,.32), transparent 60%),
+    radial-gradient(800px 500px at 0% 100%, rgba(15,110,104,.35), transparent 60%),
+    linear-gradient(160deg, #041d1c 0%, var(--deep) 45%, var(--deep-2) 100%);
+}
+
+/* ---------- Section heads ---------- */
+.eyebrow { color: var(--teal); }
+.eyebrow__num {
+  display: inline-grid; place-items: center; min-width: 2.1em; height: 2.1em; padding: 0 .4em;
+  border-radius: 999px; background: var(--teal); color: var(--on-teal);
+  font-size: .75rem; font-weight: 700;
+}
+.section-head h2 { position: relative; }
+.section-head h2::after {
+  content: ""; display: block; width: 56px; height: 4px; border-radius: 4px; margin-top: .45em;
+  background: linear-gradient(90deg, var(--teal), var(--teal-bright));
+}
+.sprint-tag { border: 0; background: var(--teal-tint); color: var(--teal-strong); padding: .3em .8em; }
+
+/* ---------- Hero ---------- */
+.hero { position: relative; overflow: hidden; padding: clamp(56px, 9vw, 128px) 0 clamp(64px, 9vw, 120px); }
+.hero::before {                       /* fine dot grid */
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background-image: radial-gradient(rgba(255,255,255,.09) 1px, transparent 1.2px);
+  background-size: 22px 22px;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 55%);
+          mask-image: linear-gradient(90deg, transparent 0%, #000 55%);
+}
+.hero .wrap { position: relative; }
+.hero__title { font-size: clamp(3.25rem, 9vw, 7rem); font-weight: 800; }
+.hero__tagline { color: #fff; }
+.hero__visual { position: relative; }
+.hero__visual::before {               /* soft halo behind the phone */
+  content: ""; position: absolute; width: 120%; aspect-ratio: 1; left: 50%; top: 50%;
+  transform: translate(-50%, -50%); border-radius: 50%;
+  background: radial-gradient(circle, rgba(111,217,203,.35) 0%, rgba(111,217,203,.08) 40%, transparent 68%);
+}
+.hero__visual .mock { z-index: 1; }
+.facts { border-top: 0; padding-top: 0; gap: 12px; }
+.facts > div { padding: 14px 16px; border-radius: 12px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); }
+
+/* ---------- Overview ---------- */
+.problem-statement { border-left-width: 4px; }
+.role-card { border: 1px solid var(--line); }
+.role-card--mine { border-color: transparent; background: linear-gradient(160deg, #e3f2ef, #d2ebe5); }
+.timeline li.is-mine { background: linear-gradient(160deg, #e3f2ef, #d2ebe5); }
+.timeline li.is-mine:nth-child(4) { background: linear-gradient(160deg, #0f6e68, #0b524e); color: rgba(255,255,255,.88); }
+.timeline li.is-mine:nth-child(4) strong { color: #fff; }
+
+/* ---------- Stats ---------- */
+.stats div { border-top: 3px solid var(--teal); }
+.stats dd { color: var(--teal); }
+
+/* ---------- Goals ---------- */
+.goals {
+  list-style: none; margin: 1.25rem 0 0; padding: 0; counter-reset: goal;
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px;
+}
+.goals > li {
+  counter-increment: goal; margin: 0; position: relative; display: flex; flex-direction: column; gap: 14px;
+  padding: 20px 20px 18px; border-radius: 14px; background: var(--card); border: 1px solid var(--line);
+  box-shadow: 0 1px 2px rgba(6,43,42,.04), 0 10px 24px -16px rgba(6,43,42,.25);
+}
+.goals > li::before {
+  content: counter(goal, decimal-leading-zero); font-family: var(--font-mono); font-size: .8125rem; font-weight: 700;
+  color: var(--teal); padding-bottom: 12px; border-bottom: 1px solid var(--line);
+}
+.goals__text { color: var(--ink); font-weight: 600; line-height: 1.45; flex: 1; }
+.goals__link { font-size: .875rem; font-weight: 600; text-decoration: none; }
+.goals__link::after { content: " →"; }
+.split--end { align-items: end; margin-bottom: .25rem; }
+
+/* ---------- Decision chain ---------- */
+.chain li { background: var(--card); border: 1px solid var(--line); }
+.chain li:nth-child(2) { background: linear-gradient(160deg, #0f6e68, #0b524e); border-color: transparent; color: rgba(255,255,255,.92); }
+.chain li:nth-child(2) .chain__k { color: #bff0e8; }
+.decision__title { font-size: 1.25rem; }
+
+/* ---------- Test results ---------- */
+.results__col { padding: clamp(20px, 3vw, 32px); border-radius: 16px; }
+.results__col:not(.results__col--opps) { background: linear-gradient(160deg, #e3f2ef, #d4ece6); }
+.results__col--opps { background: var(--card); border: 1px solid var(--line); }
+.results__col h3::before { background: var(--teal); }
+.results__col--opps h3::before { border-color: var(--teal); }
+.callout-num { background: var(--deep); color: rgba(255,255,255,.85); border-radius: 12px; }
+.callout-num b { color: #6fd9cb; }
+
+/* ---------- Cards and lists ---------- */
+.ia__col, .sortboard__col, .status-card, .idea-list li { box-shadow: 0 1px 2px rgba(6,43,42,.04); }
+.ia__root { border-bottom-width: 3px; }
+.sortboard__col--keep { background: var(--teal-tint); }
+.idea-list li.is-picked { background: linear-gradient(160deg, #e3f2ef, #d2ebe5); }
+.artifact { background: var(--card); border: 1px solid var(--line); border-radius: 16px; }
+.section--tint .artifact, .section--tint .chain li:not(:nth-child(2)) { background: #fff; }
+.findings__what { position: relative; padding-left: 18px; }
+.findings__what::before { content: ""; position: absolute; left: 0; top: .55em; width: 8px; height: 8px; border-radius: 50%; background: var(--teal); }
+.notice { background: var(--card); border-left-width: 4px; }
+.compare__label--after { background: var(--teal-tint); padding: 2px 8px; border-radius: 999px; }
+
+/* ---------- Final prototypes (dark showcase) ---------- */
+.theme-dark .flow { background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); border: 1px solid var(--line); }
+.theme-dark .proto__stage {
+  background: radial-gradient(circle at 50% 40%, rgba(111,217,203,.22), transparent 65%), rgba(255,255,255,.03);
+  border-color: var(--line);
+}
+.theme-dark .flow__steps li::before { background: var(--teal); color: var(--on-teal); border-color: var(--teal); }
+.theme-dark .proto__status code { background: rgba(255,255,255,.1); }
+
+/* ---------- Outcomes ---------- */
+.status-card { border-top: 4px solid var(--ink); }
+.status-card--tested { border-top-color: var(--teal); }
+.status-card--delivered { border-top-color: var(--teal-bright); }
+.status-card--concept { border-top: 4px dashed var(--ink-3); }
+
+/* ---------- Reflection ---------- */
+.reflection > div { padding: clamp(20px, 2.5vw, 28px); border-radius: 16px; background: var(--card); border: 1px solid var(--line); border-top: 4px solid var(--teal); }
+.reflection > div h3 { color: var(--teal-strong); }
+
+/* ---------- Closing ---------- */
+.closing { border-top: 0; }
+.closing .back-link { font-size: clamp(1.25rem, 2.4vw, 1.75rem); color: #fff; }
+.closing .back-link:hover { color: var(--teal); }
+
+@media (max-width: 1100px) {
+  .goals { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .frame-toggle__label { display: none; }
+}
+@media (max-width: 960px) {
+  .secnav__bar { gap: 8px; }
+  .frame-toggle { margin-left: auto; order: 1; }
+  .secnav__toggle { order: 2; }
+  .secnav__home span { display: none; }
+}
+@media (max-width: 720px) {
+  .goals { grid-template-columns: minmax(0, 1fr); }
+  .frame-toggle button { padding: 5px 9px; }
+  .secnav__toggle .secnav__current { display: none; }
 }
 
 /* Motion preferences */
@@ -581,6 +813,11 @@ figcaption strong, .caption strong { display: block; color: var(--ink); font-siz
   <nav class="secnav" aria-label="Case study sections">
     <div class="wrap secnav__bar">
       <a class="secnav__home" href="#top">Niku Letang <span>· DC Water</span></a>
+      <div class="frame-toggle" role="group" aria-label="Mockup style">
+        <span class="frame-toggle__label" aria-hidden="true">Mockups</span>
+        <button type="button" data-frame-option="detailed" aria-pressed="true">Phone</button>
+        <button type="button" data-frame-option="simple" aria-pressed="false">Simple</button>
+      </div>
       <button class="secnav__toggle" type="button" aria-expanded="false" aria-controls="secnav-list">
         Sections <span class="secnav__current" aria-hidden="true">Overview</span>
         <svg class="secnav__chev" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
@@ -602,7 +839,7 @@ figcaption strong, .caption strong { display: block; color: var(--ink); font-siz
     <!-- ============================================================
          1. HERO
          ============================================================ -->
-    <header class="hero" id="top">
+    <header class="hero theme-deep" id="top">
       <div class="wrap hero__grid">
         <div>
           <p class="eyebrow">UX case study · HCIM capstone · 2022</p>
@@ -618,7 +855,7 @@ figcaption strong, .caption strong { display: block; color: var(--ink); font-siz
           </dl>
         </div>
         <div class="hero__visual">
-          <div class="device"><div class="ph" data-asset="hero-mockup"></div></div>
+          <div class="mock mock--lg"><div class="mock__body"><div class="ph" data-asset="hero-mockup"></div></div></div>
         </div>
       </div>
     </header>
@@ -704,7 +941,7 @@ figcaption strong, .caption strong { display: block; color: var(--ink); font-siz
     <!-- ============================================================
          3. SOLUTION PREVIEW
          ============================================================ -->
-    <section class="section section--quiet" id="solution" aria-labelledby="solution-title">
+    <section class="section section--tint" id="solution" aria-labelledby="solution-title">
       <div class="wrap">
         <div class="section-head">
           <p class="eyebrow"><span class="eyebrow__num">02</span> Solution preview</p>
@@ -714,7 +951,7 @@ figcaption strong, .caption strong { display: block; color: var(--ink); font-siz
 
         <div class="preview">
           <figure>
-            <div class="device"><div class="ph" data-asset="rap-04" data-compact></div></div>
+            <div class="mock mock--lg"><div class="mock__body"><div class="ph" data-asset="rap-04" data-compact></div></div></div>
             <figcaption>
               <span class="preview__step">01 · Report</span>
               <strong>Plain-language choices</strong>
@@ -722,7 +959,7 @@ figcaption strong, .caption strong { display: block; color: var(--ink); font-siz
             </figcaption>
           </figure>
           <figure>
-            <div class="device"><div class="ph" data-asset="rap-06" data-compact></div></div>
+            <div class="mock mock--lg"><div class="mock__body"><div class="ph" data-asset="rap-06" data-compact></div></div></div>
             <figcaption>
               <span class="preview__step">02 · Receive updates</span>
               <strong>Notifications on their terms</strong>
@@ -730,7 +967,7 @@ figcaption strong, .caption strong { display: block; color: var(--ink); font-siz
             </figcaption>
           </figure>
           <figure>
-            <div class="device"><div class="ph" data-asset="rap-11" data-compact></div></div>
+            <div class="mock mock--lg"><div class="mock__body"><div class="ph" data-asset="rap-11" data-compact></div></div></div>
             <figcaption>
               <span class="preview__step">03 · Track</span>
               <strong>Ticket status and details</strong>
@@ -768,18 +1005,14 @@ figcaption strong, .caption strong { display: block; color: var(--ink); font-siz
         </div>
 
         <div class="block">
-          <div class="split split--even">
-            <div>
-              <span class="sprint-tag">Sprint 3 goals</span>
-              <h3>Improve the current design to…</h3>
-            </div>
-            <ul class="findings" style="margin:0">
-              <li style="grid-template-columns:1fr"><span class="findings__what" style="font-weight:500">Help users build confidence in making selections in the form</span></li>
-              <li style="grid-template-columns:1fr"><span class="findings__what" style="font-weight:500">Clearly communicate the criteria for real emergencies</span></li>
-              <li style="grid-template-columns:1fr"><span class="findings__what" style="font-weight:500">Provide more possible combinations of issue types and affected equipment</span></li>
-              <li style="grid-template-columns:1fr"><span class="findings__what" style="font-weight:500">Revise terminology to match users' mental model</span></li>
-            </ul>
-          </div>
+          <span class="sprint-tag">Sprint 3 goals</span>
+          <h3>Improve the current design to…</h3>
+          <ol class="goals">
+            <li><span class="goals__text">Help users build confidence in making selections in the form</span></li>
+            <li><span class="goals__text">Clearly communicate the criteria for real emergencies</span></li>
+            <li><span class="goals__text">Provide more possible combinations of issue types and affected equipment</span></li>
+            <li><span class="goals__text">Revise terminology to match users' mental model</span></li>
+          </ol>
         </div>
 
         <!-- Image card sorting -->
@@ -909,23 +1142,23 @@ figcaption strong, .caption strong { display: block; color: var(--ink); font-siz
           <p class="prose">A short, guided flow: say where the problem is, choose what it is, optionally add details and contact information, review, and get a ticket to track.</p>
           <div class="screens screens--5" style="margin-top:1.75rem">
             <figure>
-              <div class="screen"><div class="ph" data-asset="rap-v1-landing" data-compact></div></div>
+              <div class="mock"><div class="mock__body"><div class="ph" data-asset="rap-v1-landing" data-compact></div></div></div>
               <figcaption><span class="screen-num">01</span><strong>Landing page</strong>Detailed instructions for how to get started.</figcaption>
             </figure>
             <figure>
-              <div class="screen"><div class="ph" data-asset="rap-v1-category" data-compact></div></div>
+              <div class="mock"><div class="mock__body"><div class="ph" data-asset="rap-v1-category" data-compact></div></div></div>
               <figcaption><span class="screen-num">02</span><strong>Problem category</strong>An easy point of entry based on where the problem occurred, with the option to select "Other."</figcaption>
             </figure>
             <figure>
-              <div class="screen"><div class="ph" data-asset="rap-v1-subcategory" data-compact></div></div>
+              <div class="mock"><div class="mock__body"><div class="ph" data-asset="rap-v1-subcategory" data-compact></div></div></div>
               <figcaption><span class="screen-num">03</span><strong>Sub-category: Outdoors</strong>Common problem types based on the location of the issue.</figcaption>
             </figure>
             <figure>
-              <div class="screen"><div class="ph" data-asset="rap-v1-details" data-compact></div></div>
+              <div class="mock"><div class="mock__body"><div class="ph" data-asset="rap-v1-details" data-compact></div></div></div>
               <figcaption><span class="screen-num">04</span><strong>Problem details</strong>An optional opportunity to add a photo, suggested tags, and a description.</figcaption>
             </figure>
             <figure>
-              <div class="screen"><div class="ph" data-asset="rap-v1-review" data-compact></div></div>
+              <div class="mock"><div class="mock__body"><div class="ph" data-asset="rap-v1-review" data-compact></div></div></div>
               <figcaption><span class="screen-num">05</span><strong>Review</strong>The ability to correct information before submitting.</figcaption>
             </figure>
           </div>
@@ -963,11 +1196,28 @@ figcaption strong, .caption strong { display: block; color: var(--ink); font-siz
           </div>
         </div>
 
+        <!-- Sprint 4 goals -->
+        <div class="block" id="sprint-4">
+          <div class="split split--even split--end">
+            <div>
+              <span class="sprint-tag">Sprint 4 design challenge</span>
+              <h3>Sprint 4 goals</h3>
+            </div>
+            <p class="prose">As facilitator of Sprint 4, I directed the course of the project, oversaw the schedule, and led client presentations. The sprint set four goals:</p>
+          </div>
+          <ol class="goals">
+            <li><span class="goals__text">Update the web form to incorporate findings and recommendations from user testing</span><a class="goals__link" href="#d1">Design decisions below</a></li>
+            <li><span class="goals__text">Design a customer service form to redirect miscellaneous issues such as billing inquiries</span><a class="goals__link" href="#customer-service">Customer Service form</a></li>
+            <li><span class="goals__text">Hand off deliverables to developers and collaborate with them regularly, so the final product represents both users' and DC Water's needs</span><a class="goals__link" href="#outcomes">Outcomes</a></li>
+            <li><span class="goals__text">Design an artificial intelligence application that gives users an alternative, more efficient way to report a problem</span><a class="goals__link" href="#photo-reporting">Photo-based reporting</a></li>
+          </ol>
+        </div>
+
         <!-- Decisions -->
         <div class="block">
           <span class="sprint-tag">Iteration 2 · Sprint 4</span>
           <h3>Design decisions in the second iteration</h3>
-          <p class="prose">In Sprint 4 we updated the web form based on the testing results. Each change below traces from a finding to the redesign.</p>
+          <p class="prose">We updated the web form based on the testing results. Each change below traces from a finding to the redesign.</p>
 
           <div style="margin-top:2.5rem">
             <!-- Decision 1 -->
@@ -976,16 +1226,15 @@ figcaption strong, .caption strong { display: block; color: var(--ink); font-siz
               <ol class="chain">
                 <li><span class="chain__k">What we learned</span>"Emergency" language may make people hesitate, and earlier testing showed users weren't sure their issue was a true emergency.</li>
                 <li><span class="chain__k">What changed</span>The form title changed from "Report an Emergency" to "Report a Problem," to make users less likely to abandon the form when they aren't sure their issue is a true emergency.</li>
-                <li class="is-unknown"><span class="chain__k">What testing showed</span>No follow-up test of this change is documented.</li>
               </ol>
               <div class="compare">
                 <figure>
                   <span class="compare__label">Before · Iteration 1</span>
-                  <div class="screen"><div class="ph" data-asset="rap-v1-category" data-compact></div></div>
+                  <div class="mock"><div class="mock__body"><div class="ph" data-asset="rap-v1-category" data-compact></div></div></div>
                 </figure>
                 <figure>
                   <span class="compare__label compare__label--after">After · Iteration 2</span>
-                  <div class="screen"><div class="ph" data-asset="rap-v2-title" data-compact></div></div>
+                  <div class="mock"><div class="mock__body"><div class="ph" data-asset="rap-v2-title" data-compact></div></div></div>
                 </figure>
               </div>
             </article>
@@ -996,17 +1245,16 @@ figcaption strong, .caption strong { display: block; color: var(--ink); font-siz
               <ol class="chain">
                 <li><span class="chain__k">What we learned</span>There was no way to choose a notification preference, and some participants worried their data could be used for unrelated alerts.</li>
                 <li><span class="chain__k">What changed</span>A simpler, more concise contact form with notification preferences. Receiving updates was separated from allowing DC Water to make contact, and the screen states that DC Water will only contact the user about this ticket.</li>
-                <li class="is-unknown"><span class="chain__k">What testing showed</span>No follow-up test of this change is documented.</li>
               </ol>
               <div class="compare">
                 <figure>
                   <span class="compare__label">Before · Iteration 1</span>
-                  <div class="screen"><div class="ph" data-asset="rap-v1-contact" data-compact></div></div>
+                  <div class="mock"><div class="mock__body"><div class="ph" data-asset="rap-v1-contact" data-compact></div></div></div>
                   <figcaption>One yes/no question about status alerts.</figcaption>
                 </figure>
                 <figure>
                   <span class="compare__label compare__label--after">After · Iteration 2</span>
-                  <div class="screen"><div class="ph" data-asset="rap-v2-notifications" data-compact></div></div>
+                  <div class="mock"><div class="mock__body"><div class="ph" data-asset="rap-v2-notifications" data-compact></div></div></div>
                   <figcaption>Updates and contact permissions chosen separately, by phone call or email.</figcaption>
                 </figure>
               </div>
@@ -1018,17 +1266,16 @@ figcaption strong, .caption strong { display: block; color: var(--ink); font-siz
               <ol class="chain">
                 <li><span class="chain__k">What we learned</span>Participants found ticket tracking helpful but wanted to be reminded of what they had submitted.</li>
                 <li><span class="chain__k">What changed</span>The ticket status page was redesigned to show the ticket's status and a new "Ticket Details" tab with the submitted information. An option to rate the experience and leave feedback was also added.</li>
-                <li class="is-unknown"><span class="chain__k">What testing showed</span>No follow-up test of this change is documented.</li>
               </ol>
               <div class="compare">
                 <figure>
                   <span class="compare__label">Before · Iteration 1</span>
-                  <div class="screen"><div class="ph" data-asset="rap-v1-tracking" data-compact></div></div>
+                  <div class="mock"><div class="mock__body"><div class="ph" data-asset="rap-v1-tracking" data-compact></div></div></div>
                   <figcaption>Current status and generalized next steps.</figcaption>
                 </figure>
                 <figure>
                   <span class="compare__label compare__label--after">After · Iteration 2</span>
-                  <div class="screen"><div class="ph" data-asset="rap-v2-ticket" data-compact></div></div>
+                  <div class="mock"><div class="mock__body"><div class="ph" data-asset="rap-v2-ticket" data-compact></div></div></div>
                   <figcaption>Case History and Ticket Details tabs, plus rating and feedback.</figcaption>
                 </figure>
               </div>
@@ -1040,17 +1287,16 @@ figcaption strong, .caption strong { display: block; color: var(--ink); font-siz
               <ol class="chain">
                 <li><span class="chain__k">What we learned</span>Users were unsure how to categorize problems that fit several categories, and most couldn't imagine using "Other" for a problem that was neither indoors nor outdoors.</li>
                 <li><span class="chain__k">What the final screens show</span>"Where is the problem?" offers only Outdoors and Indoors, with a link to describe the issue if unsure. "Other / Not Sure" moves to the problem-type step. The final flow also starts with a location step.</li>
-                <li class="is-unknown"><span class="chain__k">What testing showed</span>No follow-up test of this change is documented.</li>
               </ol>
               <div class="compare">
                 <figure>
                   <span class="compare__label">Before · Iteration 1</span>
-                  <div class="screen"><div class="ph" data-asset="rap-v1-category" data-compact></div></div>
+                  <div class="mock"><div class="mock__body"><div class="ph" data-asset="rap-v1-category" data-compact></div></div></div>
                   <figcaption>Outdoors, Indoors, Other.</figcaption>
                 </figure>
                 <figure>
                   <span class="compare__label compare__label--after">Final</span>
-                  <div class="screen"><div class="ph" data-asset="rap-03" data-compact></div></div>
+                  <div class="mock"><div class="mock__body"><div class="ph" data-asset="rap-03" data-compact></div></div></div>
                   <figcaption>Outdoors and Indoors, with a link for anyone who's unsure.</figcaption>
                 </figure>
               </div>
@@ -1059,7 +1305,7 @@ figcaption strong, .caption strong { display: block; color: var(--ink); font-siz
         </div>
 
         <!-- Customer service form -->
-        <div class="block">
+        <div class="block" id="customer-service">
           <div class="split">
             <div>
               <span class="sprint-tag">Customer Service form · Sprint 4</span>
@@ -1088,19 +1334,19 @@ figcaption strong, .caption strong { display: block; color: var(--ink); font-siz
 
           <div class="screens" style="margin-top:2.5rem">
             <figure>
-              <div class="screen"><div class="ph" data-asset="cs-01" data-compact></div></div>
+              <div class="mock"><div class="mock__body"><div class="ph" data-asset="cs-01" data-compact></div></div></div>
               <figcaption><span class="screen-num">01</span><strong>Select a topic</strong>Billing Inquiry, Damage, or Other.</figcaption>
             </figure>
             <figure>
-              <div class="screen"><div class="ph" data-asset="cs-03" data-compact></div></div>
+              <div class="mock"><div class="mock__body"><div class="ph" data-asset="cs-03" data-compact></div></div></div>
               <figcaption><span class="screen-num">02</span><strong>Additional details</strong>"How can we help you?", location, suggested tags, and a file.</figcaption>
             </figure>
             <figure>
-              <div class="screen"><div class="ph" data-asset="cs-05" data-compact></div></div>
+              <div class="mock"><div class="mock__body"><div class="ph" data-asset="cs-05" data-compact></div></div></div>
               <figcaption><span class="screen-num">03</span><strong>Contact information</strong>Optional, for a reply, with an account number if applicable.</figcaption>
             </figure>
             <figure>
-              <div class="screen"><div class="ph" data-asset="cs-06" data-compact></div></div>
+              <div class="mock"><div class="mock__body"><div class="ph" data-asset="cs-06" data-compact></div></div></div>
               <figcaption><span class="screen-num">04</span><strong>Review</strong>Every answer can be edited before submitting.</figcaption>
             </figure>
           </div>
@@ -1112,7 +1358,7 @@ figcaption strong, .caption strong { display: block; color: var(--ink); font-siz
     <!-- ============================================================
          6. EXPLORING PHOTO-BASED REPORTING
          ============================================================ -->
-    <section class="section section--quiet" id="photo-reporting" aria-labelledby="photo-title">
+    <section class="section section--tint" id="photo-reporting" aria-labelledby="photo-title">
       <div class="wrap">
         <div class="section-head">
           <p class="eyebrow"><span class="eyebrow__num">05</span> Exploring photo-based reporting</p>
@@ -1202,19 +1448,19 @@ figcaption strong, .caption strong { display: block; color: var(--ink); font-siz
           <p class="prose">Photograph or upload the problem, see what the product recognized, and submit pre-filled details.</p>
           <div class="screens" style="margin-top:1.75rem">
             <figure>
-              <div class="screen"><div class="ph" data-asset="ir-v1-landing" data-compact></div></div>
+              <div class="mock"><div class="mock__body"><div class="ph" data-asset="ir-v1-landing" data-compact></div></div></div>
               <figcaption><span class="screen-num">01</span><strong>Landing page</strong>Similar to the Report a Problem form, with split buttons for choosing how to report.</figcaption>
             </figure>
             <figure>
-              <div class="screen"><div class="ph" data-asset="ir-v1-camera" data-compact></div></div>
+              <div class="mock"><div class="mock__body"><div class="ph" data-asset="ir-v1-camera" data-compact></div></div></div>
               <figcaption><span class="screen-num">02</span><strong>Camera view</strong>The user opens the camera and aims it at the object.</figcaption>
             </figure>
             <figure>
-              <div class="screen"><div class="ph" data-asset="ir-v1-description" data-compact></div></div>
+              <div class="mock"><div class="mock__body"><div class="ph" data-asset="ir-v1-description" data-compact></div></div></div>
               <figcaption><span class="screen-num">03</span><strong>Object description</strong>The product identifies the object and describes it.</figcaption>
             </figure>
             <figure>
-              <div class="screen"><div class="ph" data-asset="ir-v1-drawer" data-compact></div></div>
+              <div class="mock"><div class="mock__body"><div class="ph" data-asset="ir-v1-drawer" data-compact></div></div></div>
               <figcaption><span class="screen-num">04</span><strong>Problem details</strong>Details about the issue are filled in automatically in a drawer.</figcaption>
             </figure>
           </div>
@@ -1222,11 +1468,11 @@ figcaption strong, .caption strong { display: block; color: var(--ink); font-siz
             <summary>5 more screens from iteration 1 <span class="more__sub">Upload, drawer, library, confirmation, ticket</span></summary>
             <div class="more__body">
               <div class="gallery">
-                <figure><div class="screen"><div class="ph" data-asset="ir-v1-upload" data-compact></div></div><figcaption><strong>Upload</strong>Take a photo or choose an existing one.</figcaption></figure>
-                <figure><div class="screen"><div class="ph" data-asset="ir-v1-collapsed" data-compact></div></div><figcaption><strong>Collapsible drawer</strong>The view when the user hides the drawer.</figcaption></figure>
-                <figure><div class="screen"><div class="ph" data-asset="ir-v1-library" data-compact></div></div><figcaption><strong>Photo library</strong>Select a photo from the native library.</figcaption></figure>
-                <figure><div class="screen"><div class="ph" data-asset="ir-v1-confirm" data-compact></div></div><figcaption><strong>Confirmation</strong>Shown after the user selects "Submit" on the reviewed details.</figcaption></figure>
-                <figure><div class="screen"><div class="ph" data-asset="ir-v1-ticket" data-compact></div></div><figcaption><strong>Ticket number</strong>Generated automatically on submission for easy tracking.</figcaption></figure>
+                <figure><div class="mock"><div class="mock__body"><div class="ph" data-asset="ir-v1-upload" data-compact></div></div></div><figcaption><strong>Upload</strong>Take a photo or choose an existing one.</figcaption></figure>
+                <figure><div class="mock"><div class="mock__body"><div class="ph" data-asset="ir-v1-collapsed" data-compact></div></div></div><figcaption><strong>Collapsible drawer</strong>The view when the user hides the drawer.</figcaption></figure>
+                <figure><div class="mock"><div class="mock__body"><div class="ph" data-asset="ir-v1-library" data-compact></div></div></div><figcaption><strong>Photo library</strong>Select a photo from the native library.</figcaption></figure>
+                <figure><div class="mock"><div class="mock__body"><div class="ph" data-asset="ir-v1-confirm" data-compact></div></div></div><figcaption><strong>Confirmation</strong>Shown after the user selects "Submit" on the reviewed details.</figcaption></figure>
+                <figure><div class="mock"><div class="mock__body"><div class="ph" data-asset="ir-v1-ticket" data-compact></div></div></div><figcaption><strong>Ticket number</strong>Generated automatically on submission for easy tracking.</figcaption></figure>
               </div>
             </div>
           </details>
@@ -1247,11 +1493,11 @@ figcaption strong, .caption strong { display: block; color: var(--ink); font-siz
               <h3>Landing page</h3>
               <div class="ab__options">
                 <figure>
-                  <div class="screen"><div class="ph" data-asset="ab-landing-a" data-compact></div></div>
+                  <div class="mock"><div class="mock__body"><div class="ph" data-asset="ab-landing-a" data-compact></div></div></div>
                   <figcaption><span class="ab__opt-label">Option A</span><strong>Split button</strong>Like the Report a Problem landing page, but "Report a Problem" splits into two buttons: fill out the traditional form or use image recognition.</figcaption>
                 </figure>
                 <figure>
-                  <div class="screen"><div class="ph" data-asset="ab-landing-b" data-compact></div></div>
+                  <div class="mock"><div class="mock__body"><div class="ph" data-asset="ab-landing-b" data-compact></div></div></div>
                   <figcaption><span class="ab__opt-label">Option B</span><strong>Photo layout</strong>Image recognition is the default. "Show us the issue" then offers image recognition or the traditional form. This assumed image recognition would be the easiest, most efficient option and that users would want to start with the fastest one.</figcaption>
                 </figure>
               </div>
@@ -1260,11 +1506,11 @@ figcaption strong, .caption strong { display: block; color: var(--ink); font-siz
               <h3>Problem details</h3>
               <div class="ab__options">
                 <figure>
-                  <div class="screen"><div class="ph" data-asset="ab-details-a" data-compact></div></div>
+                  <div class="mock"><div class="mock__body"><div class="ph" data-asset="ab-details-a" data-compact></div></div></div>
                   <figcaption><span class="ab__opt-label">Option A</span><strong>Interaction drawer</strong>A drawer pattern we found in existing image recognition products. We liked its modern look but worried drawers are native to apps and might not translate well to responsive web pages.</figcaption>
                 </figure>
                 <figure>
-                  <div class="screen"><div class="ph" data-asset="ab-details-b" data-compact></div></div>
+                  <div class="mock"><div class="mock__body"><div class="ph" data-asset="ab-details-b" data-compact></div></div></div>
                   <figcaption><span class="ab__opt-label">Option B</span><strong>Full page</strong>A more classic layout, which we liked because the "Add Photo" button is very visible.</figcaption>
                 </figure>
               </div>
@@ -1306,21 +1552,20 @@ figcaption strong, .caption strong { display: block; color: var(--ink); font-siz
             <ol class="chain">
               <li><span class="chain__k">What we learned</span>The confirmation message after "Submit" felt unnecessary, and users didn't know how to save the ticket number.</li>
               <li><span class="chain__k">What changed</span>The extra submit step was removed: users get a thank-you message and can exit right away. The copy-ticket-number option was removed, and users track their report by uploading the original photo.</li>
-              <li class="is-unknown"><span class="chain__k">What testing showed</span>No test of the second iteration is documented. Tracking by photo introduced a new limitation (see Outcomes).</li>
             </ol>
             <div class="compare compare--wide">
               <figure>
                 <span class="compare__label">Before · Iteration 1</span>
                 <div class="compare compare--quad">
-                  <div class="screen"><div class="ph" data-asset="ir-v1-confirm" data-compact></div></div>
-                  <div class="screen"><div class="ph" data-asset="ir-v1-ticket" data-compact></div></div>
+                  <div class="mock"><div class="mock__body"><div class="ph" data-asset="ir-v1-confirm" data-compact></div></div></div>
+                  <div class="mock"><div class="mock__body"><div class="ph" data-asset="ir-v1-ticket" data-compact></div></div></div>
                 </div>
               </figure>
               <figure>
                 <span class="compare__label compare__label--after">After · Iteration 2</span>
                 <div class="compare compare--quad">
-                  <div class="screen"><div class="ph" data-asset="ir-v2-thanks" data-compact></div></div>
-                  <div class="screen"><div class="ph" data-asset="ir-v2-tracking" data-compact></div></div>
+                  <div class="mock"><div class="mock__body"><div class="ph" data-asset="ir-v2-thanks" data-compact></div></div></div>
+                  <div class="mock"><div class="mock__body"><div class="ph" data-asset="ir-v2-tracking" data-compact></div></div></div>
                 </div>
               </figure>
             </div>
@@ -1331,16 +1576,15 @@ figcaption strong, .caption strong { display: block; color: var(--ink); font-siz
             <ol class="chain">
               <li><span class="chain__k">What we learned</span>The photo layout landing page was simple and easy to use, while "Image Identifier" confused some users. Users noticed the additional photo button on the full-page layout but not in the drawer.</li>
               <li><span class="chain__k">What the final screens show</span>The final prototype uses the photo layout landing page ("Show Us The Issue") and the full-page problem details, where users can add another photo.</li>
-              <li class="is-unknown"><span class="chain__k">What testing showed</span>No test of the second iteration is documented.</li>
             </ol>
             <div class="compare">
               <figure>
                 <span class="compare__label compare__label--after">Final landing</span>
-                <div class="screen"><div class="ph" data-asset="ir-01" data-compact></div></div>
+                <div class="mock"><div class="mock__body"><div class="ph" data-asset="ir-01" data-compact></div></div></div>
               </figure>
               <figure>
                 <span class="compare__label compare__label--after">Additional photo uploaded</span>
-                <div class="screen"><div class="ph" data-asset="ir-v2-photo" data-compact></div></div>
+                <div class="mock"><div class="mock__body"><div class="ph" data-asset="ir-v2-photo" data-compact></div></div></div>
                 <figcaption>The view after the user selects "Add Photo."</figcaption>
               </figure>
             </div>
@@ -1350,19 +1594,19 @@ figcaption strong, .caption strong { display: block; color: var(--ink); font-siz
             <h4 class="decision__title" id="ir-d3">Other additions in the second iteration</h4>
             <div class="screens" style="margin-top:1rem">
               <figure>
-                <div class="screen"><div class="ph" data-asset="ir-v2-error" data-compact></div></div>
+                <div class="mock"><div class="mock__body"><div class="ph" data-asset="ir-v2-error" data-compact></div></div></div>
                 <figcaption><strong>Error</strong>A message when an uploaded photo isn't recognized as an eligible DC Water object.</figcaption>
               </figure>
               <figure>
-                <div class="screen"><div class="ph" data-asset="ir-v2-form-option" data-compact></div></div>
+                <div class="mock"><div class="mock__body"><div class="ph" data-asset="ir-v2-form-option" data-compact></div></div></div>
                 <figcaption><strong>Form option</strong>"No photo? Fill out a form." sends users to the Report a Problem form when image recognition isn't suitable.</figcaption>
               </figure>
               <figure>
-                <div class="screen"><div class="ph" data-asset="ir-v2-outline" data-compact></div></div>
+                <div class="mock"><div class="mock__body"><div class="ph" data-asset="ir-v2-outline" data-compact></div></div></div>
                 <figcaption><strong>Object outline</strong>A label and an outline around the object make it easy to identify.</figcaption>
               </figure>
               <figure>
-                <div class="screen"><div class="ph" data-asset="ir-v2-location" data-compact></div></div>
+                <div class="mock"><div class="mock__body"><div class="ph" data-asset="ir-v2-location" data-compact></div></div></div>
                 <figcaption><strong>Location</strong>Users can edit their location if the detected location is inaccurate.</figcaption>
               </figure>
             </div>
@@ -1374,7 +1618,7 @@ figcaption strong, .caption strong { display: block; color: var(--ink); font-siz
     <!-- ============================================================
          7. FINAL EXPERIENCE AND PROTOTYPES
          ============================================================ -->
-    <section class="section" id="prototypes" aria-labelledby="prototypes-title">
+    <section class="section theme-dark" id="prototypes" aria-labelledby="prototypes-title">
       <div class="wrap">
         <div class="section-head">
           <p class="eyebrow"><span class="eyebrow__num">06</span> Final experience and prototypes</p>
@@ -1391,7 +1635,7 @@ figcaption strong, .caption strong { display: block; color: var(--ink); font-siz
           <div class="flow__grid">
             <div class="proto" data-figma="reportProblem">
               <div class="proto__stage">
-                <div class="device"><div class="ph" data-asset="rap-01" data-compact></div></div>
+                <div class="mock mock--lg"><div class="mock__body"><div class="ph" data-asset="rap-01" data-compact></div></div></div>
               </div>
               <div class="proto__actions">
                 <button class="btn" type="button" data-figma-load hidden>Load interactive prototype</button>
@@ -1414,9 +1658,9 @@ figcaption strong, .caption strong { display: block; color: var(--ink); font-siz
                 <li>Track the ticket, rate the experience, and leave feedback.</li>
               </ol>
               <div class="screens screens--3">
-                <figure><div class="screen"><div class="ph" data-asset="rap-02" data-compact></div></div><figcaption><strong>Location</strong></figcaption></figure>
-                <figure><div class="screen"><div class="ph" data-asset="rap-07" data-compact></div></div><figcaption><strong>Review</strong></figcaption></figure>
-                <figure><div class="screen"><div class="ph" data-asset="rap-08" data-compact></div></div><figcaption><strong>Submitted</strong></figcaption></figure>
+                <figure><div class="mock"><div class="mock__body"><div class="ph" data-asset="rap-02" data-compact></div></div></div><figcaption><strong>Location</strong></figcaption></figure>
+                <figure><div class="mock"><div class="mock__body"><div class="ph" data-asset="rap-07" data-compact></div></div></div><figcaption><strong>Review</strong></figcaption></figure>
+                <figure><div class="mock"><div class="mock__body"><div class="ph" data-asset="rap-08" data-compact></div></div></div><figcaption><strong>Submitted</strong></figcaption></figure>
               </div>
             </div>
           </div>
@@ -1424,20 +1668,20 @@ figcaption strong, .caption strong { display: block; color: var(--ink); font-siz
             <summary>All 14 Report a Problem screens <span class="more__sub">Report, track, and give feedback</span></summary>
             <div class="more__body">
               <div class="gallery">
-                <figure><div class="screen"><div class="ph" data-asset="rap-01" data-compact></div></div><figcaption><span class="screen-num">01</span>Landing</figcaption></figure>
-                <figure><div class="screen"><div class="ph" data-asset="rap-02" data-compact></div></div><figcaption><span class="screen-num">02</span>Location</figcaption></figure>
-                <figure><div class="screen"><div class="ph" data-asset="rap-03" data-compact></div></div><figcaption><span class="screen-num">03</span>Where is the problem?</figcaption></figure>
-                <figure><div class="screen"><div class="ph" data-asset="rap-04" data-compact></div></div><figcaption><span class="screen-num">04</span>What is the problem?</figcaption></figure>
-                <figure><div class="screen"><div class="ph" data-asset="rap-05" data-compact></div></div><figcaption><span class="screen-num">05</span>Additional details</figcaption></figure>
-                <figure><div class="screen"><div class="ph" data-asset="rap-06" data-compact></div></div><figcaption><span class="screen-num">06</span>Notifications</figcaption></figure>
-                <figure><div class="screen"><div class="ph" data-asset="rap-07" data-compact></div></div><figcaption><span class="screen-num">07</span>Review</figcaption></figure>
-                <figure><div class="screen"><div class="ph" data-asset="rap-08" data-compact></div></div><figcaption><span class="screen-num">08</span>Submitted</figcaption></figure>
-                <figure><div class="screen"><div class="ph" data-asset="rap-09" data-compact></div></div><figcaption><span class="screen-num">09</span>Track your report</figcaption></figure>
-                <figure><div class="screen"><div class="ph" data-asset="rap-10" data-compact></div></div><figcaption><span class="screen-num">10</span>Ticket opened</figcaption></figure>
-                <figure><div class="screen"><div class="ph" data-asset="rap-11" data-compact></div></div><figcaption><span class="screen-num">11</span>Ticket closed</figcaption></figure>
-                <figure><div class="screen"><div class="ph" data-asset="rap-12" data-compact></div></div><figcaption><span class="screen-num">12</span>Experience rated</figcaption></figure>
-                <figure><div class="screen"><div class="ph" data-asset="rap-13" data-compact></div></div><figcaption><span class="screen-num">13</span>Feedback</figcaption></figure>
-                <figure><div class="screen"><div class="ph" data-asset="rap-14" data-compact></div></div><figcaption><span class="screen-num">14</span>Feedback sent</figcaption></figure>
+                <figure><div class="mock"><div class="mock__body"><div class="ph" data-asset="rap-01" data-compact></div></div></div><figcaption><span class="screen-num">01</span>Landing</figcaption></figure>
+                <figure><div class="mock"><div class="mock__body"><div class="ph" data-asset="rap-02" data-compact></div></div></div><figcaption><span class="screen-num">02</span>Location</figcaption></figure>
+                <figure><div class="mock"><div class="mock__body"><div class="ph" data-asset="rap-03" data-compact></div></div></div><figcaption><span class="screen-num">03</span>Where is the problem?</figcaption></figure>
+                <figure><div class="mock"><div class="mock__body"><div class="ph" data-asset="rap-04" data-compact></div></div></div><figcaption><span class="screen-num">04</span>What is the problem?</figcaption></figure>
+                <figure><div class="mock"><div class="mock__body"><div class="ph" data-asset="rap-05" data-compact></div></div></div><figcaption><span class="screen-num">05</span>Additional details</figcaption></figure>
+                <figure><div class="mock"><div class="mock__body"><div class="ph" data-asset="rap-06" data-compact></div></div></div><figcaption><span class="screen-num">06</span>Notifications</figcaption></figure>
+                <figure><div class="mock"><div class="mock__body"><div class="ph" data-asset="rap-07" data-compact></div></div></div><figcaption><span class="screen-num">07</span>Review</figcaption></figure>
+                <figure><div class="mock"><div class="mock__body"><div class="ph" data-asset="rap-08" data-compact></div></div></div><figcaption><span class="screen-num">08</span>Submitted</figcaption></figure>
+                <figure><div class="mock"><div class="mock__body"><div class="ph" data-asset="rap-09" data-compact></div></div></div><figcaption><span class="screen-num">09</span>Track your report</figcaption></figure>
+                <figure><div class="mock"><div class="mock__body"><div class="ph" data-asset="rap-10" data-compact></div></div></div><figcaption><span class="screen-num">10</span>Ticket opened</figcaption></figure>
+                <figure><div class="mock"><div class="mock__body"><div class="ph" data-asset="rap-11" data-compact></div></div></div><figcaption><span class="screen-num">11</span>Ticket closed</figcaption></figure>
+                <figure><div class="mock"><div class="mock__body"><div class="ph" data-asset="rap-12" data-compact></div></div></div><figcaption><span class="screen-num">12</span>Experience rated</figcaption></figure>
+                <figure><div class="mock"><div class="mock__body"><div class="ph" data-asset="rap-13" data-compact></div></div></div><figcaption><span class="screen-num">13</span>Feedback</figcaption></figure>
+                <figure><div class="mock"><div class="mock__body"><div class="ph" data-asset="rap-14" data-compact></div></div></div><figcaption><span class="screen-num">14</span>Feedback sent</figcaption></figure>
               </div>
             </div>
           </details>
@@ -1452,7 +1696,7 @@ figcaption strong, .caption strong { display: block; color: var(--ink); font-siz
           <div class="flow__grid">
             <div class="proto" data-figma="customerService">
               <div class="proto__stage">
-                <div class="device"><div class="ph" data-asset="cs-01" data-compact></div></div>
+                <div class="mock mock--lg"><div class="mock__body"><div class="ph" data-asset="cs-01" data-compact></div></div></div>
               </div>
               <div class="proto__actions">
                 <button class="btn" type="button" data-figma-load hidden>Load interactive prototype</button>
@@ -1472,9 +1716,9 @@ figcaption strong, .caption strong { display: block; color: var(--ink); font-siz
                 <li>Review and submit.</li>
               </ol>
               <div class="screens screens--3">
-                <figure><div class="screen"><div class="ph" data-asset="cs-04" data-compact></div></div><figcaption><strong>Details</strong></figcaption></figure>
-                <figure><div class="screen"><div class="ph" data-asset="cs-06" data-compact></div></div><figcaption><strong>Review</strong></figcaption></figure>
-                <figure><div class="screen"><div class="ph" data-asset="cs-07" data-compact></div></div><figcaption><strong>Submitted</strong></figcaption></figure>
+                <figure><div class="mock"><div class="mock__body"><div class="ph" data-asset="cs-04" data-compact></div></div></div><figcaption><strong>Details</strong></figcaption></figure>
+                <figure><div class="mock"><div class="mock__body"><div class="ph" data-asset="cs-06" data-compact></div></div></div><figcaption><strong>Review</strong></figcaption></figure>
+                <figure><div class="mock"><div class="mock__body"><div class="ph" data-asset="cs-07" data-compact></div></div></div><figcaption><strong>Submitted</strong></figcaption></figure>
               </div>
             </div>
           </div>
@@ -1482,13 +1726,13 @@ figcaption strong, .caption strong { display: block; color: var(--ink); font-siz
             <summary>All 7 Customer Service screens</summary>
             <div class="more__body">
               <div class="gallery">
-                <figure><div class="screen"><div class="ph" data-asset="cs-01" data-compact></div></div><figcaption><span class="screen-num">01</span>Select a topic</figcaption></figure>
-                <figure><div class="screen"><div class="ph" data-asset="cs-02" data-compact></div></div><figcaption><span class="screen-num">02</span>Topic selected</figcaption></figure>
-                <figure><div class="screen"><div class="ph" data-asset="cs-03" data-compact></div></div><figcaption><span class="screen-num">03</span>Additional details</figcaption></figure>
-                <figure><div class="screen"><div class="ph" data-asset="cs-04" data-compact></div></div><figcaption><span class="screen-num">04</span>Details filled in</figcaption></figure>
-                <figure><div class="screen"><div class="ph" data-asset="cs-05" data-compact></div></div><figcaption><span class="screen-num">05</span>Contact information</figcaption></figure>
-                <figure><div class="screen"><div class="ph" data-asset="cs-06" data-compact></div></div><figcaption><span class="screen-num">06</span>Review</figcaption></figure>
-                <figure><div class="screen"><div class="ph" data-asset="cs-07" data-compact></div></div><figcaption><span class="screen-num">07</span>Submitted</figcaption></figure>
+                <figure><div class="mock"><div class="mock__body"><div class="ph" data-asset="cs-01" data-compact></div></div></div><figcaption><span class="screen-num">01</span>Select a topic</figcaption></figure>
+                <figure><div class="mock"><div class="mock__body"><div class="ph" data-asset="cs-02" data-compact></div></div></div><figcaption><span class="screen-num">02</span>Topic selected</figcaption></figure>
+                <figure><div class="mock"><div class="mock__body"><div class="ph" data-asset="cs-03" data-compact></div></div></div><figcaption><span class="screen-num">03</span>Additional details</figcaption></figure>
+                <figure><div class="mock"><div class="mock__body"><div class="ph" data-asset="cs-04" data-compact></div></div></div><figcaption><span class="screen-num">04</span>Details filled in</figcaption></figure>
+                <figure><div class="mock"><div class="mock__body"><div class="ph" data-asset="cs-05" data-compact></div></div></div><figcaption><span class="screen-num">05</span>Contact information</figcaption></figure>
+                <figure><div class="mock"><div class="mock__body"><div class="ph" data-asset="cs-06" data-compact></div></div></div><figcaption><span class="screen-num">06</span>Review</figcaption></figure>
+                <figure><div class="mock"><div class="mock__body"><div class="ph" data-asset="cs-07" data-compact></div></div></div><figcaption><span class="screen-num">07</span>Submitted</figcaption></figure>
               </div>
             </div>
           </details>
@@ -1503,7 +1747,7 @@ figcaption strong, .caption strong { display: block; color: var(--ink); font-siz
           <div class="flow__grid">
             <div class="proto" data-figma="imageRecognition">
               <div class="proto__stage">
-                <div class="device"><div class="ph" data-asset="ir-01" data-compact></div></div>
+                <div class="mock mock--lg"><div class="mock__body"><div class="ph" data-asset="ir-01" data-compact></div></div></div>
               </div>
               <div class="proto__actions">
                 <button class="btn" type="button" data-figma-load hidden>Load interactive prototype</button>
@@ -1524,9 +1768,9 @@ figcaption strong, .caption strong { display: block; color: var(--ink); font-siz
                 <li>Track the report later by uploading the original photo.</li>
               </ol>
               <div class="screens screens--3">
-                <figure><div class="screen"><div class="ph" data-asset="ir-06" data-compact></div></div><figcaption><strong>Recognized</strong></figcaption></figure>
-                <figure><div class="screen"><div class="ph" data-asset="ir-07" data-compact></div></div><figcaption><strong>Details</strong></figcaption></figure>
-                <figure><div class="screen"><div class="ph" data-asset="ir-15" data-compact></div></div><figcaption><strong>Track</strong></figcaption></figure>
+                <figure><div class="mock"><div class="mock__body"><div class="ph" data-asset="ir-06" data-compact></div></div></div><figcaption><strong>Recognized</strong></figcaption></figure>
+                <figure><div class="mock"><div class="mock__body"><div class="ph" data-asset="ir-07" data-compact></div></div></div><figcaption><strong>Details</strong></figcaption></figure>
+                <figure><div class="mock"><div class="mock__body"><div class="ph" data-asset="ir-15" data-compact></div></div></div><figcaption><strong>Track</strong></figcaption></figure>
               </div>
             </div>
           </div>
@@ -1534,21 +1778,21 @@ figcaption strong, .caption strong { display: block; color: var(--ink); font-siz
             <summary>All 15 Image Recognition screens</summary>
             <div class="more__body">
               <div class="gallery">
-                <figure><div class="screen"><div class="ph" data-asset="ir-01" data-compact></div></div><figcaption><span class="screen-num">01</span>Landing</figcaption></figure>
-                <figure><div class="screen"><div class="ph" data-asset="ir-02" data-compact></div></div><figcaption><span class="screen-num">02</span>Photo options</figcaption></figure>
-                <figure><div class="screen"><div class="ph" data-asset="ir-03" data-compact></div></div><figcaption><span class="screen-num">03</span>Camera</figcaption></figure>
-                <figure><div class="screen"><div class="ph" data-asset="ir-04" data-compact></div></div><figcaption><span class="screen-num">04</span>Not recognized</figcaption></figure>
-                <figure><div class="screen"><div class="ph" data-asset="ir-05" data-compact></div></div><figcaption><span class="screen-num">05</span>Aiming at a hydrant</figcaption></figure>
-                <figure><div class="screen"><div class="ph" data-asset="ir-06" data-compact></div></div><figcaption><span class="screen-num">06</span>Outlined and described</figcaption></figure>
-                <figure><div class="screen"><div class="ph" data-asset="ir-07" data-compact></div></div><figcaption><span class="screen-num">07</span>Problem details</figcaption></figure>
-                <figure><div class="screen"><div class="ph" data-asset="ir-08" data-compact></div></div><figcaption><span class="screen-num">08</span>Edit location</figcaption></figure>
-                <figure><div class="screen"><div class="ph" data-asset="ir-09" data-compact></div></div><figcaption><span class="screen-num">09</span>Photo library</figcaption></figure>
-                <figure><div class="screen"><div class="ph" data-asset="ir-10" data-compact></div></div><figcaption><span class="screen-num">10</span>Second photo</figcaption></figure>
-                <figure><div class="screen"><div class="ph" data-asset="ir-11" data-compact></div></div><figcaption><span class="screen-num">11</span>Second photo recognized</figcaption></figure>
-                <figure><div class="screen"><div class="ph" data-asset="ir-12" data-compact></div></div><figcaption><span class="screen-num">12</span>Details, two photos</figcaption></figure>
-                <figure><div class="screen"><div class="ph" data-asset="ir-13" data-compact></div></div><figcaption><span class="screen-num">13</span>Thank you</figcaption></figure>
-                <figure><div class="screen"><div class="ph" data-asset="ir-14" data-compact></div></div><figcaption><span class="screen-num">14</span>Track by photo</figcaption></figure>
-                <figure><div class="screen"><div class="ph" data-asset="ir-15" data-compact></div></div><figcaption><span class="screen-num">15</span>Ticket status</figcaption></figure>
+                <figure><div class="mock"><div class="mock__body"><div class="ph" data-asset="ir-01" data-compact></div></div></div><figcaption><span class="screen-num">01</span>Landing</figcaption></figure>
+                <figure><div class="mock"><div class="mock__body"><div class="ph" data-asset="ir-02" data-compact></div></div></div><figcaption><span class="screen-num">02</span>Photo options</figcaption></figure>
+                <figure><div class="mock"><div class="mock__body"><div class="ph" data-asset="ir-03" data-compact></div></div></div><figcaption><span class="screen-num">03</span>Camera</figcaption></figure>
+                <figure><div class="mock"><div class="mock__body"><div class="ph" data-asset="ir-04" data-compact></div></div></div><figcaption><span class="screen-num">04</span>Not recognized</figcaption></figure>
+                <figure><div class="mock"><div class="mock__body"><div class="ph" data-asset="ir-05" data-compact></div></div></div><figcaption><span class="screen-num">05</span>Aiming at a hydrant</figcaption></figure>
+                <figure><div class="mock"><div class="mock__body"><div class="ph" data-asset="ir-06" data-compact></div></div></div><figcaption><span class="screen-num">06</span>Outlined and described</figcaption></figure>
+                <figure><div class="mock"><div class="mock__body"><div class="ph" data-asset="ir-07" data-compact></div></div></div><figcaption><span class="screen-num">07</span>Problem details</figcaption></figure>
+                <figure><div class="mock"><div class="mock__body"><div class="ph" data-asset="ir-08" data-compact></div></div></div><figcaption><span class="screen-num">08</span>Edit location</figcaption></figure>
+                <figure><div class="mock"><div class="mock__body"><div class="ph" data-asset="ir-09" data-compact></div></div></div><figcaption><span class="screen-num">09</span>Photo library</figcaption></figure>
+                <figure><div class="mock"><div class="mock__body"><div class="ph" data-asset="ir-10" data-compact></div></div></div><figcaption><span class="screen-num">10</span>Second photo</figcaption></figure>
+                <figure><div class="mock"><div class="mock__body"><div class="ph" data-asset="ir-11" data-compact></div></div></div><figcaption><span class="screen-num">11</span>Second photo recognized</figcaption></figure>
+                <figure><div class="mock"><div class="mock__body"><div class="ph" data-asset="ir-12" data-compact></div></div></div><figcaption><span class="screen-num">12</span>Details, two photos</figcaption></figure>
+                <figure><div class="mock"><div class="mock__body"><div class="ph" data-asset="ir-13" data-compact></div></div></div><figcaption><span class="screen-num">13</span>Thank you</figcaption></figure>
+                <figure><div class="mock"><div class="mock__body"><div class="ph" data-asset="ir-14" data-compact></div></div></div><figcaption><span class="screen-num">14</span>Track by photo</figcaption></figure>
+                <figure><div class="mock"><div class="mock__body"><div class="ph" data-asset="ir-15" data-compact></div></div></div><figcaption><span class="screen-num">15</span>Ticket status</figcaption></figure>
               </div>
             </div>
           </details>
@@ -1653,7 +1897,7 @@ figcaption strong, .caption strong { display: block; color: var(--ink); font-siz
     <!-- ============================================================
          9. CLOSING NAVIGATION
          ============================================================ -->
-    <nav class="closing" aria-label="Case study end">
+    <nav class="closing theme-deep" aria-label="Case study end">
       <div class="wrap closing__inner">
         <a class="back-link" data-back-link href="#"><span aria-hidden="true">←</span> Back to projects</a>
         <p class="footer-note">DC Water · HCIM Capstone Project · 2022</p>
@@ -1675,6 +1919,13 @@ figcaption strong, .caption strong { display: block; color: var(--ink); font-siz
  *   While a url is empty, the page shows a clearly labelled
  *   "URL not configured" state instead of a link.
  *
+ * mockupFrame
+ *   Default device presentation for interface screens:
+ *   "detailed" – realistic phone (rim, side buttons, Dynamic Island)
+ *   "simple"   – slim, uniform bezel
+ *   Reviewers can switch with the "Mockups" toggle in the top bar; their
+ *   choice is remembered in their browser.
+ *
  * figma.<flow>.embed
  *   true  – show a "Load interactive prototype" button that loads the
  *           Figma embed in place (only once a url is set).
@@ -1682,6 +1933,8 @@ figcaption strong, .caption strong { display: block; color: var(--ink); font-siz
  */
 window.CASE_STUDY_CONFIG = {
   backToProjectsUrl: "#",
+
+  mockupFrame: "detailed",
 
   figma: {
     reportProblem: {
@@ -2014,6 +2267,32 @@ window.CASE_STUDY_ASSETS = {
       stage.appendChild(frame);
       loadBtn.hidden = true;
       frame.focus();
+    });
+  });
+
+  /* ------------------------------------------------------------
+   * Mockup frame style: detailed phone or simple frame
+   * ---------------------------------------------------------- */
+  var FRAME_KEY = "dcwater-mockup-frame";
+  var frameButtons = document.querySelectorAll("[data-frame-option]");
+
+  function applyFrame(style) {
+    if (style !== "simple") style = "detailed";
+    document.documentElement.setAttribute("data-frame", style);
+    frameButtons.forEach(function (btn) {
+      btn.setAttribute("aria-pressed", String(btn.getAttribute("data-frame-option") === style));
+    });
+  }
+
+  var savedFrame = null;
+  try { savedFrame = localStorage.getItem(FRAME_KEY); } catch (e) { /* storage unavailable */ }
+  applyFrame(savedFrame || CONFIG.mockupFrame);
+
+  frameButtons.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var style = btn.getAttribute("data-frame-option");
+      applyFrame(style);
+      try { localStorage.setItem(FRAME_KEY, style); } catch (e) { /* storage unavailable */ }
     });
   });
 
