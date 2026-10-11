@@ -8,7 +8,8 @@ A design-review prototype of the DC Water UX case study page, built before the f
 
 There's no build step and no dependencies. Either:
 
-- **Open `index.html` directly** in a browser, or
+- **Open `preview.html`**, a single self-contained file with the CSS and JS inlined. It works in viewers that open only one file, such as the Claude app or a downloaded copy. Regenerate it with `node scripts/build-preview.js` after editing the source files.
+- **Open `index.html`** in a browser from a full copy of the repo. It needs the `css/` and `js/` folders next to it, or
 - **Run a local server** (recommended, so embeds behave like production):
 
   ```sh
