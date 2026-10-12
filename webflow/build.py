@@ -108,7 +108,7 @@ def wireframes():
             '<div class="dcw-wf-copy"><div class="dcw-tag">Wireframes · Sprint 5</div><h3 class="dcw-h3">Wireframing the main screens</h3>'
             '<p class="dcw-p">The team then wireframed the main screens of the image recognition design. They included:</p>'
             f'<ol class="dcw-wf-list">{li}</ol></div>'
-            f'<div class="dcw-wf-frame"><div class="dcw-wf-paper">{img("ir-wireframes", "dcw-wf-img")}</div>'
+            f'<div class="dcw-wf-frame">{img("ir-wireframes", "dcw-wf-img")}'
             '<p class="dcw-fig-text">Wireframes of the main image recognition screens.</p></div>'
             '</div></div>')
 
@@ -610,8 +610,8 @@ BASE = f"""
 .dcw-strip-item {{ flex: 0 0 150px; scroll-snap-align: start; }}
 .dcw-artifact {{ padding: clamp(16px, 2.5vw, 28px); border: 1px solid {LINE}; border-radius: 16px; background-color: #ffffff; }}
 .dcw-board-img {{ display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 8px; }}
-.dcw-sketch {{ max-width: 380px; }}
-.dcw-sketch-img {{ display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border: 1px solid {LINE}; border-radius: 14px; }}
+.dcw-sketch {{ max-width: 420px; padding: clamp(16px, 2.5vw, 28px); border: 1px solid {LINE}; border-radius: 16px; background-color: #ffffff; }}
+.dcw-sketch-img {{ display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 8px; }}
 
 .dcw-statement {{ margin-top: 0; margin-bottom: 24px; padding-left: 20px; border-left: 4px solid {TEAL}; color: {INK}; font-size: clamp(20px, 2.2vw, 26px); line-height: 1.4; }}
 .dcw-meta {{ display: flex; flex-direction: column; }}
@@ -717,9 +717,8 @@ BASE = f"""
 .dcw-wf-list {{ display: flex; flex-direction: column; grid-row-gap: 8px; margin-top: 18px; margin-bottom: 0; padding-left: 0; list-style-type: none; }}
 .dcw-wf-item {{ display: flex; align-items: center; grid-column-gap: 12px; padding: 10px 14px; border: 1px solid {LINE}; border-radius: 10px; background-color: #ffffff; color: {INK}; font-size: 15px; font-weight: 500; }}
 .dcw-wf-n {{ flex: none; color: {TEAL}; font-size: 13px; font-weight: 700; }}
-.dcw-wf-frame {{ position: relative; }}
-.dcw-wf-paper {{ padding: clamp(10px, 1.6vw, 18px); border: 1px solid {LINE}; border-radius: 16px; background-color: #ffffff; background-image: linear-gradient(rgba(15,110,104,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(15,110,104,0.06) 1px, transparent 1px); background-size: 22px 22px; box-shadow: 0 24px 48px -28px rgba(6,43,42,0.45); transform: rotate(-1deg); }}
-.dcw-wf-img {{ display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 10px; }}
+.dcw-wf-frame {{ position: relative; padding: clamp(16px, 2.5vw, 28px); border: 1px solid {LINE}; border-radius: 16px; background-color: #ffffff; }}
+.dcw-wf-img {{ display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 8px; }}
 
 .dcw-decision {{ display: grid; grid-template-columns: 5fr 6fr; grid-column-gap: clamp(28px, 5vw, 72px); grid-row-gap: 28px; margin-top: clamp(40px, 5vw, 64px); padding-top: clamp(40px, 5vw, 64px); border-top: 1px solid {LINE}; }}
 .dcw-decision-title {{ margin-top: 0; margin-bottom: 18px; color: {INK}; font-size: 20px; font-weight: 600; line-height: 1.3; }}
