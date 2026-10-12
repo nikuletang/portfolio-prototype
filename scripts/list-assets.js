@@ -12,7 +12,7 @@ const imgDir = path.join(root, "assets/images");
 const groups = [
   ["Hero", /^hero/], ["Research", /^research/], ["Report a Problem: iteration 1", /^rap-v1/],
   ["Report a Problem: iteration 2", /^rap-v2/], ["Customer Service options board", /^cs-sort/],
-  ["Image recognition: sketches and wireframes", /^ir-(sketch|wf)/], ["Image recognition: iteration 1", /^ir-v1/],
+  ["Image recognition: sketch", /^ir-sketch/], ["Image recognition: iteration 1", /^ir-v1/],
   ["A/B test screens", /^ab-/], ["Image recognition: iteration 2", /^ir-v2/],
   ["Final: Report a Problem", /^rap-\d/], ["Final: Customer Service", /^cs-\d/], ["Final: Image Recognition", /^ir-\d/],
 ];

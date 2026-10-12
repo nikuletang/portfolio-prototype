@@ -152,6 +152,67 @@
   });
 
   /* ------------------------------------------------------------
+   * Reflection notebook: one reflection per page, page-turn animation
+   * ---------------------------------------------------------- */
+  document.querySelectorAll("[data-notebook]").forEach(function (book) {
+    var pages = Array.prototype.slice.call(book.querySelectorAll(".nb-page"));
+    var prev = book.querySelector("[data-nb-prev]");
+    var next = book.querySelector("[data-nb-next]");
+    var tabs = Array.prototype.slice.call(book.querySelectorAll("[data-nb-go]"));
+    var status = book.querySelector("[data-nb-status]");
+    var stage = book.querySelector(".notebook__pages");
+    var current = 0;
+    if (!pages.length) return;
+
+    function render(announce) {
+      pages.forEach(function (page, k) {
+        var flipped = k < current;
+        page.classList.toggle("is-flipped", flipped);
+        // Unflipped pages stack top-down; flipped pages sit above but are hidden.
+        page.style.zIndex = flipped ? String(200 + k) : String(100 - k);
+        var isCurrent = k === current;
+        page.setAttribute("aria-hidden", String(!isCurrent));
+        page.inert = !isCurrent;
+      });
+      prev.disabled = current === 0;
+      next.disabled = current === pages.length - 1;
+      tabs.forEach(function (tab, k) {
+        if (k === current) tab.setAttribute("aria-current", "true");
+        else tab.removeAttribute("aria-current");
+      });
+      if (announce && status) {
+        var title = pages[current].querySelector(".nb-page__title");
+        status.textContent = "Page " + (current + 1) + " of " + pages.length + ": " + (title ? title.textContent : "");
+      }
+    }
+
+    function go(index) {
+      index = Math.max(0, Math.min(pages.length - 1, index));
+      if (index === current) return;
+      current = index;
+      render(true);
+    }
+
+    prev.addEventListener("click", function () { go(current - 1); });
+    next.addEventListener("click", function () { go(current + 1); });
+    tabs.forEach(function (tab) {
+      tab.addEventListener("click", function () { go(Number(tab.getAttribute("data-nb-go"))); });
+    });
+    stage.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowRight" || e.key === "ArrowDown" || e.key === "PageDown") { e.preventDefault(); go(current + 1); }
+      if (e.key === "ArrowLeft" || e.key === "ArrowUp" || e.key === "PageUp") { e.preventDefault(); go(current - 1); }
+    });
+    // Clicking the folded corner of the current page turns it.
+    stage.addEventListener("click", function (e) {
+      var rect = stage.getBoundingClientRect();
+      if (e.clientX > rect.right - 48 && e.clientY > rect.bottom - 48) go(current + 1);
+    });
+
+    book.classList.add("is-ready");
+    render(false);
+  });
+
+  /* ------------------------------------------------------------
    * Back to projects links
    * ---------------------------------------------------------- */
   document.querySelectorAll("[data-back-link]").forEach(function (a) {

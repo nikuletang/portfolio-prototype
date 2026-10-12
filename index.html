@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>DC Water: UX Case Study · Niku Letang</title>
   <meta name="description" content="Designing a mobile-responsive way for District of Columbia residents and visitors to report water-related problems, receive updates, and track their reports.">
+  <!-- Handwriting font for the reflection notebook only (falls back to system cursive) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&display=swap">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -49,6 +53,9 @@
           <h1 class="hero__title">DC Water</h1>
           <p class="hero__tagline">Helping District of Columbia residents and visitors report water-related problems.</p>
           <p class="hero__desc">A redesigned, mobile-responsive Report a Problem form, a new Customer Service form, and an image recognition concept, designed with DC Water over Sprints 3–5 of a five-sprint capstone project.</p>
+          <div class="hero__actions">
+            <a class="btn btn--hero" href="#prototypes">View finished designs <span aria-hidden="true">↓</span></a>
+          </div>
 
           <dl class="facts">
             <div><dt>My role</dt><dd>UX designer · Sprint 4 facilitator</dd></div>
@@ -627,21 +634,6 @@
             </figure>
           </div>
 
-          <div class="screens screens--7" style="margin-top:2.5rem" aria-label="Image recognition wireframes">
-            <figure><div class="screen screen--flat"><div class="ph" data-asset="ir-wf-1" data-compact></div></div></figure>
-            <figure><div class="screen screen--flat"><div class="ph" data-asset="ir-wf-2" data-compact></div></div></figure>
-            <figure><div class="screen screen--flat"><div class="ph" data-asset="ir-wf-3" data-compact></div></div></figure>
-            <figure><div class="screen screen--flat"><div class="ph" data-asset="ir-wf-4" data-compact></div></div></figure>
-            <figure><div class="screen screen--flat"><div class="ph" data-asset="ir-wf-5" data-compact></div></div></figure>
-            <figure><div class="screen screen--flat"><div class="ph" data-asset="ir-wf-6" data-compact></div></div></figure>
-            <figure><div class="screen screen--flat"><div class="ph" data-asset="ir-wf-7" data-compact></div></div></figure>
-          </div>
-          <p class="caption">Wireframes of the main image recognition screens.</p>
-
-          <details class="more">
-            <summary>Additional sketches <span class="more__sub">Optional slot</span></summary>
-            <div class="more__body" style="max-width:720px"><div class="artifact"><div class="ph" data-asset="ir-sketch-more"></div></div></div>
-          </details>
         </div>
 
         <!-- IR iteration 1 -->
@@ -1075,22 +1067,52 @@
         </div>
 
         <div class="block">
-          <h3 style="margin-bottom:1.5rem">Reflection</h3>
-          <div class="reflection">
-            <div>
-              <h3>Seeing the design become a usable product is rewarding</h3>
-              <p>This project challenged me intellectually and creatively and pushed me to use my analytical skills in every sprint. Before it, I had very little experience working with an external client and translating their business needs into a usable product that also met users' expectations.</p>
-              <p>The most rewarding part is that, with the help of developers, our designs will become a live product on DC Water's website for anyone who lives in or visits the District of Columbia. I enjoyed learning strategies for a successful hand-off to developers, but I wish we'd explored this area more. I would have liked more engagement with the client team across iterations, and in particular, it would have helped to know the financial possibilities and constraints while designing.</p>
+          <div class="reflect">
+            <div class="reflect__intro">
+              <h3>Reflection</h3>
+              <p>Three lessons from the project, one per page. Use the arrows, the page tabs, or your keyboard's arrow keys to turn the page.</p>
             </div>
-            <div>
-              <h3>Being adaptable and flexible is a must</h3>
-              <p>Because I joined after Sprint 2 ended, I wasn't part of the client kick-off meeting or the expert interviews. Information from those meetings would have given me a deeper understanding of the business need and problem area.</p>
-              <p>But this is how work happens outside the classroom: UX teams must be adaptable and flexible as client and user needs change and new trends emerge. I'm grateful to the team members from earlier sprints for providing context and bringing me up to speed.</p>
-            </div>
-            <div>
-              <h3>Teamwork wins</h3>
-              <p>I learned to collaborate more effectively with a team. In my professional career I've mostly been responsible for coming up with creative, technology-based solutions. Working with this team challenged me to be open-minded and sometimes consider the big picture instead of every detail.</p>
-              <p>The team's size was challenging at times: there were many different opinions, sometimes conflicting, which left us short on time. I'm very appreciative of everyone's diverse experiences, skills, and strengths, and proud of the work we all contributed to deliver a great product to our client.</p>
+            <div class="notebook" data-notebook aria-roledescription="notebook" aria-label="Reflections" role="region">
+              <div class="notebook__spiral" aria-hidden="true"></div>
+              <div class="notebook__pages" tabindex="0">
+                <article class="nb-page" role="group" aria-roledescription="page" aria-label="Reflection 1 of 3">
+                  <div class="nb-page__front">
+                    <p class="nb-page__label">Reflection 01</p>
+                    <h4 class="nb-page__title">Seeing the design become a usable product is rewarding</h4>
+                    <p>This project challenged me intellectually and creatively and pushed me to use my analytical skills in every sprint. Before it, I had very little experience working with an external client and translating their business needs into a usable product that also met users' expectations.</p>
+                    <p>The most rewarding part is that, with the help of developers, our designs will become a live product on DC Water's website for anyone who lives in or visits the District of Columbia. I enjoyed learning strategies for a successful hand-off to developers, but I wish we'd explored this area more. I would have liked more engagement with the client team across iterations, and in particular, it would have helped to know the financial possibilities and constraints while designing.</p>
+                    <span class="nb-page__num" aria-hidden="true">1 / 3</span>
+                  </div>
+                </article>
+                <article class="nb-page" role="group" aria-roledescription="page" aria-label="Reflection 2 of 3">
+                  <div class="nb-page__front">
+                    <p class="nb-page__label">Reflection 02</p>
+                    <h4 class="nb-page__title">Being adaptable and flexible is a must</h4>
+                    <p>Because I joined after Sprint 2 ended, I wasn't part of the client kick-off meeting or the expert interviews. Information from those meetings would have given me a deeper understanding of the business need and problem area.</p>
+                    <p>But this is how work happens outside the classroom: UX teams must be adaptable and flexible as client and user needs change and new trends emerge. I'm grateful to the team members from earlier sprints for providing context and bringing me up to speed.</p>
+                    <span class="nb-page__num" aria-hidden="true">2 / 3</span>
+                  </div>
+                </article>
+                <article class="nb-page" role="group" aria-roledescription="page" aria-label="Reflection 3 of 3">
+                  <div class="nb-page__front">
+                    <p class="nb-page__label">Reflection 03</p>
+                    <h4 class="nb-page__title">Teamwork wins</h4>
+                    <p>I learned to collaborate more effectively with a team. In my professional career I've mostly been responsible for coming up with creative, technology-based solutions. Working with this team challenged me to be open-minded and sometimes consider the big picture instead of every detail.</p>
+                    <p>The team's size was challenging at times: there were many different opinions, sometimes conflicting, which left us short on time. I'm very appreciative of everyone's diverse experiences, skills, and strengths, and proud of the work we all contributed to deliver a great product to our client.</p>
+                    <span class="nb-page__num" aria-hidden="true">3 / 3</span>
+                  </div>
+                </article>
+              </div>
+              <div class="notebook__controls">
+                <button class="nb-btn" type="button" data-nb-prev aria-label="Previous page">←</button>
+                <div class="nb-tabs" role="group" aria-label="Pages">
+                  <button type="button" data-nb-go="0" aria-label="Page 1: Seeing the design become a usable product is rewarding">1</button>
+                  <button type="button" data-nb-go="1" aria-label="Page 2: Being adaptable and flexible is a must">2</button>
+                  <button type="button" data-nb-go="2" aria-label="Page 3: Teamwork wins">3</button>
+                </div>
+                <button class="nb-btn" type="button" data-nb-next aria-label="Next page">→</button>
+              </div>
+              <p class="visually-hidden" aria-live="polite" data-nb-status></p>
             </div>
           </div>
         </div>

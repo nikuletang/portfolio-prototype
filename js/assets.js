@@ -99,19 +99,6 @@ window.CASE_STUDY_ASSETS = {
     note: "Hand sketch showing 'Object Detected: Fire Hydrant' with Confirm and Try Again.",
     alt: "Hand-drawn phone screen showing a leaking fire hydrant, an 'Object Detected: Fire Hydrant' panel with a short definition, and Confirm and Try Again buttons."
   },
-  "ir-sketch-more": {
-    file: "ir-sketches-additional.jpg", kind: "board",
-    label: "Additional team sketches (optional)",
-    note: "Optional. Only add this if you have sketches of the other ideas (kiosk, chatbot, SMS, video conferencing).",
-    alt: "Additional concept sketches from the Sprint 5 ideation session."
-  },
-  "ir-wf-1": { file: "ir-wireframe-01.png", kind: "phone", label: "Wireframe 1: Landing (three actions)", alt: "Wireframe of a landing page with three stacked buttons." },
-  "ir-wf-2": { file: "ir-wireframe-02.png", kind: "phone", label: "Wireframe 2: Landing (form / camera split)", alt: "Wireframe of a landing page with side-by-side form and camera buttons." },
-  "ir-wf-3": { file: "ir-wireframe-03.png", kind: "phone", label: "Wireframe 3: Camera viewfinder", alt: "Wireframe of a camera viewfinder with a shutter button." },
-  "ir-wf-4": { file: "ir-wireframe-04.png", kind: "phone", label: "Wireframe 4: Details drawer", alt: "Wireframe of a bottom drawer with selectable tags over a photo." },
-  "ir-wf-5": { file: "ir-wireframe-05.png", kind: "phone", label: "Wireframe 5: Full-page details", alt: "Wireframe of a full-page details screen with two photo slots, tags and a submit button." },
-  "ir-wf-6": { file: "ir-wireframe-06.png", kind: "phone", label: "Wireframe 6: Confirm submission", alt: "Wireframe of a Confirm Submission dialog with Cancel and Submit." },
-  "ir-wf-7": { file: "ir-wireframe-07.png", kind: "phone", label: "Wireframe 7: Thank you + ticket number", alt: "Wireframe of a thank-you dialog with Copy Ticket Number and Exit." },
 
   /* ---------- Image recognition: 1st iteration ---------- */
   "ir-v1-landing": { file: "ir-v1-01-landing.png", kind: "phone", label: "IR iteration 1: Landing page (split buttons)", alt: "Welcome to Report a Problem screen with Fill Form and Image Identifier buttons side by side." },

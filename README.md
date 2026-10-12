@@ -46,7 +46,7 @@ scripts/list-assets.js  Regenerates docs/ASSETS.md
 | Fonts | `--font-sans` / `--font-display` at the top of `css/styles.css` |
 | Colors | The tokens at the top of `css/styles.css`. Teal `#0f6e68` is 6.1:1 on white. |
 
-Export interface screens **without device frames**. The page draws every phone itself, as either a detailed phone or a simple frame, so the original interface colors stay intact. Sketches and wireframes stay unframed.
+Export interface screens **without device frames**. The page draws every phone itself, as either a detailed phone or a simple frame, so the original interface colors stay intact. The sketch stays unframed.
 
 After adding images, run `node scripts/list-assets.js` to refresh the status column in `docs/ASSETS.md`.
 
@@ -59,7 +59,7 @@ After adding images, run `node scripts/list-assets.js` to refresh the status col
 5. Designing and refining the reporting experience: iteration 1, testing, learned → changed → tested decisions, Customer Service form
 6. Exploring photo-based reporting (concept): brief, lightning demos, sketching, wireframes, iteration 1, A/B testing, iteration 2
 7. Final experience and prototypes: three flows with Figma slots and complete screen galleries
-8. Outcomes, limitations, and reflection: designed / tested / delivered / concept
+8. Outcomes, limitations, and reflection: designed / tested / delivered / concept, with reflections in a page-turning notebook
 9. Back to projects
 
 ## Notes for the Webflow build

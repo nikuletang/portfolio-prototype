@@ -6,6 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>DC Water: UX Case Study · Niku Letang</title>
   <meta name="description" content="Designing a mobile-responsive way for District of Columbia residents and visitors to report water-related problems, receive updates, and track their reports.">
+  <!-- Handwriting font for the reflection notebook only (falls back to system cursive) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&display=swap">
   <style>
 /* ==========================================================================
    DC Water case study: design-review prototype
@@ -536,9 +540,6 @@ figcaption strong, .caption strong { display: block; color: var(--ink); font-siz
 .numbered h3 { font-size: 1.0625rem; margin-bottom: .4rem; }
 .numbered p { margin: 0; }
 
-.reflection { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(24px, 4vw, 48px); }
-.reflection h3 { font-size: 1.125rem; }
-.reflection p { font-size: .9688rem; }
 
 /* ---------- Closing ---------- */
 .closing { padding: clamp(48px, 7vw, 88px) 0; border-top: 1px solid var(--line); }
@@ -585,7 +586,6 @@ figcaption strong, .caption strong { display: block; color: var(--ink); font-siz
   .flow__grid { grid-template-columns: minmax(0, 1fr); }
   .decision { display: block; }
   .decision > .compare { margin-top: 28px; }
-  .reflection { grid-template-columns: minmax(0, 1fr); }
   .screens--5 { --cols: 3; }
   .screens { --cols: 3; }
   .ab { grid-template-columns: minmax(0, 1fr); }
@@ -766,10 +766,6 @@ figcaption strong, .caption strong { display: block; color: var(--ink); font-siz
 .status-card--delivered { border-top-color: var(--teal-bright); }
 .status-card--concept { border-top: 4px dashed var(--ink-3); }
 
-/* ---------- Reflection ---------- */
-.reflection > div { padding: clamp(20px, 2.5vw, 28px); border-radius: 16px; background: var(--card); border: 1px solid var(--line); border-top: 4px solid var(--teal); }
-.reflection > div h3 { color: var(--teal-strong); }
-
 /* ---------- Closing ---------- */
 .closing { border-top: 0; }
 .closing .back-link { font-size: clamp(1.25rem, 2.4vw, 1.75rem); color: #fff; }
@@ -789,6 +785,141 @@ figcaption strong, .caption strong { display: block; color: var(--ink); font-siz
   .goals { grid-template-columns: minmax(0, 1fr); }
   .frame-toggle button { padding: 5px 9px; }
   .secnav__toggle .secnav__current { display: none; }
+}
+
+
+/* ---------- Chips: methods & tools tags and hero fact labels ---------- */
+.pill-list { gap: 8px; }
+.pill-list li,
+.facts dt {
+  display: inline-flex; align-items: center; gap: .45em; width: fit-content;
+  margin: 0; padding: .32em .8em .32em .65em; border-radius: 999px;
+  font-size: .8125rem; font-weight: 600; letter-spacing: .01em; text-transform: none; line-height: 1.3;
+  color: var(--teal-strong); background: var(--teal-tint);
+  border: 1px solid color-mix(in srgb, var(--teal) 28%, transparent);
+}
+.pill-list li::before,
+.facts dt::before {
+  content: ""; width: 6px; height: 6px; border-radius: 50%; flex: none;
+  background: var(--teal-bright); box-shadow: 0 0 0 3px color-mix(in srgb, var(--teal-bright) 22%, transparent);
+}
+.facts dt { margin-bottom: .55rem; }
+.facts dd { padding-left: 2px; }
+
+/* ---------- Hero call to action ---------- */
+.hero__actions { margin-top: 1.75rem; display: flex; flex-wrap: wrap; gap: 12px; }
+.btn--hero {
+  padding: 14px 22px; font-size: 1rem; border-radius: 999px;
+  box-shadow: 0 10px 28px -10px rgba(111,217,203,.55);
+}
+.btn--hero span { transition: transform .2s ease; }
+.btn--hero:hover span { transform: translateY(2px); }
+
+/* ---------- Reflection notebook ---------- */
+.reflect { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: clamp(28px, 5vw, 72px); align-items: start; }
+.reflect__intro p { color: var(--ink-3); }
+
+.notebook {
+  --rule: 32px;
+  --paper: #fffdf6;
+  --ink-hand: #10403d;
+  position: relative; perspective: 2200px; perspective-origin: 50% -20%;
+  max-width: 680px; padding-top: 22px;
+}
+.notebook__spiral {                     /* wire binding along the top */
+  position: absolute; z-index: 400; left: 24px; right: 24px; top: 4px; height: 36px; pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 70%, #062b2a 0 4px, transparent 4.5px) 0 0 / 30px 36px repeat-x,
+    linear-gradient(90deg, transparent 0 9px, #8f9aa0 9px 11px, #e6ecee 11px 15px, #8f9aa0 15px 17px, transparent 17px) 4px 0 / 30px 26px repeat-x;
+  filter: drop-shadow(0 2px 1px rgba(0,0,0,.18));
+}
+.notebook__pages {
+  position: relative; display: grid; border-radius: 4px 4px 14px 14px;
+}
+.notebook__pages:focus-visible { outline-offset: 6px; }
+/* paper stack edges beneath the current page */
+.notebook__pages::before,
+.notebook__pages::after {
+  content: ""; position: absolute; left: 6px; right: 6px; bottom: -6px; height: 100%; z-index: 0;
+  background: #f3efe3; border-radius: 4px 4px 14px 14px; box-shadow: 0 1px 2px rgba(0,0,0,.08);
+}
+.notebook__pages::after { left: 12px; right: 12px; bottom: -12px; background: #ebe6d6; z-index: -1; box-shadow: 0 24px 40px -18px rgba(6,43,42,.35); }
+
+.nb-page { position: relative; grid-area: 1 / 1; z-index: 1; }
+.nb-page__front {
+  position: relative; height: 100%;
+  padding: calc(var(--rule) * 1.5) clamp(20px, 4vw, 44px) calc(var(--rule) * 1.25) clamp(64px, 9vw, 92px);
+  border-radius: 4px 4px 14px 14px;
+  color: #26302f; font-size: 1rem; line-height: var(--rule);
+  background:
+    linear-gradient(90deg, transparent calc(clamp(64px, 9vw, 92px) - 18px), rgba(15,110,104,.5) 0 calc(clamp(64px, 9vw, 92px) - 16px), transparent 0),
+    repeating-linear-gradient(180deg, transparent 0 calc(var(--rule) - 1px), #cfe6e2 calc(var(--rule) - 1px) var(--rule)),
+    var(--paper);
+  background-position: 0 0, 0 calc(var(--rule) * .5 + 6px), 0 0;
+  box-shadow: 0 1px 2px rgba(0,0,0,.08), inset 0 24px 0 -16px rgba(0,0,0,.025);
+}
+.nb-page__front::after {                 /* folded corner: "turn me" cue */
+  content: ""; position: absolute; right: 0; bottom: 0; width: 34px; height: 34px;
+  background: linear-gradient(315deg, var(--surface-2) 0 50%, #e9e3cf 50% 56%, #f7f3e6 56%);
+  border-radius: 0 0 14px 0; box-shadow: -2px -2px 4px rgba(0,0,0,.06);
+}
+.nb-page__label {
+  margin: 0; font-size: .75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--teal);
+}
+.nb-page__title {
+  margin: 0 0 calc(var(--rule) * .5); font-family: "Caveat", "Segoe Print", "Bradley Hand", cursive;
+  font-size: clamp(1.75rem, 3.4vw, 2.25rem); line-height: calc(var(--rule) * 1.25); font-weight: 700; color: var(--ink-hand);
+}
+.nb-page__front p:not(.nb-page__label) { margin: 0 0 var(--rule); }
+.nb-page__front p:last-of-type { margin-bottom: 0; }
+.nb-page__num {
+  position: absolute; left: 50%; bottom: 8px; transform: translateX(-50%);
+  font-family: "Caveat", "Segoe Print", cursive; font-size: 1.125rem; color: #6b7a78; line-height: 1;
+}
+
+/* Turning pages (enabled by JS; without JS the pages simply stack) */
+.notebook.is-ready .nb-page {
+  transform-origin: 50% 0; transform-style: preserve-3d;
+  transition: transform .9s cubic-bezier(.45,.05,.25,1), visibility 0s linear 0s;
+}
+.notebook.is-ready .nb-page__front { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.notebook.is-ready .nb-page::after {     /* back of the sheet */
+  content: ""; position: absolute; inset: 0; border-radius: 4px 4px 14px 14px;
+  background: linear-gradient(180deg, #efe9d8, #f8f4e9); transform: rotateX(180deg);
+  backface-visibility: hidden; -webkit-backface-visibility: hidden;
+}
+.notebook.is-ready .nb-page.is-flipped {
+  transform: rotateX(-178deg); visibility: hidden; pointer-events: none;
+  transition: transform .9s cubic-bezier(.45,.05,.25,1), visibility 0s linear .9s;
+}
+.notebook:not(.is-ready) .nb-page + .nb-page { margin-top: 24px; }
+.notebook:not(.is-ready) .nb-page { grid-area: auto; }
+
+.notebook__controls { display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 30px; }
+.notebook:not(.is-ready) .notebook__controls { display: none; }
+.nb-btn {
+  width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line-strong); background: var(--card);
+  font-size: 1.125rem; color: var(--ink); cursor: pointer; display: grid; place-items: center;
+  transition: background .2s ease, color .2s ease, transform .2s ease;
+}
+.nb-btn:hover:not(:disabled) { background: var(--teal); border-color: var(--teal); color: var(--on-teal); }
+.nb-btn:disabled { opacity: .4; cursor: default; }
+.nb-tabs { display: flex; gap: 6px; }
+.nb-tabs button {
+  min-width: 36px; height: 36px; padding: 0 10px; border-radius: 999px; border: 1px solid var(--line);
+  background: var(--card); color: var(--ink-3); font: inherit; font-size: .875rem; font-weight: 600; cursor: pointer;
+}
+.nb-tabs button[aria-current="true"] { background: var(--deep); border-color: var(--deep); color: #fff; }
+
+@media (max-width: 960px) {
+  .reflect { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 720px) {
+  .notebook { --rule: 28px; }
+  .nb-page__front { font-size: .9375rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .notebook.is-ready .nb-page, .notebook.is-ready .nb-page.is-flipped { transition: none !important; }
 }
 
 /* Motion preferences */
@@ -846,6 +977,9 @@ figcaption strong, .caption strong { display: block; color: var(--ink); font-siz
           <h1 class="hero__title">DC Water</h1>
           <p class="hero__tagline">Helping District of Columbia residents and visitors report water-related problems.</p>
           <p class="hero__desc">A redesigned, mobile-responsive Report a Problem form, a new Customer Service form, and an image recognition concept, designed with DC Water over Sprints 3–5 of a five-sprint capstone project.</p>
+          <div class="hero__actions">
+            <a class="btn btn--hero" href="#prototypes">View finished designs <span aria-hidden="true">↓</span></a>
+          </div>
 
           <dl class="facts">
             <div><dt>My role</dt><dd>UX designer · Sprint 4 facilitator</dd></div>
@@ -1424,21 +1558,6 @@ figcaption strong, .caption strong { display: block; color: var(--ink); font-siz
             </figure>
           </div>
 
-          <div class="screens screens--7" style="margin-top:2.5rem" aria-label="Image recognition wireframes">
-            <figure><div class="screen screen--flat"><div class="ph" data-asset="ir-wf-1" data-compact></div></div></figure>
-            <figure><div class="screen screen--flat"><div class="ph" data-asset="ir-wf-2" data-compact></div></div></figure>
-            <figure><div class="screen screen--flat"><div class="ph" data-asset="ir-wf-3" data-compact></div></div></figure>
-            <figure><div class="screen screen--flat"><div class="ph" data-asset="ir-wf-4" data-compact></div></div></figure>
-            <figure><div class="screen screen--flat"><div class="ph" data-asset="ir-wf-5" data-compact></div></div></figure>
-            <figure><div class="screen screen--flat"><div class="ph" data-asset="ir-wf-6" data-compact></div></div></figure>
-            <figure><div class="screen screen--flat"><div class="ph" data-asset="ir-wf-7" data-compact></div></div></figure>
-          </div>
-          <p class="caption">Wireframes of the main image recognition screens.</p>
-
-          <details class="more">
-            <summary>Additional sketches <span class="more__sub">Optional slot</span></summary>
-            <div class="more__body" style="max-width:720px"><div class="artifact"><div class="ph" data-asset="ir-sketch-more"></div></div></div>
-          </details>
         </div>
 
         <!-- IR iteration 1 -->
@@ -1872,22 +1991,52 @@ figcaption strong, .caption strong { display: block; color: var(--ink); font-siz
         </div>
 
         <div class="block">
-          <h3 style="margin-bottom:1.5rem">Reflection</h3>
-          <div class="reflection">
-            <div>
-              <h3>Seeing the design become a usable product is rewarding</h3>
-              <p>This project challenged me intellectually and creatively and pushed me to use my analytical skills in every sprint. Before it, I had very little experience working with an external client and translating their business needs into a usable product that also met users' expectations.</p>
-              <p>The most rewarding part is that, with the help of developers, our designs will become a live product on DC Water's website for anyone who lives in or visits the District of Columbia. I enjoyed learning strategies for a successful hand-off to developers, but I wish we'd explored this area more. I would have liked more engagement with the client team across iterations, and in particular, it would have helped to know the financial possibilities and constraints while designing.</p>
+          <div class="reflect">
+            <div class="reflect__intro">
+              <h3>Reflection</h3>
+              <p>Three lessons from the project, one per page. Use the arrows, the page tabs, or your keyboard's arrow keys to turn the page.</p>
             </div>
-            <div>
-              <h3>Being adaptable and flexible is a must</h3>
-              <p>Because I joined after Sprint 2 ended, I wasn't part of the client kick-off meeting or the expert interviews. Information from those meetings would have given me a deeper understanding of the business need and problem area.</p>
-              <p>But this is how work happens outside the classroom: UX teams must be adaptable and flexible as client and user needs change and new trends emerge. I'm grateful to the team members from earlier sprints for providing context and bringing me up to speed.</p>
-            </div>
-            <div>
-              <h3>Teamwork wins</h3>
-              <p>I learned to collaborate more effectively with a team. In my professional career I've mostly been responsible for coming up with creative, technology-based solutions. Working with this team challenged me to be open-minded and sometimes consider the big picture instead of every detail.</p>
-              <p>The team's size was challenging at times: there were many different opinions, sometimes conflicting, which left us short on time. I'm very appreciative of everyone's diverse experiences, skills, and strengths, and proud of the work we all contributed to deliver a great product to our client.</p>
+            <div class="notebook" data-notebook aria-roledescription="notebook" aria-label="Reflections" role="region">
+              <div class="notebook__spiral" aria-hidden="true"></div>
+              <div class="notebook__pages" tabindex="0">
+                <article class="nb-page" role="group" aria-roledescription="page" aria-label="Reflection 1 of 3">
+                  <div class="nb-page__front">
+                    <p class="nb-page__label">Reflection 01</p>
+                    <h4 class="nb-page__title">Seeing the design become a usable product is rewarding</h4>
+                    <p>This project challenged me intellectually and creatively and pushed me to use my analytical skills in every sprint. Before it, I had very little experience working with an external client and translating their business needs into a usable product that also met users' expectations.</p>
+                    <p>The most rewarding part is that, with the help of developers, our designs will become a live product on DC Water's website for anyone who lives in or visits the District of Columbia. I enjoyed learning strategies for a successful hand-off to developers, but I wish we'd explored this area more. I would have liked more engagement with the client team across iterations, and in particular, it would have helped to know the financial possibilities and constraints while designing.</p>
+                    <span class="nb-page__num" aria-hidden="true">1 / 3</span>
+                  </div>
+                </article>
+                <article class="nb-page" role="group" aria-roledescription="page" aria-label="Reflection 2 of 3">
+                  <div class="nb-page__front">
+                    <p class="nb-page__label">Reflection 02</p>
+                    <h4 class="nb-page__title">Being adaptable and flexible is a must</h4>
+                    <p>Because I joined after Sprint 2 ended, I wasn't part of the client kick-off meeting or the expert interviews. Information from those meetings would have given me a deeper understanding of the business need and problem area.</p>
+                    <p>But this is how work happens outside the classroom: UX teams must be adaptable and flexible as client and user needs change and new trends emerge. I'm grateful to the team members from earlier sprints for providing context and bringing me up to speed.</p>
+                    <span class="nb-page__num" aria-hidden="true">2 / 3</span>
+                  </div>
+                </article>
+                <article class="nb-page" role="group" aria-roledescription="page" aria-label="Reflection 3 of 3">
+                  <div class="nb-page__front">
+                    <p class="nb-page__label">Reflection 03</p>
+                    <h4 class="nb-page__title">Teamwork wins</h4>
+                    <p>I learned to collaborate more effectively with a team. In my professional career I've mostly been responsible for coming up with creative, technology-based solutions. Working with this team challenged me to be open-minded and sometimes consider the big picture instead of every detail.</p>
+                    <p>The team's size was challenging at times: there were many different opinions, sometimes conflicting, which left us short on time. I'm very appreciative of everyone's diverse experiences, skills, and strengths, and proud of the work we all contributed to deliver a great product to our client.</p>
+                    <span class="nb-page__num" aria-hidden="true">3 / 3</span>
+                  </div>
+                </article>
+              </div>
+              <div class="notebook__controls">
+                <button class="nb-btn" type="button" data-nb-prev aria-label="Previous page">←</button>
+                <div class="nb-tabs" role="group" aria-label="Pages">
+                  <button type="button" data-nb-go="0" aria-label="Page 1: Seeing the design become a usable product is rewarding">1</button>
+                  <button type="button" data-nb-go="1" aria-label="Page 2: Being adaptable and flexible is a must">2</button>
+                  <button type="button" data-nb-go="2" aria-label="Page 3: Teamwork wins">3</button>
+                </div>
+                <button class="nb-btn" type="button" data-nb-next aria-label="Next page">→</button>
+              </div>
+              <p class="visually-hidden" aria-live="polite" data-nb-status></p>
             </div>
           </div>
         </div>
@@ -2058,19 +2207,6 @@ window.CASE_STUDY_ASSETS = {
     note: "Hand sketch showing 'Object Detected: Fire Hydrant' with Confirm and Try Again.",
     alt: "Hand-drawn phone screen showing a leaking fire hydrant, an 'Object Detected: Fire Hydrant' panel with a short definition, and Confirm and Try Again buttons."
   },
-  "ir-sketch-more": {
-    file: "ir-sketches-additional.jpg", kind: "board",
-    label: "Additional team sketches (optional)",
-    note: "Optional. Only add this if you have sketches of the other ideas (kiosk, chatbot, SMS, video conferencing).",
-    alt: "Additional concept sketches from the Sprint 5 ideation session."
-  },
-  "ir-wf-1": { file: "ir-wireframe-01.png", kind: "phone", label: "Wireframe 1: Landing (three actions)", alt: "Wireframe of a landing page with three stacked buttons." },
-  "ir-wf-2": { file: "ir-wireframe-02.png", kind: "phone", label: "Wireframe 2: Landing (form / camera split)", alt: "Wireframe of a landing page with side-by-side form and camera buttons." },
-  "ir-wf-3": { file: "ir-wireframe-03.png", kind: "phone", label: "Wireframe 3: Camera viewfinder", alt: "Wireframe of a camera viewfinder with a shutter button." },
-  "ir-wf-4": { file: "ir-wireframe-04.png", kind: "phone", label: "Wireframe 4: Details drawer", alt: "Wireframe of a bottom drawer with selectable tags over a photo." },
-  "ir-wf-5": { file: "ir-wireframe-05.png", kind: "phone", label: "Wireframe 5: Full-page details", alt: "Wireframe of a full-page details screen with two photo slots, tags and a submit button." },
-  "ir-wf-6": { file: "ir-wireframe-06.png", kind: "phone", label: "Wireframe 6: Confirm submission", alt: "Wireframe of a Confirm Submission dialog with Cancel and Submit." },
-  "ir-wf-7": { file: "ir-wireframe-07.png", kind: "phone", label: "Wireframe 7: Thank you + ticket number", alt: "Wireframe of a thank-you dialog with Copy Ticket Number and Exit." },
 
   /* ---------- Image recognition: 1st iteration ---------- */
   "ir-v1-landing": { file: "ir-v1-01-landing.png", kind: "phone", label: "IR iteration 1: Landing page (split buttons)", alt: "Welcome to Report a Problem screen with Fill Form and Image Identifier buttons side by side." },
@@ -2294,6 +2430,67 @@ window.CASE_STUDY_ASSETS = {
       applyFrame(style);
       try { localStorage.setItem(FRAME_KEY, style); } catch (e) { /* storage unavailable */ }
     });
+  });
+
+  /* ------------------------------------------------------------
+   * Reflection notebook: one reflection per page, page-turn animation
+   * ---------------------------------------------------------- */
+  document.querySelectorAll("[data-notebook]").forEach(function (book) {
+    var pages = Array.prototype.slice.call(book.querySelectorAll(".nb-page"));
+    var prev = book.querySelector("[data-nb-prev]");
+    var next = book.querySelector("[data-nb-next]");
+    var tabs = Array.prototype.slice.call(book.querySelectorAll("[data-nb-go]"));
+    var status = book.querySelector("[data-nb-status]");
+    var stage = book.querySelector(".notebook__pages");
+    var current = 0;
+    if (!pages.length) return;
+
+    function render(announce) {
+      pages.forEach(function (page, k) {
+        var flipped = k < current;
+        page.classList.toggle("is-flipped", flipped);
+        // Unflipped pages stack top-down; flipped pages sit above but are hidden.
+        page.style.zIndex = flipped ? String(200 + k) : String(100 - k);
+        var isCurrent = k === current;
+        page.setAttribute("aria-hidden", String(!isCurrent));
+        page.inert = !isCurrent;
+      });
+      prev.disabled = current === 0;
+      next.disabled = current === pages.length - 1;
+      tabs.forEach(function (tab, k) {
+        if (k === current) tab.setAttribute("aria-current", "true");
+        else tab.removeAttribute("aria-current");
+      });
+      if (announce && status) {
+        var title = pages[current].querySelector(".nb-page__title");
+        status.textContent = "Page " + (current + 1) + " of " + pages.length + ": " + (title ? title.textContent : "");
+      }
+    }
+
+    function go(index) {
+      index = Math.max(0, Math.min(pages.length - 1, index));
+      if (index === current) return;
+      current = index;
+      render(true);
+    }
+
+    prev.addEventListener("click", function () { go(current - 1); });
+    next.addEventListener("click", function () { go(current + 1); });
+    tabs.forEach(function (tab) {
+      tab.addEventListener("click", function () { go(Number(tab.getAttribute("data-nb-go"))); });
+    });
+    stage.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowRight" || e.key === "ArrowDown" || e.key === "PageDown") { e.preventDefault(); go(current + 1); }
+      if (e.key === "ArrowLeft" || e.key === "ArrowUp" || e.key === "PageUp") { e.preventDefault(); go(current - 1); }
+    });
+    // Clicking the folded corner of the current page turns it.
+    stage.addEventListener("click", function (e) {
+      var rect = stage.getBoundingClientRect();
+      if (e.clientX > rect.right - 48 && e.clientY > rect.bottom - 48) go(current + 1);
+    });
+
+    book.classList.add("is-ready");
+    render(false);
   });
 
   /* ------------------------------------------------------------

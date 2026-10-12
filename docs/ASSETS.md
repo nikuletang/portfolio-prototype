@@ -1,6 +1,6 @@
 # Image assets needed
 
-78 image slots in total.
+70 image slots in total.
 
 Save each file in `assets/images/` with the exact file name below and reload the page. The placeholder is replaced automatically.
 To use a different file name or format, edit the `file` value in `js/assets.js`.
@@ -44,19 +44,11 @@ _Regenerate this list with `node scripts/list-assets.js`._
 | `rap-v2-02-notifications.png` | Iteration 2: Notifications | Mobile screen, ~1170 × 2532 px (any 9:19.5) | 1 | needed |
 | `rap-v2-03-ticket-status.png` | Iteration 2: Ticket status | Mobile screen, ~1170 × 2532 px (any 9:19.5) | 1 | needed |
 
-## Image recognition: sketches and wireframes
+## Image recognition: sketch
 
 | File | What it shows | Format | Uses | Status |
 |---|---|---|---|---|
 | `ir-sketch-object-detected.jpg` | Sketch: reporting a problem using image recognition | Photo, 4:5, ≥1200 px tall | 1 | needed |
-| `ir-sketches-additional.jpg` | Additional team sketches (optional) *(optional)* | Board, 16:10, ≥1600 px wide | 1 | needed |
-| `ir-wireframe-01.png` | Wireframe 1: Landing (three actions) | Mobile screen, ~1170 × 2532 px (any 9:19.5) | 1 | needed |
-| `ir-wireframe-02.png` | Wireframe 2: Landing (form / camera split) | Mobile screen, ~1170 × 2532 px (any 9:19.5) | 1 | needed |
-| `ir-wireframe-03.png` | Wireframe 3: Camera viewfinder | Mobile screen, ~1170 × 2532 px (any 9:19.5) | 1 | needed |
-| `ir-wireframe-04.png` | Wireframe 4: Details drawer | Mobile screen, ~1170 × 2532 px (any 9:19.5) | 1 | needed |
-| `ir-wireframe-05.png` | Wireframe 5: Full-page details | Mobile screen, ~1170 × 2532 px (any 9:19.5) | 1 | needed |
-| `ir-wireframe-06.png` | Wireframe 6: Confirm submission | Mobile screen, ~1170 × 2532 px (any 9:19.5) | 1 | needed |
-| `ir-wireframe-07.png` | Wireframe 7: Thank you + ticket number | Mobile screen, ~1170 × 2532 px (any 9:19.5) | 1 | needed |
 
 ## Image recognition: iteration 1
 
