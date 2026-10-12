@@ -606,7 +606,7 @@ BASE = f"""
 .dcw-strip-label.is-on-dark {{ color: #ffffff; }}
 .dcw-strip-hint {{ margin-left: 8px; color: {INK3}; font-size: 13px; font-weight: 400; }}
 .dcw-strip-hint.is-on-dark {{ color: {LT3}; }}
-.dcw-strip {{ display: flex; grid-column-gap: 18px; overflow-x: auto; padding-bottom: 14px; scroll-snap-type: x mandatory; }}
+.dcw-strip {{ display: grid; grid-auto-flow: column; grid-auto-columns: clamp(200px, 24vw, 260px); grid-template-columns: none; grid-template-rows: auto; grid-column-gap: 18px; overflow-x: auto; padding-bottom: 16px; scroll-snap-type: x mandatory; }}
 .dcw-strip-item {{ flex: 0 0 150px; scroll-snap-align: start; }}
 .dcw-artifact {{ padding: clamp(16px, 2.5vw, 28px); border: 1px solid {LINE}; border-radius: 16px; background-color: #ffffff; }}
 .dcw-board-img {{ display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 8px; }}
