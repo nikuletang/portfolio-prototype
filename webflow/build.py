@@ -402,11 +402,11 @@ S["photo"] = f'''<section class="dcw-section is-tint" id="photo-reporting"><div 
           "The final prototype uses the photo layout landing page (“Show Us The Issue”) and the full-page problem details, where users can add another photo.",
           [cmp_item("Final landing", "ir-01", after=True), cmp_item("Additional photo uploaded", "ir-v2-photo", "The view after the user selects “Add Photo.”", True)],
           changed_key="What the final screens show")}
-<h4 class="dcw-decision-title is-spaced">Other additions in the second iteration <span class="dcw-strip-hint" aria-hidden="true">Scroll →</span></h4>
+<h4 class="dcw-decision-title is-spaced">Other additions in the second iteration <span class="dcw-strip-hint is-mobile-only" aria-hidden="true">Scroll →</span></h4>
 {screens([("ir-v2-error", "Error", "A message when an uploaded photo isn't recognized as an eligible DC Water object."),
           ("ir-v2-form-option", "Form option", "“No photo? Fill out a form.” sends users to the Report a Problem form when image recognition isn't suitable."),
           ("ir-v2-outline", "Object outline", "A label and an outline around the object make it easy to identify."),
-          ("ir-v2-location", "Location", "Users can edit their location if the detected location is inaccurate.")], "is-scroll")}
+          ("ir-v2-location", "Location", "Users can edit their location if the detected location is inaccurate.")], "4-columns is-scroll")}
 </div>
 </div></section>'''
 
@@ -715,6 +715,8 @@ BASE = f"""
 .dcw-callout-text.is-light {{ color: {DEEP}; }}
 .dcw-strip.is-scroll {{ grid-auto-flow: column; grid-auto-columns: clamp(200px, 24vw, 260px); grid-template-columns: none; grid-template-rows: auto; overflow-x: auto; padding-bottom: 16px; }}
 .dcw-screens.is-scroll {{ grid-auto-flow: column; grid-auto-columns: clamp(200px, 24vw, 260px); grid-template-columns: none; grid-template-rows: auto; overflow-x: auto; padding-bottom: 16px; scroll-snap-type: x proximity; }}
+.dcw-screens.4-columns {{ grid-template-columns: 1fr 1fr 1fr 1fr; }}
+.dcw-strip-hint.is-mobile-only {{ display: none; }}
 .dcw-wf {{ display: grid; grid-template-columns: 5fr 7fr; grid-column-gap: clamp(28px, 5vw, 64px); grid-row-gap: 28px; align-items: center; }}
 .dcw-wf-list {{ display: flex; flex-direction: column; grid-row-gap: 8px; margin-top: 18px; margin-bottom: 0; padding-left: 0; list-style-type: none; }}
 .dcw-wf-item {{ display: flex; align-items: center; grid-column-gap: 12px; padding: 10px 14px; border: 1px solid {LINE}; border-radius: 10px; background-color: #ffffff; color: {INK}; font-size: 15px; font-weight: 500; }}
@@ -814,6 +816,8 @@ MED = """
 .dcw-timeline { grid-template-columns: repeat(5, minmax(132px, 1fr)); overflow-x: auto; }
 """
 SMALL = """
+.dcw-screens.4-columns.is-scroll { grid-auto-flow: column; grid-auto-columns: clamp(200px, 60vw, 260px); grid-template-columns: none; grid-template-rows: auto; overflow-x: auto; padding-bottom: 16px; scroll-snap-type: x proximity; }
+.dcw-strip-hint.is-mobile-only { display: inline; }
 .dcw-wrap { padding-left: 16px; padding-right: 16px; }
 .dcw-page { font-size: 16px; }
 .dcw-facts { grid-template-columns: repeat(2, 1fr); }
