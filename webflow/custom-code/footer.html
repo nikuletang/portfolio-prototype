@@ -1,0 +1,71 @@
+<script>
+/* DC Water case study: reflection notebook, one reflection per page with a page-turn animation. */
+(function () {
+  document.querySelectorAll("[data-notebook]").forEach(function (book) {
+    var pages = [].slice.call(book.querySelectorAll(".dcw-nb-page"));
+    var prev = book.querySelector("[data-nb-prev]");
+    var next = book.querySelector("[data-nb-next]");
+    var tabs = [].slice.call(book.querySelectorAll("[data-nb-go]"));
+    var status = book.querySelector("[data-nb-status]");
+    var stage = book.querySelector(".dcw-nb-pages");
+    var current = 0;
+    if (!pages.length || !stage) return;
+
+    function setDisabled(a, off) {
+      if (!a) return;
+      if (off) { a.setAttribute("aria-disabled", "true"); a.setAttribute("tabindex", "-1"); }
+      else { a.removeAttribute("aria-disabled"); a.removeAttribute("tabindex"); }
+    }
+
+    function render(announce) {
+      pages.forEach(function (page, k) {
+        var flipped = k < current;
+        page.classList.toggle("is-flipped", flipped);
+        page.style.zIndex = flipped ? String(200 + k) : String(100 - k);
+        var isCurrent = k === current;
+        page.setAttribute("aria-hidden", String(!isCurrent));
+        page.inert = !isCurrent;
+      });
+      setDisabled(prev, current === 0);
+      setDisabled(next, current === pages.length - 1);
+      tabs.forEach(function (tab, k) {
+        if (k === current) tab.setAttribute("aria-current", "true");
+        else tab.removeAttribute("aria-current");
+      });
+      if (announce && status) {
+        var title = pages[current].querySelector(".dcw-nb-title");
+        status.textContent = "Page " + (current + 1) + " of " + pages.length + ": " + (title ? title.textContent : "");
+      }
+    }
+
+    function go(index) {
+      index = Math.max(0, Math.min(pages.length - 1, index));
+      if (index === current) return;
+      current = index;
+      render(true);
+    }
+
+    function onClick(el, fn) {
+      if (!el) return;
+      el.setAttribute("role", "button");
+      el.addEventListener("click", function (e) { e.preventDefault(); fn(); });
+    }
+    onClick(prev, function () { go(current - 1); });
+    onClick(next, function () { go(current + 1); });
+    tabs.forEach(function (tab) {
+      onClick(tab, function () { go(Number(tab.getAttribute("data-nb-go"))); });
+    });
+    stage.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowRight" || e.key === "ArrowDown" || e.key === "PageDown") { e.preventDefault(); go(current + 1); }
+      if (e.key === "ArrowLeft" || e.key === "ArrowUp" || e.key === "PageUp") { e.preventDefault(); go(current - 1); }
+    });
+    // Clicking the folded corner of the current page turns it.
+    stage.addEventListener("click", function (e) {
+      if (e.target.classList.contains("dcw-nb-corner")) go(current + 1);
+    });
+
+    book.classList.add("is-ready");
+    render(false);
+  });
+})();
+</script>

@@ -1,0 +1,31 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+/* DC Water case study: reflection notebook page turns (enabled by the footer script). */
+html { scroll-behavior: smooth; }
+.dcw-notebook.is-ready .dcw-nb-pages { display: grid; }
+.dcw-notebook.is-ready .dcw-nb-page {
+  grid-area: 1 / 1; transform-origin: 50% 0; transform-style: preserve-3d;
+  transition: transform .9s cubic-bezier(.45,.05,.25,1), visibility 0s linear 0s;
+}
+.dcw-notebook.is-ready .dcw-nb-front { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.dcw-notebook.is-ready .dcw-nb-page::after {
+  content: ""; position: absolute; inset: 0; border-radius: 4px 4px 14px 14px;
+  background: linear-gradient(180deg, #efe9d8, #f8f4e9); transform: rotateX(180deg);
+  backface-visibility: hidden; -webkit-backface-visibility: hidden;
+}
+.dcw-notebook.is-ready .dcw-nb-page.is-flipped {
+  transform: rotateX(-178deg); visibility: hidden; pointer-events: none;
+  transition: transform .9s cubic-bezier(.45,.05,.25,1), visibility 0s linear .9s;
+}
+.dcw-notebook:not(.is-ready) .dcw-nb-controls { display: none; }
+.dcw-nb-btn[aria-disabled="true"] { opacity: .4; pointer-events: none; }
+.dcw-nb-tab[aria-current="true"] { background: #062b2a; border-color: #062b2a; color: #fff; }
+.dcw-nb-corner { cursor: pointer; }
+.dcw-page a:focus-visible, .dcw-nb-pages:focus-visible { outline: 3px solid #0f6e68; outline-offset: 4px; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .dcw-notebook.is-ready .dcw-nb-page, .dcw-notebook.is-ready .dcw-nb-page.is-flipped { transition: none !important; }
+}
+</style>

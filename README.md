@@ -2,7 +2,7 @@
 
 A design-review prototype of the DC Water UX case study page, built before the final Webflow build. It uses the real case study copy from the UXfolio PDF, with labelled image placeholders and configurable Figma prototype slots.
 
-> This is a review prototype only. Nothing here touches or publishes to Webflow.
+> This is the review prototype. The Webflow build of the same page (DC Water page, unpublished) is described in [`webflow/README.md`](webflow/README.md).
 
 ## Preview
 
@@ -62,8 +62,6 @@ After adding images, run `node scripts/list-assets.js` to refresh the status col
 8. Outcomes, limitations, and reflection: designed / tested / delivered / concept, with reflections in a page-turning notebook
 9. Back to projects
 
-## Notes for the Webflow build
+## Webflow build
 
-- Each numbered section maps to one Webflow section. Repeating patterns (decision card, before/after compare, screen gallery, flow block) map well to Webflow components.
-- The expandable galleries use native `<details>` elements, which you can rebuild as Webflow dropdowns or tabs.
-- Accessibility: semantic headings, skip link, visible focus rings, AA-contrast text, `prefers-reduced-motion` respected, and descriptive alt text ready in `js/assets.js`.
+The page is built on the Webflow **DC Water** page with `dcw-` classes. See [`webflow/README.md`](webflow/README.md) for how it was generated, how to switch the phone mockup style (the `is-simple-phones` combo class), and what's left to fill in.
