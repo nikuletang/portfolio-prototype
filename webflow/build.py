@@ -130,8 +130,8 @@ def stats(items):
     return '<div class="dcw-stats">' + "".join(
         f'<div class="dcw-stat"><div class="dcw-stat-n">{n}</div><div class="dcw-stat-l">{l}</div></div>' for n, l in items) + "</div>"
 
-def screens(items, cols=""):
-    return f'<div class="dcw-screens{(" " + cols) if cols else ""}">' + "".join(fig(*it) for it in items) + "</div>"
+def screens(items, cols="", cls="dcw-screens"):
+    return f'<div class="{cls}{(" " + cols) if cols else ""}">' + "".join(fig(*it) for it in items) + "</div>"
 
 def strip(label, ids_caps, extra=""):
     figs = "".join(
@@ -406,7 +406,7 @@ S["photo"] = f'''<section class="dcw-section is-tint" id="photo-reporting"><div 
 {screens([("ir-v2-error", "Error", "A message when an uploaded photo isn't recognized as an eligible DC Water object."),
           ("ir-v2-form-option", "Form option", "“No photo? Fill out a form.” sends users to the Report a Problem form when image recognition isn't suitable."),
           ("ir-v2-outline", "Object outline", "A label and an outline around the object make it easy to identify."),
-          ("ir-v2-location", "Location", "Users can edit their location if the detected location is inaccurate.")], "4-columns is-scroll")}
+          ("ir-v2-location", "Location", "Users can edit their location if the detected location is inaccurate.")], cls="dcw-gallery-4")}
 </div>
 </div></section>'''
 
@@ -714,8 +714,7 @@ BASE = f"""
 .dcw-callout-num.is-light {{ color: {DEEP}; }}
 .dcw-callout-text.is-light {{ color: {DEEP}; }}
 .dcw-strip.is-scroll {{ grid-auto-flow: column; grid-auto-columns: clamp(200px, 24vw, 260px); grid-template-columns: none; grid-template-rows: auto; overflow-x: auto; padding-bottom: 16px; }}
-.dcw-screens.is-scroll {{ grid-auto-flow: column; grid-auto-columns: clamp(200px, 24vw, 260px); grid-template-columns: none; grid-template-rows: auto; overflow-x: auto; padding-bottom: 16px; scroll-snap-type: x proximity; }}
-.dcw-screens.4-columns {{ grid-template-columns: 1fr 1fr 1fr 1fr; }}
+.dcw-gallery-4 {{ display: grid; margin-top: 28px; grid-template-columns: 1fr 1fr 1fr 1fr; grid-template-rows: auto; grid-column-gap: clamp(16px, 2.5vw, 32px); grid-row-gap: 32px; }}
 .dcw-strip-hint.is-mobile-only {{ display: none; }}
 .dcw-wf {{ display: grid; grid-template-columns: 5fr 7fr; grid-column-gap: clamp(28px, 5vw, 64px); grid-row-gap: 28px; align-items: center; }}
 .dcw-wf-list {{ display: flex; flex-direction: column; grid-row-gap: 8px; margin-top: 18px; margin-bottom: 0; padding-left: 0; list-style-type: none; }}
@@ -799,7 +798,6 @@ BASE = f"""
 """
 
 MED = """
-.dcw-screens.is-scroll { grid-template-columns: none; }
 .dcw-wf { grid-template-columns: 1fr; }
 .dcw-hero-grid { grid-template-columns: 1fr; grid-row-gap: 48px; }
 .dcw-split { grid-template-columns: 1fr; }
@@ -816,7 +814,7 @@ MED = """
 .dcw-timeline { grid-template-columns: repeat(5, minmax(132px, 1fr)); overflow-x: auto; }
 """
 SMALL = """
-.dcw-screens.4-columns.is-scroll { grid-auto-flow: column; grid-auto-columns: clamp(200px, 60vw, 260px); grid-template-columns: none; grid-template-rows: auto; overflow-x: auto; padding-bottom: 16px; scroll-snap-type: x proximity; }
+.dcw-gallery-4 { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: clamp(200px, 60vw, 260px); overflow-x: auto; padding-bottom: 16px; scroll-snap-type: x proximity; }
 .dcw-strip-hint.is-mobile-only { display: inline; }
 .dcw-wrap { padding-left: 16px; padding-right: 16px; }
 .dcw-page { font-size: 16px; }
