@@ -133,11 +133,11 @@ def stats(items):
 def screens(items, cols=""):
     return f'<div class="dcw-screens{(" " + cols) if cols else ""}">' + "".join(fig(*it) for it in items) + "</div>"
 
-def strip(label, ids_caps):
+def strip(label, ids_caps, extra=""):
     figs = "".join(
         f'<div class="dcw-strip-item">{mock(a)}<div class="dcw-fig-text is-xs">{c}</div></div>' for a, c in ids_caps)
     return (f'<div class="dcw-strip-wrap"><div class="dcw-strip-label">{label} <span class="dcw-strip-hint">Scroll →</span></div>'
-            f'<div class="dcw-strip">{figs}</div></div>')
+            f'<div class="dcw-strip{(" " + extra) if extra else ""}">{figs}</div></div>')
 
 def board(asset_id, caption=None):
     cap = f'<p class="dcw-fig-text">{caption}</p>' if caption else ""
@@ -366,7 +366,7 @@ S["photo"] = f'''<section class="dcw-section is-tint" id="photo-reporting"><div 
           ("ir-v1-camera", "Camera view", "The user opens the camera and aims it at the object.", "02"),
           ("ir-v1-description", "Object description", "The product identifies the object and describes it.", "03"),
           ("ir-v1-drawer", "Problem details", "Details about the issue are filled in automatically in a drawer.", "04")])}
-{strip("5 more screens from iteration 1", [("ir-v1-upload", "Upload: take a photo or choose one"), ("ir-v1-collapsed", "Collapsible drawer"), ("ir-v1-library", "Photo library"), ("ir-v1-confirm", "Confirmation after “Submit”"), ("ir-v1-ticket", "Ticket number")])}
+{strip("5 more screens from iteration 1", [("ir-v1-upload", "Upload: take a photo or choose one"), ("ir-v1-collapsed", "Collapsible drawer"), ("ir-v1-library", "Photo library"), ("ir-v1-confirm", "Confirmation after “Submit”"), ("ir-v1-ticket", "Ticket number")], "is-scroll")}
 </div>
 <div class="dcw-block">{tag("Comparative testing · Sprint 5")}<h3 class="dcw-h3">Testing two directions for the landing and details screens</h3>
 <p class="dcw-p is-measure">After the first iteration, we had different ideas for the interface and interactions, especially for the landing page and the problem details page. The team couldn't agree on the best options, so we tested both versions of each pair of screens with users.</p>
@@ -402,11 +402,11 @@ S["photo"] = f'''<section class="dcw-section is-tint" id="photo-reporting"><div 
           "The final prototype uses the photo layout landing page (“Show Us The Issue”) and the full-page problem details, where users can add another photo.",
           [cmp_item("Final landing", "ir-01", after=True), cmp_item("Additional photo uploaded", "ir-v2-photo", "The view after the user selects “Add Photo.”", True)],
           changed_key="What the final screens show")}
-<h4 class="dcw-decision-title is-spaced">Other additions in the second iteration</h4>
+<h4 class="dcw-decision-title is-spaced">Other additions in the second iteration <span class="dcw-strip-hint" aria-hidden="true">Scroll →</span></h4>
 {screens([("ir-v2-error", "Error", "A message when an uploaded photo isn't recognized as an eligible DC Water object."),
           ("ir-v2-form-option", "Form option", "“No photo? Fill out a form.” sends users to the Report a Problem form when image recognition isn't suitable."),
           ("ir-v2-outline", "Object outline", "A label and an outline around the object make it easy to identify."),
-          ("ir-v2-location", "Location", "Users can edit their location if the detected location is inaccurate.")])}
+          ("ir-v2-location", "Location", "Users can edit their location if the detected location is inaccurate.")], "is-scroll")}
 </div>
 </div></section>'''
 
@@ -713,6 +713,8 @@ BASE = f"""
 .dcw-callout.is-light {{ margin-top: 20px; background-color: {LTEAL}; }}
 .dcw-callout-num.is-light {{ color: {DEEP}; }}
 .dcw-callout-text.is-light {{ color: {DEEP}; }}
+.dcw-strip.is-scroll {{ grid-auto-flow: column; grid-auto-columns: clamp(200px, 24vw, 260px); grid-template-columns: none; grid-template-rows: auto; overflow-x: auto; padding-bottom: 16px; }}
+.dcw-screens.is-scroll {{ grid-auto-flow: column; grid-auto-columns: clamp(200px, 24vw, 260px); grid-template-columns: none; grid-template-rows: auto; overflow-x: auto; padding-bottom: 16px; scroll-snap-type: x proximity; }}
 .dcw-wf {{ display: grid; grid-template-columns: 5fr 7fr; grid-column-gap: clamp(28px, 5vw, 64px); grid-row-gap: 28px; align-items: center; }}
 .dcw-wf-list {{ display: flex; flex-direction: column; grid-row-gap: 8px; margin-top: 18px; margin-bottom: 0; padding-left: 0; list-style-type: none; }}
 .dcw-wf-item {{ display: flex; align-items: center; grid-column-gap: 12px; padding: 10px 14px; border: 1px solid {LINE}; border-radius: 10px; background-color: #ffffff; color: {INK}; font-size: 15px; font-weight: 500; }}
@@ -795,6 +797,7 @@ BASE = f"""
 """
 
 MED = """
+.dcw-screens.is-scroll { grid-template-columns: none; }
 .dcw-wf { grid-template-columns: 1fr; }
 .dcw-hero-grid { grid-template-columns: 1fr; grid-row-gap: 48px; }
 .dcw-split { grid-template-columns: 1fr; }
