@@ -93,6 +93,12 @@ window.CASE_STUDY_ASSETS = {
   },
 
   /* ---------- Image recognition: ideation ---------- */
+  "ir-wireframes": {
+    file: "ir-wireframes.jpg", kind: "board",
+    label: "Wireframes: image recognition main screens",
+    note: "Photo or export of the team's wireframes for the image recognition design.",
+    alt: "Wireframes of the main image recognition screens: a choice between form and camera, the camera view, problem details as a drawer or a full page, submission confirmation and a ticket number."
+  },
   "ir-sketch": {
     file: "ir-sketch-object-detected.jpg", kind: "sketch",
     label: "Sketch: reporting a problem using image recognition",

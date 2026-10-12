@@ -86,13 +86,31 @@ def decision(id_, title, learned, changed, items, changed_key="What changed", qu
             f'<div class="{cls}">{"".join(items)}</div></div>')
 
 def results(wins, opps, callout=None):
-    w = "".join(f'<li class="dcw-li">{x}</li>' for x in wins)
-    o = "".join(f'<li class="dcw-li">{x}</li>' for x in opps)
-    c = f'<div class="dcw-callout"><span class="dcw-callout-num">{callout[0]}</span><span class="dcw-callout-text">{callout[1]}</span></div>' if callout else ""
+    def card(kind, icon, kicker, title, items, mark, extra=""):
+        li = "".join(f'<li class="dcw-rc-item is-{kind}"><span class="dcw-rc-mark is-{kind}" aria-hidden="true">{mark}</span>'
+                     f'<span class="dcw-rc-text is-{kind}">{x}</span></li>' for x in items)
+        return (f'<div class="dcw-rc is-{kind}"><div class="dcw-rc-head is-{kind}">'
+                f'<div class="dcw-rc-icon is-{kind}" aria-hidden="true">{icon}</div>'
+                f'<div class="dcw-rc-titles"><div class="dcw-rc-kicker is-{kind}">{kicker}</div><h4 class="dcw-rc-title is-{kind}">{title}</h4></div>'
+                f'<div class="dcw-rc-count is-{kind}" aria-hidden="true">{len(items):02d}</div></div>'
+                f'<ul class="dcw-rc-list">{li}</ul>{extra}</div>')
+    c = (f'<div class="dcw-callout is-light"><span class="dcw-callout-num is-light">{callout[0]}</span>'
+         f'<span class="dcw-callout-text is-light">{callout[1]}</span></div>') if callout else ""
     return ('<div class="dcw-results">'
-            f'<div class="dcw-res-card is-wins"><div class="dcw-res-h"><span class="dcw-res-dot"></span>Wins</div><ul class="dcw-ul">{w}</ul>{c}</div>'
-            f'<div class="dcw-res-card"><div class="dcw-res-h"><span class="dcw-res-dot is-open"></span>Opportunities</div><ul class="dcw-ul">{o}</ul></div>'
-            '</div>')
+            + card("wins", "✓", "What worked", "Wins", wins, "✓", c)
+            + card("opps", "↗", "What to improve", "Opportunities", opps, "→")
+            + '</div>')
+
+def wireframes():
+    screens = ["Choice between form and camera", "Camera view", "Problem details: drawer or full page", "Submission confirmation", "Ticket number"]
+    li = "".join(f'<li class="dcw-wf-item"><span class="dcw-wf-n">{i:02d}</span>{t}</li>' for i, t in enumerate(screens, 1))
+    return ('<div class="dcw-block" id="ir-wireframes"><div class="dcw-wf">'
+            '<div class="dcw-wf-copy"><div class="dcw-tag">Wireframes · Sprint 5</div><h3 class="dcw-h3">Wireframing the main screens</h3>'
+            '<p class="dcw-p">The team then wireframed the main screens of the image recognition design. They included:</p>'
+            f'<ol class="dcw-wf-list">{li}</ol></div>'
+            f'<div class="dcw-wf-frame"><div class="dcw-wf-paper">{img("ir-wireframes", "dcw-wf-img")}</div>'
+            '<p class="dcw-fig-text">Wireframes of the main image recognition screens.</p></div>'
+            '</div></div>')
 
 def goals(items):
     out = '<div class="dcw-goals">'
@@ -170,16 +188,7 @@ S["overview"] = f'''<section class="dcw-section" id="overview"><div class="dcw-w
 <div class="dcw-block">
 <h3 class="dcw-h3">My role and the team's work</h3>
 <p class="dcw-p is-measure">At the end of Sprint 2 the team changed, and I was one of the members who joined the project midway through the semester. <strong class="dcw-strong">Because I joined at the beginning of Sprint 3, this case study focuses on Sprints 3–5 only.</strong></p>
-<div class="dcw-role-cols">
-<div class="dcw-role-card is-mine"><h4 class="dcw-h4">My contributions</h4><ul class="dcw-ul">
-<li class="dcw-li">Conducted card sorting activities, user interviews, user testing, and prototyping.</li>
-<li class="dcw-li">Worked on the visual and interactive designs.</li>
-<li class="dcw-li">As facilitator of Sprint 4, directed the course of the project, oversaw the schedule, and led client presentations.</li>
-<li class="dcw-li">In Sprint 5, the team divided the work and I worked only on the image recognition concept.</li></ul></div>
-<div class="dcw-role-card"><h4 class="dcw-h4">Team process</h4><ul class="dcw-ul">
-<li class="dcw-li">The team of six worked in five 4-week sprints based on the Google Ventures Design Sprint process.</li>
-<li class="dcw-li">Each sprint covered research and analysis, ideation, design, evaluation, and refinement.</li>
-<li class="dcw-li">Research, design iterations, and testing described below were carried out as a team ("we") unless noted as mine.</li></ul></div>
+<div class="dcw-role-cols"><div class="dcw-who-card is-mine"><div class="dcw-role-head"><div class="dcw-role-kicker is-mine">My part · Sprints 3–5</div><h4 class="dcw-role-title is-mine">My contributions</h4></div><ol class="dcw-role-list"><li class="dcw-role-item is-mine"><span class="dcw-role-n is-mine">01</span><span class="dcw-role-text is-mine">Conducted card sorting activities, user interviews, user testing, and prototyping.</span></li><li class="dcw-role-item is-mine"><span class="dcw-role-n is-mine">02</span><span class="dcw-role-text is-mine">Worked on the visual and interactive designs.</span></li><li class="dcw-role-item is-mine"><span class="dcw-role-n is-mine">03</span><span class="dcw-role-text is-mine">As facilitator of Sprint 4, directed the course of the project, oversaw the schedule, and led client presentations.</span></li><li class="dcw-role-item is-mine"><span class="dcw-role-n is-mine">04</span><span class="dcw-role-text is-mine">In Sprint 5, the team divided the work and I worked only on the image recognition concept.</span></li></ol></div><div class="dcw-who-card is-team"><div class="dcw-role-head"><div class="dcw-role-kicker">Team of six</div><h4 class="dcw-role-title">Team process</h4><div class="dcw-team-dots" aria-hidden="true"><span class="dcw-team-dot is-me"></span><span class="dcw-team-dot"></span><span class="dcw-team-dot"></span><span class="dcw-team-dot"></span><span class="dcw-team-dot"></span><span class="dcw-team-dot"></span></div></div><ol class="dcw-role-list"><li class="dcw-role-item is-team"><span class="dcw-role-n is-team">01</span><span class="dcw-role-text is-team">The team of six worked in five 4-week sprints based on the Google Ventures Design Sprint process.</span></li><li class="dcw-role-item is-team"><span class="dcw-role-n is-team">02</span><span class="dcw-role-text is-team">Each sprint covered research and analysis, ideation, design, evaluation, and refinement.</span></li><li class="dcw-role-item is-team"><span class="dcw-role-n is-team">03</span><span class="dcw-role-text is-team">Research, design iterations, and testing described below were carried out as a team ("we") unless noted as mine.</span></li></ol></div></div>
 </div></div>
 <div class="dcw-block">
 <div class="dcw-kicker">Where this case study sits</div>
@@ -348,9 +357,10 @@ S["photo"] = f'''<section class="dcw-section is-tint" id="photo-reporting"><div 
 <div class="dcw-block"><div class="dcw-split is-center">
 <div class="dcw-col"><h3 class="dcw-h3">From sketch to wireframes</h3>
 <p class="dcw-p"><strong class="dcw-strong">Sketch:</strong> the core idea in a single screen. Point the camera at the problem, let the product name the object (“Object Detected: Fire Hydrant”) with a short definition, then confirm or try again.</p>
-<p class="dcw-p"><strong class="dcw-strong">Wireframes:</strong> the team then wireframed the main screens of the image recognition design. They included a choice between form and camera, a camera view, problem details as a drawer or a full page, submission confirmation, and a ticket number.</p></div>
+</div>
 <div class="dcw-sketch">{img("ir-sketch", "dcw-sketch-img")}<p class="dcw-fig-text">Sketch for reporting a problem using image recognition.</p></div>
 </div></div>
+{wireframes()}
 <div class="dcw-block">{tag("Iteration 1 · Sprint 5")}<h3 class="dcw-h3">Initial polished designs</h3><p class="dcw-p is-measure">Photograph or upload the problem, see what the product recognized, and submit pre-filled details.</p>
 {screens([("ir-v1-landing", "Landing page", "Similar to the Report a Problem form, with split buttons for choosing how to report.", "01"),
           ("ir-v1-camera", "Camera view", "The user opens the camera and aims it at the object.", "02"),
@@ -609,8 +619,23 @@ BASE = f"""
 .dcw-meta-k {{ padding-top: 2px; color: {INK3}; font-size: 13px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; }}
 .dcw-meta-v {{ color: {INK}; font-size: 16px; }}
 .dcw-role-cols {{ display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 32px; grid-row-gap: 24px; margin-top: 24px; }}
-.dcw-role-card {{ padding: clamp(20px, 3vw, 32px); border: 1px solid {LINE}; border-radius: 14px; background-color: #f6f6f5; }}
-.dcw-role-card.is-mine {{ border-color: transparent; background-image: {GRAD}; }}
+.dcw-who-card {{ position: relative; overflow: hidden; padding: clamp(24px, 3vw, 36px); border-radius: 20px; }}
+.dcw-who-card.is-mine {{ background-color: {TEAL}; background-image: radial-gradient(circle at 100% 0%, rgba(111,217,203,0.35), transparent 50%), linear-gradient(150deg, #0f6e68, #084844); box-shadow: 0 26px 50px -26px rgba(6,43,42,0.65); color: #ffffff; }}
+.dcw-who-card.is-team {{ border: 1px solid {LINE}; background-color: #ffffff; background-image: radial-gradient(circle, rgba(15,110,104,0.09) 1px, transparent 1.5px); background-size: 18px 18px; box-shadow: 0 18px 40px -30px rgba(0,0,0,0.35); }}
+.dcw-role-head {{ margin-bottom: 22px; padding-bottom: 18px; border-bottom: 1px solid rgba(15,110,104,0.18); }}
+.dcw-role-kicker {{ margin-bottom: 6px; color: {TEAL}; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }}
+.dcw-role-kicker.is-mine {{ color: {LTEAL}; }}
+.dcw-role-title {{ margin-top: 0; margin-bottom: 0; color: {INK}; font-size: clamp(22px, 2.2vw, 26px); font-weight: 700; line-height: 1.2; }}
+.dcw-role-title.is-mine {{ color: #ffffff; }}
+.dcw-team-dots {{ display: flex; grid-column-gap: 6px; margin-top: 14px; }}
+.dcw-team-dot {{ width: 22px; height: 22px; border: 2px solid #ffffff; border-radius: 50%; background-color: #cfe6e2; box-shadow: 0 0 0 1px #b9ddd6; }}
+.dcw-team-dot.is-me {{ background-color: {TEAL}; box-shadow: 0 0 0 1px {TEAL}; }}
+.dcw-role-list {{ display: flex; flex-direction: column; grid-row-gap: 14px; margin-top: 0; margin-bottom: 0; padding-left: 0; list-style-type: none; }}
+.dcw-role-item {{ display: flex; align-items: flex-start; grid-column-gap: 14px; }}
+.dcw-role-n {{ flex: none; display: flex; justify-content: center; align-items: center; width: 34px; height: 34px; border: 1.5px solid {TEAL}; border-radius: 10px; background-color: #ffffff; color: {TEAL}; font-size: 13px; font-weight: 700; }}
+.dcw-role-n.is-mine {{ border-color: transparent; background-color: rgba(255,255,255,0.14); color: #ffffff; }}
+.dcw-role-text {{ padding-top: 5px; color: {INK2}; font-size: 15.5px; line-height: 1.55; }}
+.dcw-role-text.is-mine {{ color: rgba(255,255,255,0.92); }}
 .dcw-timeline {{ display: grid; grid-template-columns: repeat(5, 1fr); grid-column-gap: 8px; padding-top: 12px; }}
 .dcw-tl {{ position: relative; padding: 14px 14px 16px; border-radius: 10px; background-color: #f6f6f5; }}
 .dcw-tl.is-mine {{ background-image: {GRAD}; }}
@@ -657,14 +682,44 @@ BASE = f"""
 .dcw-ia-empty {{ color: {INK3}; font-size: 14px; }}
 
 .dcw-results {{ display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: clamp(20px, 3vw, 32px); grid-row-gap: 20px; margin-top: 20px; }}
-.dcw-res-card {{ padding: clamp(20px, 3vw, 32px); border: 1px solid {LINE}; border-radius: 16px; background-color: #ffffff; }}
-.dcw-res-card.is-wins {{ border-color: transparent; background-image: linear-gradient(160deg, #e3f2ef, #d4ece6); }}
-.dcw-res-h {{ display: flex; align-items: center; grid-column-gap: 8px; margin-bottom: 14px; color: {INK}; font-size: 18px; font-weight: 600; }}
-.dcw-res-dot {{ width: 10px; height: 10px; border-radius: 50%; background-color: {TEAL}; }}
-.dcw-res-dot.is-open {{ border: 2px solid {TEAL}; background-color: transparent; }}
+.dcw-rc {{ position: relative; overflow: hidden; padding: clamp(24px, 3vw, 36px); border-radius: 20px; }}
+.dcw-rc.is-wins {{ background-color: {DEEP}; background-image: radial-gradient(circle at 100% 0%, rgba(111,217,203,0.28), transparent 55%), linear-gradient(160deg, #0a3b39, #041d1c); box-shadow: 0 26px 50px -26px rgba(6,43,42,0.7); }}
+.dcw-rc.is-opps {{ border: 1.5px dashed #9cc9c2; background-color: #ffffff; background-image: repeating-linear-gradient(135deg, rgba(15,110,104,0.045) 0px, rgba(15,110,104,0.045) 2px, transparent 2px, transparent 12px); }}
+.dcw-rc-head {{ display: flex; align-items: center; grid-column-gap: 14px; margin-bottom: 20px; padding-bottom: 18px; border-bottom: 1px solid {LINE}; }}
+.dcw-rc-head.is-wins {{ border-bottom-color: rgba(255,255,255,0.14); }}
+.dcw-rc-icon {{ flex: none; display: flex; justify-content: center; align-items: center; width: 48px; height: 48px; border-radius: 14px; font-size: 22px; font-weight: 700; }}
+.dcw-rc-icon.is-wins {{ background-color: {LTEAL}; color: {DEEP}; }}
+.dcw-rc-icon.is-opps {{ border: 1px solid #b9ddd6; background-color: {TINT}; color: {TEAL_S}; }}
+.dcw-rc-titles {{ flex: 1; }}
+.dcw-rc-kicker {{ color: {TEAL}; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }}
+.dcw-rc-kicker.is-wins {{ color: {LTEAL}; }}
+.dcw-rc-title {{ margin-top: 2px; margin-bottom: 0; color: {INK}; font-size: 24px; font-weight: 700; line-height: 1.2; }}
+.dcw-rc-title.is-wins {{ color: #ffffff; }}
+.dcw-rc-count {{ color: rgba(15,110,104,0.28); font-size: 44px; font-weight: 700; line-height: 1; }}
+.dcw-rc-count.is-wins {{ color: rgba(111,217,203,0.35); }}
+.dcw-rc-list {{ display: flex; flex-direction: column; grid-row-gap: 10px; margin-top: 0; margin-bottom: 0; padding-left: 0; list-style-type: none; }}
+.dcw-rc-item {{ display: flex; align-items: flex-start; grid-column-gap: 12px; padding: 12px 14px; border-radius: 12px; }}
+.dcw-rc-item.is-wins {{ border: 1px solid rgba(255,255,255,0.08); background-color: rgba(255,255,255,0.06); }}
+.dcw-rc-item.is-opps {{ border: 1px solid {LINE}; background-color: #ffffff; }}
+.dcw-rc-mark {{ flex: none; display: flex; justify-content: center; align-items: center; width: 24px; height: 24px; margin-top: 1px; border-radius: 50%; font-size: 13px; font-weight: 700; }}
+.dcw-rc-mark.is-wins {{ background-color: {LTEAL}; color: {DEEP}; }}
+.dcw-rc-mark.is-opps {{ border: 1.5px solid {TEAL}; background-color: #ffffff; color: {TEAL}; }}
+.dcw-rc-text {{ font-size: 15px; line-height: 1.55; }}
+.dcw-rc-text.is-wins {{ color: rgba(255,255,255,0.9); }}
+.dcw-rc-text.is-opps {{ color: {INK2}; }}
 .dcw-callout {{ display: flex; align-items: center; grid-column-gap: 12px; margin-top: 18px; padding: 12px 16px; border-radius: 12px; background-color: {DEEP}; }}
 .dcw-callout-num {{ flex: none; color: {LTEAL}; font-size: 24px; font-weight: 700; white-space: nowrap; }}
 .dcw-callout-text {{ color: rgba(255,255,255,0.85); font-size: 15px; line-height: 1.4; }}
+.dcw-callout.is-light {{ margin-top: 20px; background-color: {LTEAL}; }}
+.dcw-callout-num.is-light {{ color: {DEEP}; }}
+.dcw-callout-text.is-light {{ color: {DEEP}; }}
+.dcw-wf {{ display: grid; grid-template-columns: 5fr 7fr; grid-column-gap: clamp(28px, 5vw, 64px); grid-row-gap: 28px; align-items: center; }}
+.dcw-wf-list {{ display: flex; flex-direction: column; grid-row-gap: 8px; margin-top: 18px; margin-bottom: 0; padding-left: 0; list-style-type: none; }}
+.dcw-wf-item {{ display: flex; align-items: center; grid-column-gap: 12px; padding: 10px 14px; border: 1px solid {LINE}; border-radius: 10px; background-color: #ffffff; color: {INK}; font-size: 15px; font-weight: 500; }}
+.dcw-wf-n {{ flex: none; color: {TEAL}; font-size: 13px; font-weight: 700; }}
+.dcw-wf-frame {{ position: relative; }}
+.dcw-wf-paper {{ padding: clamp(10px, 1.6vw, 18px); border: 1px solid {LINE}; border-radius: 16px; background-color: #ffffff; background-image: linear-gradient(rgba(15,110,104,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(15,110,104,0.06) 1px, transparent 1px); background-size: 22px 22px; box-shadow: 0 24px 48px -28px rgba(6,43,42,0.45); transform: rotate(-1deg); }}
+.dcw-wf-img {{ display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 10px; }}
 
 .dcw-decision {{ display: grid; grid-template-columns: 5fr 6fr; grid-column-gap: clamp(28px, 5vw, 72px); grid-row-gap: 28px; margin-top: clamp(40px, 5vw, 64px); padding-top: clamp(40px, 5vw, 64px); border-top: 1px solid {LINE}; }}
 .dcw-decision-title {{ margin-top: 0; margin-bottom: 18px; color: {INK}; font-size: 20px; font-weight: 600; line-height: 1.3; }}
@@ -741,6 +796,7 @@ BASE = f"""
 """
 
 MED = """
+.dcw-wf { grid-template-columns: 1fr; }
 .dcw-hero-grid { grid-template-columns: 1fr; grid-row-gap: 48px; }
 .dcw-split { grid-template-columns: 1fr; }
 .dcw-split.is-even { grid-template-columns: 1fr; }
