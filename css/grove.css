@@ -1,0 +1,299 @@
+/* ==========================================================================
+   Grove Family Health case study: page additions
+   Loaded after css/styles.css, which supplies the tokens, type, layout,
+   section themes and shared components (section nav, hero, chain, etc.).
+   Only what the Grove page needs on top of that lives here.
+   ========================================================================== */
+
+/* ---------- Browser-window frame ----------
+   Markup:
+   <div class="browser">
+     <div class="browser__bar" aria-hidden="true"><span class="browser__dots"><i></i><i></i><i></i></span><span class="browser__url"></span></div>
+     <div class="browser__view"><div class="ph" data-asset="…"></div></div>
+   </div>
+   Screenshots keep their own proportions. A tall page scrolls inside
+   .browser__view--scroll instead of being cropped or squashed.          */
+.browser {
+  --view-h: 560px;
+  position: relative; width: 100%;
+  border-radius: 12px; overflow: hidden;
+  background: #fff; border: 1px solid #d9dddc;
+  box-shadow: 0 1px 2px rgba(0,0,0,.06), 0 24px 48px -24px rgba(6,43,42,.35);
+}
+.browser__bar {
+  display: flex; align-items: center; gap: 10px;
+  height: 30px; padding: 0 12px;
+  background: #f1f3f2; border-bottom: 1px solid #e0e3e2;
+}
+.browser__dots { display: inline-flex; gap: 6px; flex: none; }
+.browser__dots i { width: 9px; height: 9px; border-radius: 50%; background: #c9cecd; }
+.browser__dots i:nth-child(1) { background: #f0857a; }
+.browser__dots i:nth-child(2) { background: #f3c25b; }
+.browser__dots i:nth-child(3) { background: #6dc77b; }
+.browser__url {
+  flex: 1; height: 16px; max-width: 60%; margin: 0 auto;
+  border-radius: 999px; background: #fff; border: 1px solid #e0e3e2;
+}
+.browser__view { position: relative; background: #fff; }
+.enlarge { position: relative; }
+.browser__view--scroll {
+  max-height: var(--view-h); overflow-y: auto; overscroll-behavior: contain;
+  scrollbar-width: thin; scrollbar-color: #b9c1c0 transparent;
+}
+.browser__view--scroll:focus-visible { outline-offset: -3px; border-radius: 0; }
+
+/* Placeholders inside a frame use fixed light colors, so they read the
+   same on light and dark sections. */
+.browser .ph {
+  border: 0; border-radius: 0; color: #4f5a59;
+  background: repeating-linear-gradient(135deg, transparent 0 11px, rgba(6,43,42,.035) 11px 12px), #eef2f1;
+}
+.browser .ph__label { color: #142625; }
+.browser .ph__tag { color: #0a524e; background: #d4ece7; }
+.browser .ph__file, .browser .ph__note, .browser .ph__hint { color: #4f5a59; }
+
+.ph--tall    { aspect-ratio: 10 / 16; }
+.ph--section { aspect-ratio: 4 / 3; }
+
+/* Frame sizes */
+.browser--hero { --view-h: min(68vh, 620px); width: min(100%, 440px); }
+.browser--preview { --view-h: 440px; }
+.browser--side { --view-h: 620px; }
+.browser--compare { --view-h: 380px; }
+.browser--gallery { --view-h: 520px; }
+
+/* Caption row under a framed screenshot: caption + enlarge button */
+.shot__meta { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-top: .85rem; }
+.shot__meta figcaption { margin-top: 0; }
+.enlarge {
+  flex: none; display: inline-flex; align-items: center; gap: 6px;
+  font: inherit; font-size: .8125rem; font-weight: 600; line-height: 1;
+  padding: 8px 11px; border-radius: 8px; cursor: pointer;
+  color: var(--ink); background: var(--card); border: 1px solid var(--line-strong);
+}
+.enlarge:hover { border-color: var(--teal); color: var(--teal); }
+.enlarge svg { width: 14px; height: 14px; }
+.scroll-hint { font-size: .8125rem; color: var(--ink-3); margin: .75rem 0 0; }
+
+/* ---------- Hero ---------- */
+.gfh .hero__visual { justify-content: center; }
+.gfh .hero__visual::before { width: 110%; }
+.gfh .hero__visual .browser { z-index: 1; }
+
+/* ---------- Overview ---------- */
+.brief {
+  margin: 0; padding: clamp(20px, 3vw, 32px); border-radius: 16px;
+  background: linear-gradient(160deg, #e3f2ef, #d2ebe5);
+}
+.brief p:last-child { margin-bottom: 0; }
+.brief .problem-statement { font-size: clamp(1.1875rem, 1.9vw, 1.4375rem); }
+.brief .kicker { color: var(--teal-strong); }
+.deliverables { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }
+.deliverables li {
+  display: flex; flex-direction: column;
+  margin: 0; padding: 18px 18px 16px; border-radius: 14px; background: var(--card); border: 1px solid var(--line);
+  box-shadow: 0 1px 2px rgba(6,43,42,.04), 0 10px 24px -16px rgba(6,43,42,.25);
+  font-size: .9375rem; line-height: 1.45;
+}
+.deliverables strong { display: block; font-size: 1rem; margin-bottom: .35rem; }
+.deliverables a { font-size: .8125rem; font-weight: 600; text-decoration: none; margin-top: auto; padding-top: .75rem; }
+.deliverables a::after { content: " ↓"; }
+.constraint {
+  display: flex; gap: 14px; align-items: flex-start; margin-top: clamp(24px, 3vw, 36px);
+  padding: 16px 18px; border-radius: 10px; border: 1px solid var(--line); border-left: 4px solid var(--teal);
+  background: var(--card); font-size: .9375rem; max-width: 760px;
+}
+.constraint .badge { flex: none; margin-top: .15em; }
+
+/* ---------- Solution preview ---------- */
+.gfh .preview figure { align-items: stretch; }
+.gfh .preview .browser { width: 100%; }
+.gfh .preview figcaption { width: 100%; }
+
+/* ---------- Challenge ---------- */
+.obs { list-style: none; padding: 0; margin: 0; counter-reset: obs; }
+.obs > li {
+  counter-increment: obs; margin: 0; position: relative;
+  padding: 20px 0 20px 3rem; border-top: 1px solid var(--line);
+}
+.obs > li:last-child { border-bottom: 1px solid var(--line); }
+.obs > li::before {
+  content: counter(obs, decimal-leading-zero); position: absolute; left: 0; top: 21px;
+  font-family: var(--font-mono); font-size: .875rem; font-weight: 700; color: var(--teal);
+}
+.obs h4 { margin: 0 0 .3rem; font-size: 1.0625rem; }
+.obs p { margin: 0; font-size: .9688rem; }
+.obs__need { display: block; margin-top: .55rem; font-size: .875rem; color: var(--teal-strong); font-weight: 600; }
+.obs__need::before { content: "The redesign needed to → "; font-weight: 400; color: var(--ink-3); }
+.sticky-media { position: sticky; top: calc(var(--nav-h) + 24px); }
+
+/* ---------- Site architecture ---------- */
+.artifact--large { padding: clamp(14px, 2.5vw, 32px); }
+.artifact .ph--board { border-radius: 8px; }
+.structure { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.structure li {
+  margin: 0; padding: 18px 20px; border-radius: 14px; background: var(--card); border: 1px solid var(--line);
+  border-top: 4px solid var(--teal); font-size: .9375rem;
+}
+.structure strong { display: block; margin-bottom: .3rem; font-size: 1rem; }
+
+/* ---------- Visual direction ---------- */
+.artifact-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(24px, 4vw, 48px); align-items: start; }
+.draft b { color: inherit; font-weight: 700; }
+
+/* ---------- Wireframes ---------- */
+.focus-list { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.focus-list li { margin: 0; padding: 16px 18px; border-radius: 12px; background: var(--card); border: 1px solid var(--line); font-size: .9375rem; }
+.focus-list strong { display: block; margin-bottom: .25rem; }
+.wf-frame { padding: 12px; border-radius: 14px; background: var(--card); border: 1px solid var(--line); }
+.wf-frame .browser { box-shadow: none; }
+
+/* ---------- Key decisions ---------- */
+.gfh .decision { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
+.gfh .compare { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.chain__note {
+  display: table; margin-top: .55rem; font-size: .75rem; font-weight: 600;
+  color: var(--ink-3); border: 1px dashed var(--line-strong); border-radius: 999px; padding: 1px 8px;
+}
+.gfh .compare__label { padding-top: 2px; padding-bottom: 2px; }
+.theme-label { font-family: var(--font-mono); font-size: .8125rem; color: var(--teal); display: block; margin-bottom: .35rem; }
+
+/* ---------- Final website gallery (horizontal strip) ---------- */
+.shots {
+  position: relative; /* contains the absolutely positioned visually-hidden labels */
+  display: grid; grid-auto-flow: column; grid-auto-columns: clamp(250px, 28vw, 340px);
+  gap: clamp(16px, 2.5vw, 28px); overflow-x: auto; overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory; padding: 4px 4px 18px; margin: 0 -4px;
+  scrollbar-width: thin; scrollbar-color: rgba(255,255,255,.35) transparent;
+}
+.shots > figure { scroll-snap-align: start; min-width: 0; }
+.shots:focus-visible { outline-offset: 2px; }
+.live-link { margin-top: clamp(24px, 3vw, 36px); }
+.live-link svg { width: 15px; height: 15px; }
+
+/* ---------- Outcomes ---------- */
+.outcomes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(16px, 3vw, 32px); }
+.outcome {
+  display: flex; flex-direction: column; gap: 12px;
+  padding: clamp(22px, 3vw, 36px); border-radius: 18px; background: var(--card); border: 1px solid var(--line);
+  border-top: 4px solid var(--teal);
+  box-shadow: 0 1px 2px rgba(6,43,42,.04), 0 18px 36px -24px rgba(6,43,42,.3);
+}
+.outcome__type {
+  align-self: flex-start; font-size: .6875rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--teal-strong); background: var(--teal-tint); padding: 3px 9px; border-radius: 999px;
+}
+.outcome__num { font-size: clamp(3rem, 6vw, 4.5rem); font-weight: 800; line-height: 1; letter-spacing: -0.03em; color: var(--teal); margin: 0; }
+.outcome__what { font-size: clamp(1.0625rem, 1.6vw, 1.25rem); line-height: 1.4; color: var(--ink); font-weight: 600; margin: 0; }
+.outcome dl { margin: auto 0 0; padding-top: 14px; border-top: 1px solid var(--line); display: grid; gap: 8px; }
+.outcome dl div { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr); gap: 10px; font-size: .9063rem; }
+.outcome dt { font-size: .75rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3); padding-top: .15em; }
+.outcome dd { margin: 0; color: var(--ink-2); }
+
+/* ---------- Closing ---------- */
+.closing__links { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 32px; }
+.next-link { font-weight: 600; text-decoration: none; color: var(--ink-2); }
+.next-link:hover { color: var(--teal); }
+
+/* ---------- Drafting placeholders (review only) ----------
+   Warm amber so they never read as part of the design.
+   html[data-drafts="hide"] (reader view) removes them entirely.      */
+html[data-drafts="hide"] [data-draft] { display: none !important; }
+.draft {
+  --draft-ink: #6b4500; --draft-bg: #fff7e6; --draft-line: #e2b45a;
+  display: block; margin: 1rem 0 0; padding: 12px 14px; border-radius: 8px;
+  border: 1px dashed var(--draft-line); background: var(--draft-bg); color: var(--draft-ink);
+  font-size: .875rem; line-height: 1.5;
+}
+.draft::before {
+  content: "Drafting placeholder"; display: block; margin-bottom: .25rem;
+  font-size: .6875rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+}
+.draft--question::before { content: "Question for Niku"; }
+.draft ul { margin: .25rem 0 0; padding-left: 1.1em; }
+.draft li + li { margin-top: .2em; }
+.draft-section { position: relative; background: repeating-linear-gradient(135deg, transparent 0 14px, rgba(226,180,90,.08) 14px 15px), #fffdf7; border-top: 2px dashed #e2b45a; }
+.draft-banner {
+  display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: baseline; margin-bottom: 1.5rem;
+  padding: 10px 14px; border-radius: 8px; background: #fff0cc; color: #6b4500; font-size: .875rem;
+}
+.draft-banner strong { color: #6b4500; }
+.secnav__list li[data-draft] a { font-style: italic; }
+
+/* Drafts toggle (reuses the frame-toggle look) */
+.drafts-toggle button[aria-pressed="true"] { background: var(--deep); color: #fff; }
+
+/* ---------- Enlarge dialog ---------- */
+.lightbox {
+  width: min(1100px, calc(100vw - 32px)); max-width: none; height: calc(100vh - 48px); max-height: none;
+  padding: 0; border: 0; border-radius: 14px; background: #fff; color: var(--ink-2);
+  box-shadow: 0 30px 80px rgba(0,0,0,.4);
+  display: none; flex-direction: column; overflow: hidden;
+}
+.lightbox[open] { display: flex; }
+.lightbox::backdrop { background: rgba(4,20,20,.78); }
+.lightbox__head {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  padding: 12px 16px; border-bottom: 1px solid #e2e2e2; background: #f6f6f5;
+}
+.lightbox__title { margin: 0; font-size: 1rem; letter-spacing: 0; color: #111; }
+.lightbox__close {
+  font: inherit; font-size: .875rem; font-weight: 600; cursor: pointer;
+  padding: 8px 14px; border-radius: 8px; border: 1px solid #0f6e68; background: #0f6e68; color: #fff;
+}
+.lightbox__close:hover { background: #0a524e; }
+.lightbox__body { flex: 1; overflow: auto; overscroll-behavior: contain; background: #fff; }
+.lightbox__img { width: 100%; height: auto; }
+.lightbox__empty { padding: 32px 24px; margin: 0; color: #3d3d3d; }
+html.has-lightbox { overflow: hidden; }
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+@media (max-width: 1100px) {
+  .deliverables { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .focus-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 960px) {
+  .gfh .preview { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+  .sticky-media { position: static; }
+  .gfh .challenge-media { max-width: 440px; }
+  .structure { grid-template-columns: minmax(0, 1fr); }
+  .gfh .decision > .compare { margin-top: 24px; }
+  .browser--side { --view-h: 520px; }
+}
+
+@media (max-width: 720px) {
+  .gfh .preview { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+  .gfh .preview figure { max-width: 380px; margin: 0 auto; width: 100%; }
+  .deliverables { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .artifact-pair, .outcomes { grid-template-columns: minmax(0, 1fr); }
+  .focus-list { grid-template-columns: minmax(0, 1fr); }
+  .gfh .compare { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .wf-grid { grid-template-columns: minmax(0, 1fr); }
+  .wf-grid > figure { max-width: 380px; margin: 0 auto; width: 100%; }
+  .browser--hero { --view-h: 480px; width: min(100%, 340px); }
+  .browser--compare { --view-h: 320px; }
+  .browser--gallery { --view-h: 440px; }
+  .shots { grid-auto-columns: min(78vw, 300px); }
+  .outcome dl div { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+  .constraint { flex-direction: column; gap: 8px; }
+  .drafts-toggle .frame-toggle__label { display: none; }
+}
+
+@media (max-width: 420px) {
+  .deliverables { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media print {
+  .browser__view--scroll { max-height: none; overflow: visible; }
+  .enlarge, .drafts-toggle { display: none; }
+}
+.chain .draft, .focus-list .draft, .shots .draft, .meta-list .draft { margin-top: .6rem; padding: 8px 10px; font-size: .8125rem; }
+.meta-list .draft { margin-top: 0; }
+.shot__meta figcaption.draft { margin-top: 0; padding: 6px 9px; font-size: .75rem; }
+
+/* Section nav: this page has more sections than DC Water, so the
+   project-name suffix is dropped to leave room for the links. */
+.gfh .secnav__home span { display: none; }

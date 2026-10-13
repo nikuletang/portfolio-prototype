@@ -2201,6 +2201,12 @@ window.CASE_STUDY_ASSETS = {
   },
 
   /* ---------- Image recognition: ideation ---------- */
+  "ir-wireframes": {
+    file: "ir-wireframes.jpg", kind: "board",
+    label: "Wireframes: image recognition main screens",
+    note: "Photo or export of the team's wireframes for the image recognition design.",
+    alt: "Wireframes of the main image recognition screens: a choice between form and camera, the camera view, problem details as a drawer or a full page, submission confirmation and a ticket number."
+  },
   "ir-sketch": {
     file: "ir-sketch-object-detected.jpg", kind: "sketch",
     label: "Sketch: reporting a problem using image recognition",
@@ -2291,7 +2297,9 @@ window.CASE_STUDY_ASSETS = {
     crop: "Cropped mobile screen · approx. 9:16",
     board: "Board / artifact · 16:10, at least 1600 px wide",
     wide: "Showcase · 16:9, at least 2000 px wide",
-    sketch: "Sketch photo · 4:5, at least 1200 px tall"
+    sketch: "Sketch photo · 4:5, at least 1200 px tall",
+    tall: "Full-page desktop screenshot · any height, at least 1440 px wide",
+    section: "Cropped page section · any proportions, at least 1440 px wide"
   };
 
   /* ------------------------------------------------------------
@@ -2499,6 +2507,103 @@ window.CASE_STUDY_ASSETS = {
   document.querySelectorAll("[data-back-link]").forEach(function (a) {
     a.href = CONFIG.backToProjectsUrl || "#";
   });
+
+  /* ------------------------------------------------------------
+   * Config-driven links: hidden until the URL is configured
+   * ---------------------------------------------------------- */
+  document.querySelectorAll("[data-config-link]").forEach(function (a) {
+    var url = CONFIG[a.getAttribute("data-config-link")];
+    if (/^https?:\/\//.test(url || "")) a.href = url;
+    else a.hidden = true;
+  });
+
+  /* ------------------------------------------------------------
+   * Drafting placeholders: shown for review, hidden in reader view.
+   * Any [data-draft] element (notes and draft-only sections).
+   * ---------------------------------------------------------- */
+  if (document.querySelector("[data-draft]")) {
+    var DRAFT_KEY = "case-study-drafts";
+    var draftButtons = document.querySelectorAll("[data-drafts-option]");
+
+    var applyDrafts = function (mode) {
+      if (mode !== "hide") mode = "show";
+      document.documentElement.setAttribute("data-drafts", mode);
+      draftButtons.forEach(function (btn) {
+        btn.setAttribute("aria-pressed", String(btn.getAttribute("data-drafts-option") === mode));
+      });
+    };
+
+    var savedDrafts = null;
+    try { savedDrafts = localStorage.getItem(DRAFT_KEY); } catch (e) { /* storage unavailable */ }
+    applyDrafts(savedDrafts || (CONFIG.showDrafts === false ? "hide" : "show"));
+
+    draftButtons.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var mode = btn.getAttribute("data-drafts-option");
+        applyDrafts(mode);
+        try { localStorage.setItem(DRAFT_KEY, mode); } catch (e) { /* storage unavailable */ }
+      });
+    });
+  }
+
+  /* ------------------------------------------------------------
+   * Enlarge: [data-enlarge] buttons open the image of their
+   * <figure> at full width in a modal dialog.
+   * ---------------------------------------------------------- */
+  var enlargeButtons = document.querySelectorAll("[data-enlarge]");
+  if (enlargeButtons.length && typeof HTMLDialogElement === "function") {
+    var dialog = el("dialog", "lightbox");
+    dialog.setAttribute("aria-labelledby", "lightbox-title");
+    var head = el("div", "lightbox__head");
+    var title = el("h2", "lightbox__title");
+    title.id = "lightbox-title";
+    var close = el("button", "lightbox__close", "Close");
+    close.type = "button";
+    head.appendChild(title);
+    head.appendChild(close);
+    var body = el("div", "lightbox__body");
+    body.tabIndex = 0;
+    body.setAttribute("role", "region");
+    body.setAttribute("aria-label", "Enlarged image, scrollable");
+    dialog.appendChild(head);
+    dialog.appendChild(body);
+    document.body.appendChild(dialog);
+
+    var opener = null;
+    close.addEventListener("click", function () { dialog.close(); });
+    dialog.addEventListener("click", function (e) { if (e.target === dialog) dialog.close(); });
+    dialog.addEventListener("close", function () {
+      document.documentElement.classList.remove("has-lightbox");
+      body.textContent = "";
+      if (opener) opener.focus();
+    });
+
+    enlargeButtons.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var fig = btn.closest("figure");
+        var slot = fig && fig.querySelector(".ph[data-asset]");
+        var asset = slot ? ASSETS[slot.getAttribute("data-asset")] || {} : {};
+        var img = slot && slot.querySelector("img");
+        title.textContent = btn.getAttribute("data-enlarge") || asset.label || "Image";
+        body.textContent = "";
+        if (img) {
+          var big = el("img", "lightbox__img");
+          big.src = img.src;
+          big.alt = img.alt;
+          body.appendChild(big);
+        } else {
+          body.appendChild(el("p", "lightbox__empty", "Image not added yet: " + (asset.file || "") + ". Add it to assets/images/ and reload."));
+        }
+        opener = btn;
+        document.documentElement.classList.add("has-lightbox");
+        dialog.showModal();
+        body.scrollTop = 0;
+        body.focus();
+      });
+    });
+  } else {
+    enlargeButtons.forEach(function (btn) { btn.hidden = true; });
+  }
 
   /* ------------------------------------------------------------
    * Section navigation: mobile toggle + current-section highlight

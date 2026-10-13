@@ -1,0 +1,729 @@
+<!doctype html>
+<html lang="en" class="gfh">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Grove Family Health: UX Case Study · Niku Letang</title>
+  <meta name="description" content="Redesigning Grove Family Health's website to explain direct primary care clearly and give patients and employers the information and next steps they need.">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/grove.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!--
+    REVIEW PROTOTYPE NOTES
+    - Images: js/grove-assets.js (one entry per slot), files in assets/images/grove/.
+    - Links and draft visibility: js/grove-config.js.
+    - Drafting placeholders carry data-draft. They show in review and are
+      removed in reader view (Drafts: Hide). Delete each one once its
+      content is written.
+    - Draft-only sections (Feedback and refinement, Reflection) carry
+      data-draft on the <section> and its nav item. Remove data-draft
+      from both once the section has real content.
+  -->
+
+  <!-- ============================================================
+       Compact section navigation
+       ============================================================ -->
+  <nav class="secnav" aria-label="Case study sections">
+    <div class="wrap secnav__bar">
+      <a class="secnav__home" href="#top">Niku Letang <span>· Grove Family Health</span></a>
+      <div class="frame-toggle drafts-toggle" role="group" aria-label="Drafting placeholders">
+        <span class="frame-toggle__label" aria-hidden="true">Drafts</span>
+        <button type="button" data-drafts-option="show" aria-pressed="true">Show</button>
+        <button type="button" data-drafts-option="hide" aria-pressed="false">Hide</button>
+      </div>
+      <button class="secnav__toggle" type="button" aria-expanded="false" aria-controls="secnav-list">
+        Sections <span class="secnav__current" aria-hidden="true">Overview</span>
+        <svg class="secnav__chev" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+      </button>
+      <ul class="secnav__list" id="secnav-list">
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#challenge">Challenge</a></li>
+        <li><a href="#architecture">Sitemap</a></li>
+        <li><a href="#visual-direction">Visuals</a></li>
+        <li><a href="#wireframes">Wireframes</a></li>
+        <li><a href="#design">Decisions</a></li>
+        <li data-draft><a href="#feedback">Feedback</a></li>
+        <li><a href="#final">Final site</a></li>
+        <li><a href="#outcomes">Outcomes</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main id="main">
+
+    <!-- ============================================================
+         1. HERO
+         ============================================================ -->
+    <header class="hero theme-deep" id="top">
+      <div class="wrap hero__grid">
+        <div>
+          <p class="eyebrow">Website redesign · UX/UI · January 2026</p>
+          <h1 class="hero__title">Grove Family Health</h1>
+          <p class="hero__tagline">Making direct primary care easy to understand for patients and employers.</p>
+          <p class="hero__desc">A website redesign for a direct primary care practice in Southern Maryland. The new site explains a less familiar model of care in plain terms and gives patients and employers the information and next steps that apply to them.</p>
+          <div class="hero__actions">
+            <a class="btn btn--hero" href="#final">View the final website <span aria-hidden="true">↓</span></a>
+          </div>
+
+          <dl class="facts">
+            <div><dt>My role</dt><dd>Web designer &amp; developer</dd></div>
+            <div><dt>Client</dt><dd>Grove Family Health</dd></div>
+            <div><dt>Launched</dt><dd>January 2026</dd></div>
+            <div><dt>Industry</dt><dd>Healthcare</dd></div>
+          </dl>
+          <p class="draft draft--question" data-draft>The business case study lists the role as "Web Designer &amp; Developer". Keep that title here, or use a UX/UI title and mention development separately?</p>
+        </div>
+        <div class="hero__visual">
+          <figure class="browser browser--hero">
+            <div class="browser__bar" aria-hidden="true"><span class="browser__dots"><i></i><i></i><i></i></span><span class="browser__url"></span></div>
+            <div class="browser__view browser__view--scroll" tabindex="0" role="region" aria-label="Redesigned Grove Family Health page, scrollable">
+              <div class="ph" data-asset="hero-mockup"></div>
+            </div>
+          </figure>
+        </div>
+      </div>
+    </header>
+
+    <!-- ============================================================
+         2. PROJECT OVERVIEW
+         ============================================================ -->
+    <section class="section" id="overview" aria-labelledby="overview-title">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow"><span class="eyebrow__num">01</span> Project overview</p>
+          <h2 id="overview-title">A modern website for a different kind of primary care</h2>
+        </div>
+
+        <div class="split">
+          <div>
+            <div class="brief">
+              <h3 class="kicker">The brief</h3>
+              <p class="problem-statement">Create a modern website that clearly explains the direct primary care model and serves both patients and employers.</p>
+              <p>Grove Family Health offers a more personal, accessible model of care to individuals and to employers. The practice needed a site that communicated that value and helped each audience understand their options and take the next step.</p>
+            </div>
+          </div>
+
+          <dl class="meta-list">
+            <div><dt>Client</dt><dd>Grove Family Health, a direct primary care practice in Southern Maryland</dd></div>
+            <div><dt>My role</dt><dd>Web designer &amp; developer</dd></div>
+            <div><dt>Scope</dt>
+              <dd>
+                <ul class="pill-list" aria-label="Scope">
+                  <li>Sitemap</li><li>Mood board</li><li>Branding sheet</li><li>Wireframes</li><li>High-fidelity design</li>
+                </ul>
+              </dd>
+            </div>
+            <div><dt>Launch</dt><dd>January 2026</dd></div>
+            <div><dt>Constraint</dt><dd>Work within the practice's existing branding</dd></div>
+            <div data-draft><dt>Timeline</dt><dd><span class="draft">Project start date and duration.</span></dd></div>
+            <div data-draft><dt>Collaboration</dt><dd><span class="draft">Who I worked with: client contacts, any other designers or developers, and how feedback was shared.</span></dd></div>
+          </dl>
+        </div>
+
+        <!-- My contributions -->
+        <div class="block">
+          <h3>What I created</h3>
+          <ul class="deliverables">
+            <li><strong>Sitemap</strong>A structure for the site that organizes information for patients and employers. <a href="#architecture">See the sitemap</a></li>
+            <li><strong>Mood board</strong>Visual references for a modern direction within the existing identity. <a href="#visual-direction">See the mood board</a></li>
+            <li><strong>Branding sheet</strong>How the existing brand carries into the website. <a href="#visual-direction">See the branding sheet</a></li>
+            <li><strong>Wireframes</strong>Page layouts planning hierarchy, navigation and next steps. <a href="#wireframes">See the wireframes</a></li>
+            <li><strong>High-fidelity design</strong>The final page designs that launched in January 2026. <a href="#design">See the designs</a></li>
+          </ul>
+          <div class="constraint">
+            <span class="badge">Constraint</span>
+            <p style="margin:0">Grove Family Health already had an established brand. This project wasn't a rebrand: the mood board and branding sheet developed the website's visual direction within that existing identity.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         3. SOLUTION PREVIEW
+         ============================================================ -->
+    <section class="section section--tint" id="solution" aria-labelledby="solution-title">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow"><span class="eyebrow__num">02</span> Solution preview</p>
+          <h2 id="solution-title">One website, two audiences, a clear next step</h2>
+          <p class="lede">The redesigned site gives patients and employers their own path to the information that applies to them, with the next step visible along the way.</p>
+        </div>
+
+        <div class="preview">
+          <figure>
+            <div class="browser browser--preview">
+              <div class="browser__bar" aria-hidden="true"><span class="browser__dots"><i></i><i></i><i></i></span><span class="browser__url"></span></div>
+              <div class="browser__view browser__view--scroll" tabindex="0" role="region" aria-label="Final homepage, scrollable">
+                <div class="ph" data-asset="solution-home" data-compact></div>
+              </div>
+            </div>
+            <div class="shot__meta">
+              <figcaption>
+                <span class="preview__step">01 · Homepage</span>
+                <strong>A clear starting point</strong>
+                Introduces direct primary care and points patients and employers toward the information meant for them.
+              </figcaption>
+              <button class="enlarge" type="button" data-enlarge="Final homepage"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M9.5 2.5h4v4M6.5 13.5h-4v-4M13.5 2.5 9 7M2.5 13.5 7 9" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>Enlarge<span class="visually-hidden"> final homepage</span></button>
+            </div>
+          </figure>
+          <figure>
+            <div class="browser browser--preview">
+              <div class="browser__bar" aria-hidden="true"><span class="browser__dots"><i></i><i></i><i></i></span><span class="browser__url"></span></div>
+              <div class="browser__view browser__view--scroll" tabindex="0" role="region" aria-label="Patient-focused page, scrollable">
+                <div class="ph" data-asset="solution-patients" data-compact></div>
+              </div>
+            </div>
+            <div class="shot__meta">
+              <figcaption>
+                <span class="preview__step">02 · For patients</span>
+                <strong>Options and a path to membership</strong>
+                Services and care options explained clearly, with a step-by-step path for non-members toward enrollment.
+              </figcaption>
+              <button class="enlarge" type="button" data-enlarge="Patient-focused page"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M9.5 2.5h4v4M6.5 13.5h-4v-4M13.5 2.5 9 7M2.5 13.5 7 9" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>Enlarge<span class="visually-hidden"> patient-focused page</span></button>
+            </div>
+          </figure>
+          <figure>
+            <div class="browser browser--preview">
+              <div class="browser__bar" aria-hidden="true"><span class="browser__dots"><i></i><i></i><i></i></span><span class="browser__url"></span></div>
+              <div class="browser__view browser__view--scroll" tabindex="0" role="region" aria-label="Employer-focused page, scrollable">
+                <div class="ph" data-asset="solution-employers" data-compact></div>
+              </div>
+            </div>
+            <div class="shot__meta">
+              <figcaption>
+                <span class="preview__step">03 · For employers</span>
+                <strong>Information to evaluate a plan</strong>
+                What employers need to understand direct primary care as an option for their team, and how to take the next step.
+              </figcaption>
+              <button class="enlarge" type="button" data-enlarge="Employer-focused page"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M9.5 2.5h4v4M6.5 13.5h-4v-4M13.5 2.5 9 7M2.5 13.5 7 9" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>Enlarge<span class="visually-hidden"> employer-focused page</span></button>
+            </div>
+          </figure>
+        </div>
+        <p class="draft" data-draft>Confirm the page names for the patient and employer pages and adjust the captions to match the screenshots.</p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         4. UNDERSTANDING THE CHALLENGE
+         ============================================================ -->
+    <section class="section" id="challenge" aria-labelledby="challenge-title">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow"><span class="eyebrow__num">03</span> Understanding the challenge</p>
+          <h2 id="challenge-title">A practice with strong value that wasn't fully reflected online</h2>
+          <p class="lede">Grove Family Health delivers a more personal, accessible care model for individuals and employers. Their previous website didn't clearly communicate that value, which made it harder for visitors to understand their options or move forward with confidence.</p>
+        </div>
+
+        <div class="split split--reverse">
+          <figure class="challenge-media sticky-media">
+            <div class="browser browser--side">
+              <div class="browser__bar" aria-hidden="true"><span class="browser__dots"><i></i><i></i><i></i></span><span class="browser__url"></span></div>
+              <div class="browser__view browser__view--scroll" tabindex="0" role="region" aria-label="Original website, scrollable">
+                <div class="ph" data-asset="original-site"></div>
+              </div>
+            </div>
+            <div class="shot__meta">
+              <figcaption><strong>The original website</strong>Before the redesign.</figcaption>
+              <button class="enlarge" type="button" data-enlarge="Original website"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M9.5 2.5h4v4M6.5 13.5h-4v-4M13.5 2.5 9 7M2.5 13.5 7 9" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>Enlarge<span class="visually-hidden"> original website</span></button>
+            </div>
+          </figure>
+
+          <div>
+            <h3>Where visitors were getting stuck</h3>
+            <p>Patients and employers were visiting the site but didn't always have a clear, guided path to the information they needed. These are the project challenges and design observations that shaped the redesign.</p>
+            <ol class="obs">
+              <li>
+                <h4>No guided path for each audience</h4>
+                <p>Patients and employers arrived with different questions, but the site didn't lead either group clearly to the information meant for them.</p>
+                <span class="obs__need">give each audience a clear starting point</span>
+              </li>
+              <li>
+                <h4>Services were hard to take in quickly</h4>
+                <p>Services were grouped in a way that made it harder to quickly understand the available options.</p>
+                <span class="obs__need">give services their own, focused pages</span>
+              </li>
+              <li>
+                <h4>The care model needed explaining</h4>
+                <p>Direct primary care works differently from the insurance-based care many visitors know, and the site needed to explain it more clearly.</p>
+                <span class="obs__need">explain the model in plain, reassuring language</span>
+              </li>
+              <li>
+                <h4>No defined journey to a decision</h4>
+                <p>Both individuals and employers could benefit from a more defined journey toward evaluating plans or enrolling in membership.</p>
+                <span class="obs__need">make the next step visible and easy to take</span>
+              </li>
+            </ol>
+            <p class="note-inline">These observations come from the project brief and the design work. They aren't findings from formal user research.</p>
+            <p class="draft draft--question" data-draft>How were these issues identified: a review of the original site, conversations with the client, analytics, or something else? Add a sentence on that here if you'd like to.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         5. SITE ARCHITECTURE
+         ============================================================ -->
+    <section class="section section--quiet" id="architecture" aria-labelledby="architecture-title">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow"><span class="eyebrow__num">04</span> Site architecture</p>
+          <h2 id="architecture-title">Organizing the site for two audiences</h2>
+          <p class="lede">I created a sitemap to plan how patients and employers would each find the information that applies to them, and how every page would lead to a next step.</p>
+        </div>
+
+        <figure class="artifact artifact--large">
+          <div class="ph" data-asset="sitemap"></div>
+          <div class="shot__meta">
+            <figcaption><strong>Sitemap</strong>The structure of the redesigned site.</figcaption>
+            <button class="enlarge" type="button" data-enlarge="Sitemap"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M9.5 2.5h4v4M6.5 13.5h-4v-4M13.5 2.5 9 7M2.5 13.5 7 9" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>Enlarge<span class="visually-hidden"> sitemap</span></button>
+          </div>
+        </figure>
+
+        <div class="block">
+          <h3 class="kicker">What the structure does</h3>
+          <ul class="structure">
+            <li><strong>Dedicated service pages</strong>Services are broken into their own pages, to make each option easier to understand and easier to find in search.</li>
+            <li><strong>A path for non-members</strong>A separate pathway leads people who aren't yet members step by step toward enrollment.</li>
+            <li><strong>Simpler navigation</strong>Fewer, clearer choices, so the next step feels obvious from anywhere on the site.</li>
+          </ul>
+          <div class="draft" data-draft>
+            Sitemap rationale, in your words:
+            <ul>
+              <li>How the original structure compared, and what changed.</li>
+              <li>How the navigation separates patient and employer content.</li>
+              <li>Why pages were grouped the way they are.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         6. VISUAL DIRECTION WITHIN AN EXISTING BRAND
+         ============================================================ -->
+    <section class="section" id="visual-direction" aria-labelledby="visual-title">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow"><span class="eyebrow__num">05</span> Visual direction</p>
+          <h2 id="visual-title">A modern look within an existing brand</h2>
+          <p class="lede">Grove Family Health's identity was already in place. I used a mood board and a branding sheet to define how that identity would carry into a modern, reassuring website.</p>
+        </div>
+
+        <div class="artifact-pair">
+          <figure class="artifact">
+            <div class="ph" data-asset="moodboard"></div>
+            <div class="shot__meta">
+              <figcaption><strong>Mood board</strong>The visual direction for the website.</figcaption>
+              <button class="enlarge" type="button" data-enlarge="Mood board"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M9.5 2.5h4v4M6.5 13.5h-4v-4M13.5 2.5 9 7M2.5 13.5 7 9" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>Enlarge<span class="visually-hidden"> mood board</span></button>
+            </div>
+            <div class="draft" data-draft>
+              Captions to write:
+              <ul>
+                <li><b>Imagery:</b> the kind of photography or illustration chosen, and why.</li>
+                <li><b>Mood:</b> the feeling the site should convey to patients and employers.</li>
+              </ul>
+            </div>
+          </figure>
+          <figure class="artifact">
+            <div class="ph" data-asset="branding-sheet"></div>
+            <div class="shot__meta">
+              <figcaption><strong>Branding sheet</strong>How the existing brand applies to the website.</figcaption>
+              <button class="enlarge" type="button" data-enlarge="Branding sheet"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M9.5 2.5h4v4M6.5 13.5h-4v-4M13.5 2.5 9 7M2.5 13.5 7 9" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>Enlarge<span class="visually-hidden"> branding sheet</span></button>
+            </div>
+            <div class="draft" data-draft>
+              Captions to write:
+              <ul>
+                <li><b>Typography:</b> the typefaces and hierarchy for the site.</li>
+                <li><b>Color:</b> how the existing brand colors are used on screen (backgrounds, buttons, accents).</li>
+                <li><b>Interface elements:</b> buttons, cards or icons defined on the sheet.</li>
+              </ul>
+            </div>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         7. WIREFRAMES
+         ============================================================ -->
+    <section class="section section--tint" id="wireframes" aria-labelledby="wireframes-title">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow"><span class="eyebrow__num">06</span> Wireframes</p>
+          <h2 id="wireframes-title">Planning the experience before the visuals</h2>
+          <p class="lede">I wireframed the key pages to settle the hierarchy, navigation, where key information sits and where each next step appears, before moving into visual design.</p>
+        </div>
+
+        <ul class="focus-list">
+          <li><strong>Hierarchy</strong>What each audience needs to see first on a page.<span class="draft" data-draft>Rationale to add.</span></li>
+          <li><strong>Navigation</strong>How patients and employers move to the content meant for them.<span class="draft" data-draft>Rationale to add.</span></li>
+          <li><strong>Key information</strong>Where the care model and service details are placed.<span class="draft" data-draft>Rationale to add.</span></li>
+          <li><strong>Next steps</strong>Where calls to action appear along each path.<span class="draft" data-draft>Rationale to add.</span></li>
+        </ul>
+
+        <div class="block preview wf-grid">
+          <figure>
+            <div class="wf-frame">
+              <div class="browser browser--preview">
+                <div class="browser__bar" aria-hidden="true"><span class="browser__dots"><i></i><i></i><i></i></span><span class="browser__url"></span></div>
+                <div class="browser__view browser__view--scroll" tabindex="0" role="region" aria-label="Homepage wireframe, scrollable">
+                  <div class="ph" data-asset="wf-home" data-compact></div>
+                </div>
+              </div>
+            </div>
+            <div class="shot__meta">
+              <figcaption><strong>Homepage</strong></figcaption>
+              <button class="enlarge" type="button" data-enlarge="Wireframe: homepage"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M9.5 2.5h4v4M6.5 13.5h-4v-4M13.5 2.5 9 7M2.5 13.5 7 9" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>Enlarge<span class="visually-hidden"> homepage wireframe</span></button>
+            </div>
+          </figure>
+          <figure>
+            <div class="wf-frame">
+              <div class="browser browser--preview">
+                <div class="browser__bar" aria-hidden="true"><span class="browser__dots"><i></i><i></i><i></i></span><span class="browser__url"></span></div>
+                <div class="browser__view browser__view--scroll" tabindex="0" role="region" aria-label="Patient-focused page wireframe, scrollable">
+                  <div class="ph" data-asset="wf-patients" data-compact></div>
+                </div>
+              </div>
+            </div>
+            <div class="shot__meta">
+              <figcaption><strong>Patient-focused page</strong></figcaption>
+              <button class="enlarge" type="button" data-enlarge="Wireframe: patient-focused page"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M9.5 2.5h4v4M6.5 13.5h-4v-4M13.5 2.5 9 7M2.5 13.5 7 9" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>Enlarge<span class="visually-hidden"> patient-focused page wireframe</span></button>
+            </div>
+          </figure>
+          <figure>
+            <div class="wf-frame">
+              <div class="browser browser--preview">
+                <div class="browser__bar" aria-hidden="true"><span class="browser__dots"><i></i><i></i><i></i></span><span class="browser__url"></span></div>
+                <div class="browser__view browser__view--scroll" tabindex="0" role="region" aria-label="Employer-focused page wireframe, scrollable">
+                  <div class="ph" data-asset="wf-employers" data-compact></div>
+                </div>
+              </div>
+            </div>
+            <div class="shot__meta">
+              <figcaption><strong>Employer-focused page</strong></figcaption>
+              <button class="enlarge" type="button" data-enlarge="Wireframe: employer-focused page"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M9.5 2.5h4v4M6.5 13.5h-4v-4M13.5 2.5 9 7M2.5 13.5 7 9" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>Enlarge<span class="visually-hidden"> employer-focused page wireframe</span></button>
+            </div>
+          </figure>
+        </div>
+        <p class="draft" data-draft>Confirm which pages were wireframed and rename these captions to match. Add or remove slots as needed.</p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         8. HIGH-FIDELITY DESIGN AND KEY DECISIONS
+         ============================================================ -->
+    <section class="section" id="design" aria-labelledby="design-title">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow"><span class="eyebrow__num">07</span> High-fidelity design</p>
+          <h2 id="design-title">Key design decisions</h2>
+          <p class="lede">In the high-fidelity designs, I brought the structure and visual direction together around three goals. Each decision below shows the challenge, my design response, and why it mattered.</p>
+          <p class="note-inline" style="margin-top:.5rem">"Why it mattered" describes what each change was intended to do. Measured results are reported separately under <a href="#outcomes">Outcomes</a>.</p>
+        </div>
+
+        <article class="decision" aria-labelledby="d1">
+          <h3 class="decision__title" id="d1"><span class="theme-label">01</span>Helping patients and employers find what's relevant to them</h3>
+          <ol class="chain">
+            <li><span class="chain__k">The challenge</span>Patients and employers came to the site with different questions, without a clear path to the information meant for them.</li>
+            <li><span class="chain__k">Design response</span>Separate paths for patients and employers, supported by simplified navigation.<span class="draft" data-draft>Add specifics: how each audience is directed (navigation labels, homepage sections).</span></li>
+            <li><span class="chain__k">Why it mattered</span>Each visitor can get to what applies to them with less effort.<span class="chain__note">Intended benefit</span></li>
+          </ol>
+          <div class="compare">
+            <figure>
+              <span class="compare__label">Before</span>
+              <div class="browser browser--compare">
+                <div class="browser__bar" aria-hidden="true"><span class="browser__dots"><i></i><i></i><i></i></span><span class="browser__url"></span></div>
+                <div class="browser__view browser__view--scroll" tabindex="0" role="region" aria-label="Before: finding relevant information, scrollable">
+                  <div class="ph" data-asset="cmp-find-before" data-compact></div>
+                </div>
+              </div>
+              <div class="shot__meta">
+                <figcaption data-draft class="draft">Original site or wireframe? Update the label.</figcaption>
+                <button class="enlarge" type="button" data-enlarge="Before: finding relevant information"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M9.5 2.5h4v4M6.5 13.5h-4v-4M13.5 2.5 9 7M2.5 13.5 7 9" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>Enlarge<span class="visually-hidden"> before image</span></button>
+              </div>
+            </figure>
+            <figure>
+              <span class="compare__label compare__label--after">After · Final design</span>
+              <div class="browser browser--compare">
+                <div class="browser__bar" aria-hidden="true"><span class="browser__dots"><i></i><i></i><i></i></span><span class="browser__url"></span></div>
+                <div class="browser__view browser__view--scroll" tabindex="0" role="region" aria-label="After: separate paths for patients and employers, scrollable">
+                  <div class="ph" data-asset="cmp-find-after" data-compact></div>
+                </div>
+              </div>
+              <div class="shot__meta">
+                <span></span>
+                <button class="enlarge" type="button" data-enlarge="After: separate paths for patients and employers"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M9.5 2.5h4v4M6.5 13.5h-4v-4M13.5 2.5 9 7M2.5 13.5 7 9" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>Enlarge<span class="visually-hidden"> after image</span></button>
+              </div>
+            </figure>
+          </div>
+        </article>
+
+        <article class="decision" aria-labelledby="d2">
+          <h3 class="decision__title" id="d2"><span class="theme-label">02</span>Making the care model and service options easier to understand</h3>
+          <ol class="chain">
+            <li><span class="chain__k">The challenge</span>Services were grouped in a way that made options hard to take in quickly, and the direct primary care model needed a clearer explanation.</li>
+            <li><span class="chain__k">Design response</span>Dedicated pages for services, with reassuring, plain-language content about how care works.<span class="draft" data-draft>Add specifics: how the care model is explained (sections, FAQs, comparisons).</span></li>
+            <li><span class="chain__k">Why it mattered</span>Visitors can understand their options before they decide, and each service has its own page, which improves clarity and search visibility.<span class="chain__note">Intended benefit</span></li>
+          </ol>
+          <div class="compare">
+            <figure>
+              <span class="compare__label">Before</span>
+              <div class="browser browser--compare">
+                <div class="browser__bar" aria-hidden="true"><span class="browser__dots"><i></i><i></i><i></i></span><span class="browser__url"></span></div>
+                <div class="browser__view browser__view--scroll" tabindex="0" role="region" aria-label="Before: services and care model, scrollable">
+                  <div class="ph" data-asset="cmp-model-before" data-compact></div>
+                </div>
+              </div>
+              <div class="shot__meta">
+                <figcaption data-draft class="draft">Original site or wireframe? Update the label.</figcaption>
+                <button class="enlarge" type="button" data-enlarge="Before: services and care model"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M9.5 2.5h4v4M6.5 13.5h-4v-4M13.5 2.5 9 7M2.5 13.5 7 9" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>Enlarge<span class="visually-hidden"> before image</span></button>
+              </div>
+            </figure>
+            <figure>
+              <span class="compare__label compare__label--after">After · Final design</span>
+              <div class="browser browser--compare">
+                <div class="browser__bar" aria-hidden="true"><span class="browser__dots"><i></i><i></i><i></i></span><span class="browser__url"></span></div>
+                <div class="browser__view browser__view--scroll" tabindex="0" role="region" aria-label="After: dedicated service content, scrollable">
+                  <div class="ph" data-asset="cmp-model-after" data-compact></div>
+                </div>
+              </div>
+              <div class="shot__meta">
+                <span></span>
+                <button class="enlarge" type="button" data-enlarge="After: dedicated service content"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M9.5 2.5h4v4M6.5 13.5h-4v-4M13.5 2.5 9 7M2.5 13.5 7 9" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>Enlarge<span class="visually-hidden"> after image</span></button>
+              </div>
+            </figure>
+          </div>
+        </article>
+
+        <article class="decision" aria-labelledby="d3">
+          <h3 class="decision__title" id="d3"><span class="theme-label">03</span>Making the next step clear</h3>
+          <ol class="chain">
+            <li><span class="chain__k">The challenge</span>Visitors who were ready to act didn't have a clearly defined journey toward enrolling in membership or evaluating a plan.</li>
+            <li><span class="chain__k">Design response</span>A step-by-step pathway for non-members toward enrollment, and visible calls to action throughout the site.<span class="draft" data-draft>Add specifics: where the calls to action sit and what they say.</span></li>
+            <li><span class="chain__k">Why it mattered</span>Every path ends in an obvious next step, so no one is left wondering what to do next.<span class="chain__note">Intended benefit</span></li>
+          </ol>
+          <div class="compare">
+            <figure>
+              <span class="compare__label">Before</span>
+              <div class="browser browser--compare">
+                <div class="browser__bar" aria-hidden="true"><span class="browser__dots"><i></i><i></i><i></i></span><span class="browser__url"></span></div>
+                <div class="browser__view browser__view--scroll" tabindex="0" role="region" aria-label="Before: next steps, scrollable">
+                  <div class="ph" data-asset="cmp-next-before" data-compact></div>
+                </div>
+              </div>
+              <div class="shot__meta">
+                <figcaption data-draft class="draft">Original site or wireframe? Update the label.</figcaption>
+                <button class="enlarge" type="button" data-enlarge="Before: next steps"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M9.5 2.5h4v4M6.5 13.5h-4v-4M13.5 2.5 9 7M2.5 13.5 7 9" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>Enlarge<span class="visually-hidden"> before image</span></button>
+              </div>
+            </figure>
+            <figure>
+              <span class="compare__label compare__label--after">After · Final design</span>
+              <div class="browser browser--compare">
+                <div class="browser__bar" aria-hidden="true"><span class="browser__dots"><i></i><i></i><i></i></span><span class="browser__url"></span></div>
+                <div class="browser__view browser__view--scroll" tabindex="0" role="region" aria-label="After: visible next steps, scrollable">
+                  <div class="ph" data-asset="cmp-next-after" data-compact></div>
+                </div>
+              </div>
+              <div class="shot__meta">
+                <span></span>
+                <button class="enlarge" type="button" data-enlarge="After: visible next steps"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M9.5 2.5h4v4M6.5 13.5h-4v-4M13.5 2.5 9 7M2.5 13.5 7 9" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>Enlarge<span class="visually-hidden"> after image</span></button>
+              </div>
+            </figure>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         9. FEEDBACK AND REFINEMENT (draft only)
+         Hidden from readers while data-draft is set. When the content is
+         ready: write it here, then remove data-draft from this <section>
+         and from the "Feedback" item in the section nav. Give it an
+         eyebrow number and renumber the sections after it.
+         ============================================================ -->
+    <section class="section draft-section" id="feedback" aria-labelledby="feedback-title" data-draft>
+      <div class="wrap">
+        <p class="draft-banner"><strong>Draft only.</strong> Hidden from readers until it has content.</p>
+        <div class="section-head">
+          <p class="eyebrow">Feedback and refinement</p>
+          <h2 id="feedback-title">Refining the design with client feedback</h2>
+        </div>
+        <div class="grid-2">
+          <div class="draft">
+            Client feedback:
+            <ul>
+              <li>What the client asked for or raised during reviews.</li>
+              <li>When in the process it came up (wireframes, high-fidelity, pre-launch).</li>
+            </ul>
+          </div>
+          <div class="draft">
+            Revisions:
+            <ul>
+              <li>What I changed in response, and why.</li>
+              <li>Optional: a before/after pair. Copy a comparison from Key design decisions and add two new asset entries.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         10. FINAL WEBSITE EXPERIENCE
+         ============================================================ -->
+    <section class="section theme-dark" id="final" aria-labelledby="final-title">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow"><span class="eyebrow__num">08</span> Final website</p>
+          <h2 id="final-title">The launched website</h2>
+          <p class="lede">Selected pages from the website that launched in January 2026. Scroll inside each frame to see the full page, or enlarge it.</p>
+        </div>
+
+        <div class="shots" tabindex="0" role="region" aria-label="Final website pages, scrolls horizontally">
+          <figure>
+            <div class="browser browser--gallery">
+              <div class="browser__bar" aria-hidden="true"><span class="browser__dots"><i></i><i></i><i></i></span><span class="browser__url"></span></div>
+              <div class="browser__view browser__view--scroll" tabindex="0" role="region" aria-label="Final page 1, scrollable">
+                <div class="ph" data-asset="final-1" data-compact></div>
+              </div>
+            </div>
+            <div class="shot__meta">
+              <figcaption><strong>Page name</strong><span class="draft" data-draft>One line on what this page does for visitors.</span></figcaption>
+              <button class="enlarge" type="button" data-enlarge="Final page 1"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M9.5 2.5h4v4M6.5 13.5h-4v-4M13.5 2.5 9 7M2.5 13.5 7 9" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>Enlarge<span class="visually-hidden"> page 1</span></button>
+            </div>
+          </figure>
+          <figure>
+            <div class="browser browser--gallery">
+              <div class="browser__bar" aria-hidden="true"><span class="browser__dots"><i></i><i></i><i></i></span><span class="browser__url"></span></div>
+              <div class="browser__view browser__view--scroll" tabindex="0" role="region" aria-label="Final page 2, scrollable">
+                <div class="ph" data-asset="final-2" data-compact></div>
+              </div>
+            </div>
+            <div class="shot__meta">
+              <figcaption><strong>Page name</strong><span class="draft" data-draft>One line on what this page does for visitors.</span></figcaption>
+              <button class="enlarge" type="button" data-enlarge="Final page 2"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M9.5 2.5h4v4M6.5 13.5h-4v-4M13.5 2.5 9 7M2.5 13.5 7 9" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>Enlarge<span class="visually-hidden"> page 2</span></button>
+            </div>
+          </figure>
+          <figure>
+            <div class="browser browser--gallery">
+              <div class="browser__bar" aria-hidden="true"><span class="browser__dots"><i></i><i></i><i></i></span><span class="browser__url"></span></div>
+              <div class="browser__view browser__view--scroll" tabindex="0" role="region" aria-label="Final page 3, scrollable">
+                <div class="ph" data-asset="final-3" data-compact></div>
+              </div>
+            </div>
+            <div class="shot__meta">
+              <figcaption><strong>Page name</strong><span class="draft" data-draft>One line on what this page does for visitors.</span></figcaption>
+              <button class="enlarge" type="button" data-enlarge="Final page 3"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M9.5 2.5h4v4M6.5 13.5h-4v-4M13.5 2.5 9 7M2.5 13.5 7 9" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>Enlarge<span class="visually-hidden"> page 3</span></button>
+            </div>
+          </figure>
+          <figure>
+            <div class="browser browser--gallery">
+              <div class="browser__bar" aria-hidden="true"><span class="browser__dots"><i></i><i></i><i></i></span><span class="browser__url"></span></div>
+              <div class="browser__view browser__view--scroll" tabindex="0" role="region" aria-label="Final page 4, scrollable">
+                <div class="ph" data-asset="final-4" data-compact></div>
+              </div>
+            </div>
+            <div class="shot__meta">
+              <figcaption><strong>Page name</strong><span class="draft" data-draft>One line on what this page does for visitors.</span></figcaption>
+              <button class="enlarge" type="button" data-enlarge="Final page 4"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M9.5 2.5h4v4M6.5 13.5h-4v-4M13.5 2.5 9 7M2.5 13.5 7 9" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>Enlarge<span class="visually-hidden"> page 4</span></button>
+            </div>
+          </figure>
+          <figure>
+            <div class="browser browser--gallery">
+              <div class="browser__bar" aria-hidden="true"><span class="browser__dots"><i></i><i></i><i></i></span><span class="browser__url"></span></div>
+              <div class="browser__view browser__view--scroll" tabindex="0" role="region" aria-label="Final page 5, scrollable">
+                <div class="ph" data-asset="final-5" data-compact></div>
+              </div>
+            </div>
+            <div class="shot__meta">
+              <figcaption><strong>Page name</strong><span class="draft" data-draft>One line on what this page does for visitors.</span></figcaption>
+              <button class="enlarge" type="button" data-enlarge="Final page 5"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M9.5 2.5h4v4M6.5 13.5h-4v-4M13.5 2.5 9 7M2.5 13.5 7 9" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>Enlarge<span class="visually-hidden"> page 5</span></button>
+            </div>
+          </figure>
+        </div>
+        <p class="scroll-hint">Scroll sideways for more pages.</p>
+
+        <a class="btn live-link" data-config-link="liveSiteUrl" href="#" target="_blank" rel="noopener">Visit the live website <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3H3v10h10v-3M9 3h4v4M13 3 7 9" fill="none" stroke="currentColor" stroke-width="1.5"/></svg><span class="visually-hidden"> (opens in a new tab)</span></a>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         11. OUTCOMES
+         ============================================================ -->
+    <section class="section section--quiet" id="outcomes" aria-labelledby="outcomes-title">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow"><span class="eyebrow__num">09</span> Outcomes</p>
+          <h2 id="outcomes-title">After launch</h2>
+          <p class="lede">The website launched in January 2026. Two results were reported in the weeks after launch. They come from different sources and are shown separately.</p>
+        </div>
+
+        <div class="outcomes">
+          <article class="outcome" aria-labelledby="o1">
+            <span class="outcome__type">Client-reported result</span>
+            <p class="outcome__num" aria-hidden="true">30%</p>
+            <h3 class="outcome__what" id="o1"><span class="visually-hidden">30% </span>increase in inquiries within the first 30–45 days after launch</h3>
+            <dl>
+              <div><dt>Source</dt><dd>Reported by Grove Family Health</dd></div>
+              <div><dt>Timeframe</dt><dd>First 30–45 days after the January 2026 launch</dd></div>
+              <div><dt>Note</dt><dd>Inquiry channels, measurement method and baseline weren't specified.</dd></div>
+            </dl>
+          </article>
+          <article class="outcome" aria-labelledby="o2">
+            <span class="outcome__type">Search observation</span>
+            <p class="outcome__num" aria-hidden="true">#1</p>
+            <h3 class="outcome__what" id="o2"><span class="visually-hidden">Number 1 </span>on Google for "primary care Southern Maryland"</h3>
+            <dl>
+              <div><dt>When</dt><dd>Observed about three weeks after the January 2026 launch</dd></div>
+              <div><dt>Note</dt><dd>A point-in-time observation, not a current or guaranteed ranking. Search rankings depend on many factors and change over time.</dd></div>
+            </dl>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         12. REFLECTION (draft only)
+         Hidden from readers while data-draft is set. When it's written,
+         remove data-draft. The page-turning notebook from the DC Water
+         page (index.html, .notebook) can be reused here.
+         ============================================================ -->
+    <section class="section draft-section" id="reflection" aria-labelledby="reflection-title" data-draft>
+      <div class="wrap">
+        <p class="draft-banner"><strong>Draft only.</strong> Hidden from readers until it has content.</p>
+        <div class="section-head">
+          <p class="eyebrow">Reflection</p>
+          <h2 id="reflection-title">What I learned</h2>
+        </div>
+        <div class="draft">
+          Prompts to answer:
+          <ul>
+            <li>What was it like designing within an existing brand?</li>
+            <li>What did designing for two audiences on one site teach you?</li>
+            <li>What would you do differently, or measure next time?</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         13. CLOSING NAVIGATION
+         ============================================================ -->
+    <nav class="closing theme-deep" aria-label="Case study end">
+      <div class="wrap closing__inner">
+        <div class="closing__links">
+          <a class="back-link" data-back-link href="#"><span aria-hidden="true">←</span> Back to projects</a>
+          <a class="next-link" href="index.html">Next case study: DC Water <span aria-hidden="true">→</span></a>
+        </div>
+        <p class="footer-note">Grove Family Health · Website redesign · 2026</p>
+      </div>
+    </nav>
+  </main>
+
+  <script src="js/grove-config.js"></script>
+  <script src="js/grove-assets.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

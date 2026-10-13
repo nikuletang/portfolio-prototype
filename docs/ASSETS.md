@@ -1,4 +1,4 @@
-# Image assets needed
+# Image assets needed: index.html
 
 70 image slots in total.
 
@@ -6,7 +6,7 @@ Save each file in `assets/images/` with the exact file name below and reload the
 To use a different file name or format, edit the `file` value in `js/assets.js`.
 
 - **Export screens without device frames.** The page draws its own restrained frame.
-- **Optional** rows can stay empty. Remove the slot from `index.html` if you have no asset for it.
+- **Optional** rows can stay empty. Remove the slot from the HTML if you have no asset for it.
 - Files marked *(reused)* appear in more than one place but only need to be uploaded once.
 
 _Regenerate this list with `node scripts/list-assets.js`._
