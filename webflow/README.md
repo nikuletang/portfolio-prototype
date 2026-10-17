@@ -57,3 +57,28 @@ placeholders/           The two placeholder images uploaded to the asset library
 - **Live site link:** the "Visit the live website" button points to `https://www.grovefamilyhealth.net` (taken from the business case study). Confirm it.
 - **Back to projects:** points to `/`. "Next case study" points to `/dc-water`.
 - **Enlarge:** the prototype's enlarge dialog isn't in Webflow. Readers scroll inside each frame instead. If you want click-to-enlarge, wrap an image in a Webflow Lightbox.
+
+---
+
+# Senior Services page
+
+The Senior Services case study is built on the **Senior Services** page (`/senior-services`). It's unpublished and marked as a draft, so a site publish won't include it until you turn draft off in Page settings. It's framed as a University of Maryland HCI course project with proposed designs. It has the same structure as the other case studies: Navigation Bar component → `main.dcw-page` → sections → footer component.
+
+```
+build_senior.py           Generates the sections (python3 webflow/build_senior.py)
+out/senior-sections.json  Generated payloads, one per section
+out/senior-check.html     Standalone preview used to check desktop, tablet and mobile layouts
+senior-assets/            The original artifacts cropped from the PDF export, as uploaded to the asset library
+```
+
+**Classes.** Shared parts reuse the existing `dcw-` classes (section bands, headings, hero, meta list, role cards, stats, status cards, closing) and two `gfh-` ones (closing links and draft notes). No shared class was restyled. Page-specific parts use `ssv-` classes. The only combos on shared classes are `dcw-meta.ssv-meta` and `dcw-status-grid.ssv-reach`, which apply only where `ssv-` is added.
+
+**Images keep their proportions.** Each image is `ssv-img` at full width with automatic height. The affinity diagram (`ssv-img.is-strip`) and the large diagrams (`ssv-img.is-zoom`, phones only) sit in a keyboard-focusable `ssv-scroll` region that scrolls sideways.
+
+**Enlarging.** Each diagram, sketch and wireframe has an "Open full size ↗" link to the original image (new tab). Webflow's native Lightbox can't be configured through the API used here, because its media list isn't exposed. To use a Lightbox instead, wrap an image in a Lightbox element in the Designer and choose the media there.
+
+## Still to do in Webflow
+
+- **Review questions:** `docs/SENIOR-NOTES.md` lists the facts to confirm (team names, timeline, credits, figures).
+- **Reflection:** hidden with `is-draft`. Write it, then remove the class.
+- **Publish:** turn off "draft" in the page settings when you're ready.
